@@ -1,0 +1,12 @@
+/* app global css */
+
+@font-face {
+    font-family: 'IRANSans';
+    src: url('/fonts/IRANSansXNoEn-Regular.ttf');
+}
+
+body , p, h1, h2, h3{
+    font-family: 'IRANSans' !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
