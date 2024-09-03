@@ -1,22 +1,22 @@
 <template>
     <div v-if="this.$q.screen.width > 992" class="menu flex " >
-        <a v-for="(item, index) in this.menuItems"  :key="index" class="menu-item"  >
+        <a @click="handleMainMenuItemClick(item)" v-for="(item, index) in this.menuItems"  :key="index" class="menu-item"  >
               <span>{{item.title}}</span>
                <q-icon v-if="item.childrens.length" class="more-icon" name="expand_more" ></q-icon>
               <div class="sub-menu-1">
-                <a class="sub-menu-item-1 flex justify-between items-center no-wrap"  v-for="(subMenuItem1,subMenuItem1Index) in item.childrens" :key="subMenuItem1Index">
+                <a @click="handleMainMenuItemClick(subMenuItem1)" class="sub-menu-item-1 flex justify-between items-center no-wrap"  v-for="(subMenuItem1,subMenuItem1Index) in item.childrens" :key="subMenuItem1Index">
                   <span>{{subMenuItem1.title}}</span>
                   <q-icon v-if="subMenuItem1.childrens.length" class="more-icon" name="chevron_left" ></q-icon>
                   <div class="sub-menu-2">
-                    <a class="sub-menu-item-2 flex justify-between items-center no-wrap"   v-for="(subMenuItem2,subMenuItem2Index) in subMenuItem1.childrens" :key="subMenuItem2Index">
+                    <a @click="handleMainMenuItemClick(subMenuItem2)" class="sub-menu-item-2 flex justify-between items-center no-wrap"   v-for="(subMenuItem2,subMenuItem2Index) in subMenuItem1.childrens" :key="subMenuItem2Index">
                       <span>{{subMenuItem2.title}}</span>
                        <q-icon v-if="subMenuItem2.childrens.length" class="more-icon" name="chevron_left" ></q-icon>
                       <div class="sub-menu-3">
-                         <a  class="sub-menu-item-3 flex justify-between items-center no-wrap" v-for="(subMenuItem3,subMenuItem3Index) in subMenuItem2.childrens" :key="subMenuItem3Index">
+                         <a @click="handleMainMenuItemClick(subMenuItem3)"  class="sub-menu-item-3 flex justify-between items-center no-wrap" v-for="(subMenuItem3,subMenuItem3Index) in subMenuItem2.childrens" :key="subMenuItem3Index">
                           <span>{{subMenuItem3.title}}</span>
                           <q-icon v-if="subMenuItem3.childrens.length" class="more-icon" name="chevron_left" ></q-icon> 
                           <div class="sub-menu-4">
-                             <a class="sub-menu-item-4 flex justify-between items-center no-wrap" v-for="(subMenuItem4,subMenuItem4Index) in subMenuItem3.childrens" :key="subMenuItem4Index">
+                             <a @click="handleMainMenuItemClick(subMenuItem4)" class="sub-menu-item-4 flex justify-between items-center no-wrap" v-for="(subMenuItem4,subMenuItem4Index) in subMenuItem3.childrens" :key="subMenuItem4Index">
                               <span>{{subMenuItem4.title}}</span>
                               <q-icon v-if="subMenuItem4.childrens.length" class="more-icon" name="chevron_left" ></q-icon>
                               </a>
@@ -30,8 +30,53 @@
         </a> 
 
   </div>
-   <div class="mobile-menu" v-else>
-     
+   <div class="mobile-menu flex column justify-start items-start" v-else>
+      <div class="action-bar ">
+        <div class="close-button-container q-mb-md flex justify-end items-center ">
+          <a @click="handleCloseMobileMenu" class="close-button flex justify-center items-center">
+            <q-icon size="20px" name="close" ></q-icon>
+          </a>
+        </div>
+        <q-btn class="button register-btn" color="primary"  @click="this.$router.push('/RegisterPage')"><a>ثبت نام</a></q-btn>
+        <q-btn class="button entrance-btn" color="green" @click="handleLoginClick"><a>ورود</a></q-btn>
+      </div>
+      <div class="content flex column justify-start items-start">
+         <a @click="handleMenuItemClick(index,item)" v-for="(item, index) in this.menuItems"  :key="index" class="menu-item flex justify-start items-start"  >
+              <div>
+                <span>{{item.title}}</span>
+                <q-icon v-if="item.childrens.length" class="more-icon" name="expand_more" ></q-icon>
+              </div>
+              <div :style="menuItemActiveIndex==index?'display:flex':'display:none'" class="sub-menu-1 flex column justify-start items-start">
+                <a @click="handleSubMenuItem1Click(subMenuItem1Index,subMenuItem1)" class="sub-menu-item-1 flex column  justify-start items-start no-wrap"  v-for="(subMenuItem1,subMenuItem1Index) in item.childrens" :key="subMenuItem1Index">
+                  <div>
+                    <span>{{subMenuItem1.title}}</span>
+                    <q-icon v-if="subMenuItem1.childrens.length" class="more-icon" name="expand_more" ></q-icon>
+                  </div>
+                  <div :style="subMenuItem1ActiveIndex==subMenuItem1Index?'display:flex':'display:none'" class="sub-menu-2 flex column justify-start items-start">
+                    <a @click="handleSubMenuItem2Click(subMenuItem2Index,subMenuItem2)" class="sub-menu-item-2 flex column justify-start items-start no-wrap"   v-for="(subMenuItem2,subMenuItem2Index) in subMenuItem1.childrens" :key="subMenuItem2Index">
+                      <div>
+                        <span>{{subMenuItem2.title}}</span>
+                        <q-icon v-if="subMenuItem2.childrens.length" class="more-icon" name="expand_more" ></q-icon>
+                      </div>
+                      <div :style="subMenuItem2ActiveIndex==subMenuItem2Index?'display:flex':'display:none'" class="sub-menu-3 flex column justify-start items-start">
+                         <a @click="handleSubMenuItem3Click(subMenuItem3Index,subMenuItem3)" class="sub-menu-item-3 flex column justify-start items-start no-wrap" v-for="(subMenuItem3,subMenuItem3Index) in subMenuItem2.childrens" :key="subMenuItem3Index">
+                          <div>
+                            <span>{{subMenuItem3.title}}</span>
+                            <q-icon v-if="subMenuItem3.childrens.length" class="more-icon" name="expand_more" ></q-icon></div> 
+                          <div :style="subMenuItem3ActiveIndex==subMenuItem3Index?'display:flex':'display:none'" class="sub-menu-4 flex column justify-start items-start">
+                             <a @click="handleSubMenuItem4Click(subMenuItem4Index,subMenuItem4)" class="sub-menu-item-4 flex column justify-start items-start no-wrap" v-for="(subMenuItem4,subMenuItem4Index) in subMenuItem3.childrens" :key="subMenuItem4Index">
+                              <span>{{subMenuItem4.title}}</span>
+                              <q-icon v-if="subMenuItem4.childrens.length" class="more-icon" name="expand_more" ></q-icon>
+                              </a>
+                          </div>
+                         </a>
+                      </div>
+                    </a>
+                  </div>
+                </a>
+              </div>
+        </a>
+      </div>
    </div>
 </template>
 
@@ -44,6 +89,11 @@ export default defineComponent({
     return {
        mainItems: [],
        menuItems: [],
+       showSubMenu1:false,
+       menuItemActiveIndex:-1,
+       subMenuItem1ActiveIndex:-1,
+       subMenuItem2ActiveIndex:-1,
+       subMenuItem3ActiveIndex:-1,
     };
   },
   props: {
@@ -89,12 +139,93 @@ export default defineComponent({
             }
          }
       },
+      handleCloseMobileMenu(){
+        this.$emit("closeMobileMenu");
+      },
+      handleMenuItemClick(index,item){
+        if(!item.childrens.length){
+          console.log("this is item",item);
+          let url=JSON.parse(item.url)
+          if(url.type=="redirect"){
+           window.location.href=url.url;
+          }else if(url.type=="open"){
+            window.open(url.url);
+          }
+        }else{
+          this.menuItemActiveIndex=index;
+        }
+          
+      },
+      handleSubMenuItem1Click(index,item){
+        if(!item.childrens.length){
+           console.log("this is item",item);
+          let url=JSON.parse(item.url)
+          if(url.type=="redirect"){
+           window.location.href=url.url;
+          }else if(url.type=="open"){
+            window.open(url.url);
+          }
+        }else{
+          this.subMenuItem1ActiveIndex=index; 
+        }
+      },
+      handleSubMenuItem2Click(index,item){
+        if(!item.childrens.length){
+           console.log("this is item",item);
+          let url=JSON.parse(item.url)
+          if(url.type=="redirect"){
+           window.location.href=url.url;
+          }else if(url.type=="open"){
+            window.open(url.url);
+          }
+        }else{
+          this.subMenuItem2ActiveIndex=index;
+        }
+      },
+      handleSubMenuItem3Click(index,item){
+        if(!item.childrens.length){
+           console.log("this is item",item);
+          let url=JSON.parse(item.url)
+          if(url.type=="redirect"){
+           window.location.href=url.url;
+          }else if(url.type=="open"){
+            window.open(url.url);
+          }
+        }else{
+          this.subMenuItem3ActiveIndex=index;
+        }
+      },
+      handleSubMenuItem4Click(index,item){
+         if(!item.childrens.length){
+           console.log("this is item",item);
+          let url=JSON.parse(item.url)
+          if(url.type=="redirect"){
+           window.location.href=url.url;
+          }else if(url.type=="open"){
+            window.open(url.url);
+          }
+        }else{
+          this.subMenuItem4ActiveIndex=index;
+        }
+      },
+      handleMainMenuItemClick(item){
+         console.log("this is item",item);
+          let url=JSON.parse(item.url)
+          if(url.type=="redirect"){
+           window.location.href=url.url;
+          }else if(url.type=="open"){
+            window.open(url.url);
+          }
+      },
+      handleLoginClick(){
+        this.$emit("goToLogin") 
+      },
   },
 });
 </script>
 <style lang="scss">
 .menu{
-  direction: rtl;
+  direction: rtl !important;
   color:#000;
   margin-left: 20px;
   .menu-item{
@@ -200,11 +331,79 @@ export default defineComponent({
   }
 }
  .mobile-menu {
+    .action-bar{
+      width:100%;
+      padding:20px 10px;
+      .close-button{
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+      }
+      .button{
+        width:50%;
+      }
+    }
     width: 300px;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     background-color: #fff;
+    direction: rtl;
+    .content{
+      flex-grow: 1;
+      flex-basis: 0;
+      overflow-y:auto;
+      padding: 10px;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+     .menu-item{
+       position: relative;
+       cursor: pointer;
+       width: 100%;
+       padding: 5px;
+       &:hover{
+         .sub-menu-1{
+           display: flex;
+         }
+       }
+     }
+    .sub-menu-1{
+      width: 100%;
+      padding-right: 10px;
+      background-color: #eee;
+      .sub-menu-item-1{
+        width: 100%;
+        padding: 5px;
+     }
+    }
+    .sub-menu-2{
+      width: 100%;
+      padding-right: 10px;
+      .sub-menu-item-2{
+        width: 100%;
+        padding: 5px;
+        background-color: #e2e2e2;
+     }
+    }
+    .sub-menu-3{
+      width: 100%;
+      padding-right: 10px;
+      .sub-menu-item-3{
+        width: 100%;
+        padding: 5px;
+        background-color: #d7d7d7;
+     }
+    }
+    .sub-menu-4{
+      width: 100%;
+      padding-right: 10px;
+      background-color: #ccc;
+      .sub-menu-item-4{
+        width: 100%;
+        padding: 5px;
+     }
+    }
   }
 </style>

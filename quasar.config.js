@@ -106,7 +106,7 @@ module.exports = configure(function (/* ctx */) {
           iconColorHover: '#666',
         },
       },
-
+      lang: 'fa-ir',
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 
@@ -118,7 +118,9 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [] ,
+      plugins: [
+        'Notify'
+      ] ,
    
     },
     

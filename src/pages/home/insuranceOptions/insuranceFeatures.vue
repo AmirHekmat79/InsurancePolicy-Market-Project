@@ -39,12 +39,12 @@
 
 <script>
 import { defineComponent } from "vue";
-import LottieAnimation from 'src/components/lottieAnimation.vue';
-import lottieData from 'src/custom-lottie-animation.json';
+// import LottieAnimation from 'src/components/lottieAnimation.vue';
+// import lottieData from 'src/custom-lottie-animation.json';
 export default defineComponent({
   name: "InsuranceFeatures",
   components:{
-    LottieAnimation
+    // LottieAnimation
   },
   data() {
     return {
@@ -55,7 +55,7 @@ export default defineComponent({
         { id: 4, title: "تایید  درخواست",  },
         { id: 5, title: "دریافت بیمه نامه ", },
       ],
-      lottieData: lottieData
+      // lottieData: lottieData
     };
   },
 

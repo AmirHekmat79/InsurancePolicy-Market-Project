@@ -140,12 +140,11 @@ export default defineComponent({
     border-radius: 0px;
     width: 100%;
   }
-  /* .main-banner-title {
-  margin-top: 20px !important;
-  margin-bottom: -34px !important;
-  font-size: 17px !important;
-  font-weight: bolder;
-} */
+}
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 10px;
+  }
 }
 @media screen and (max-width:990px) {
   .banner-title {

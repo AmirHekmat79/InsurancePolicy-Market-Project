@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div style=""
     class="row q-my-xl justify-center text-center reverse-wrap items-center q-py-lg q-gutter-md"
   >
     <div class="col-md-6 col-sm-6 col-xs-8">

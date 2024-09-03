@@ -1,33 +1,41 @@
 
 <template>
-  <q-toolbar class="text-primary text-center column justify-start items-center q-py-md q-mx-md">
+  <q-toolbar class="text-primary text-center column justify-start items-center q-py-md">
     <div v-if="this.$q.screen.width < 992" class="row justify-between items-center" style="width: 98%;">
-      <q-btn @click="toggleSidebar" flat class="text-black  hambergur-menu" icon="menu"></q-btn>
-      <!-- <div class="login-btn-group justify-between items-center ">
-        <q-btn class="register-btn"><a>ثبت نام</a></q-btn>
-        <q-btn class="entrance-btn"><a>ورود</a></q-btn>
-      </div> -->
+      <q-btn @click="toggleMobileMenu" round size="12px" :icon="showMobileMenu?'close':'menu'"></q-btn>
       <q-toolbar-title  class="text-white title-container  q-ml-auto">
         <div class="logo-sm-container q-ml-auto">
           <q-img src="../../assets/logo.png" width="115px"></q-img>
         </div>
       </q-toolbar-title>
-      <MainMenu /> 
+      <MainMenu @closeMobileMenu="toggleMobileMenu" @goToLogin="goToLogin('/vuejs/#/auth')" v-if="showMobileMenu" /> 
     </div>
     
-    <div v-else class="row justify-start text-center q-mx-auto items-center q-ml-auto">
-    
-       <div class="login-btn-group">
-        <q-btn class="register-btn"  @click="this.$router.push('/RegisterPage')"><a>ثبت نام</a></q-btn>
-        <q-btn class="entrance-btn"  @click="this.$router.push('/LoginPage')"><a>ورود</a></q-btn>
-       </div>
-        <q-list v-if="!sidebarVisible" style="direction: rtl;" class="navLink-container row justify-start items-center">
-          <div class="logo-container q-ml-auto">
+    <div v-else class="row no-wrap justify-start text-center q-mx-auto items-center q-ml-auto">
+        <q-list v-if="!sidebarVisible" style="direction: rtl;" class="navLink-container row no-wrap justify-start items-center">
+          <div class="logo-container q-ml-auto flex justify-center items-center">
             <img src="../../assets/logo.png" width="54%"/>
           </div>
           <MainMenu />
         </q-list>
+        <div class="login-btn-group">
+        <q-btn class="register-btn"  @click="showFastRegistrationDialog=true"><a>ثبت نام</a></q-btn>
+        <q-btn class="entrance-btn" @click="goToLogin('/vuejs/#/auth')"><a>ورود</a></q-btn>
+       </div>
     </div>
+    <q-dialog dir="rtl" v-model="showFastRegistrationDialog">
+            <q-card  class="fast-registration-dialog-content" v-if="showFastRegistrationDialog">
+               <q-card-section class="row items-center q-pb-none" style="direction:rtl">
+                 <div class="text-h6">ثبت نام</div>
+                 <q-space />
+                 <q-btn icon="close" flat round dense v-close-popup />
+               </q-card-section>
+               <q-card-section >
+                <!-- @registrationSuccessful="registrationSuccessful" -->
+                   <FastRegistration  />
+               </q-card-section>
+            </q-card>
+      </q-dialog>
   </q-toolbar>
 </template>
 
@@ -36,20 +44,26 @@
 import { defineComponent, ref } from "vue";
 import services from "src/services/services";
 import MainMenu from "src/components/menu/menu.vue"
+import FastRegistration from "src/components/fastRegistration.vue"
 export default defineComponent({
   name: "ToolbarNavigation",
   components:{
-     MainMenu
+     MainMenu,
+     FastRegistration
   },
   data() {
       return {
         InsuranceHeaderInfo: null,
         InsuranceNavbarMenuItems: [],
+        showMobileMenu:false,
+        hostName:"",
+        showFastRegistrationDialog:false,
       };
     },
   
     mounted() {
       this.getPolicyIntroduction();
+      this.hostName=window.location.hostname;
     },
   
     methods: {
@@ -64,6 +78,17 @@ export default defineComponent({
             console.error('Error fetching insurance centre info:', error);
           });
       },
+      toggleMobileMenu(){
+        this.showMobileMenu=!this.showMobileMenu;
+      },
+      goToLogin(url)
+      {
+      if(this.hostName=='mbime.ir'){
+        location.href = 'https://server.mbime.ir/api/ApplicationBime/Rsintialize';
+      }else{
+        window.location.href=url;
+      }
+     }
     },
     computed: {
       sortedMenuItems() {
@@ -71,20 +96,13 @@ export default defineComponent({
     },
     
 },
-  setup() {
-    const sidebarVisible = ref(false);
-    function toggleSidebar() {
-      sidebarVisible.value = !sidebarVisible.value;
-    }
-
-    return {
-      sidebarVisible,
-      toggleSidebar,
-    };
-  },
 });
 </script>
 <style scoped>
+.q-toolbar{
+  min-height: unset;
+  direction: rtl !important;
+}
 .title-container {
   margin-left : 340px !important;
   text-align: right !important;
@@ -146,7 +164,6 @@ a{
  text-decoration: none;
 }
 .sidebar-navLink-container {
-  display: none !important;
   list-style-type: none;
   display: flex;
   flex-direction: column;
@@ -200,44 +217,17 @@ a{
   width: 200px;
   height: 100vh !important;
 }
-@media only screen and (max-width:1168px) {
-   
-  .navLink-container {
-    display: none;
-  }
-  .title-container {
-    margin-left: 300px !important;
-  text-align: right !important;
+.fast-registration-dialog-content{
+  padding: 15px !important;
+  direction: rtl !important;
 }
-  .login-btn-group {
-    display: none;
-  }
-
-  .title {
-    font-size: 17px;
-  }
-
-  .hambergur-menu {
-    display: block;
-    margin-left: 10px;
-  }
-
-  .sidebar-navLink-container {
-    display: block;
-  }
-  .register-btn , .entrance-btn {
-    min-width:230px;
-    width: 60%;
-    text-align: center;
-    margin: 6px auto !important;
-  }
+@media only screen and (max-width:1200px) {
+   .entrance-btn,.register-btn{
+     width:100px;
+     margin: 0px;
+   }
 }
 @media only screen and (max-width: 727px) {
-
-  .hambergur-menu {
-     
-    /* margin-left: 65px; */
-  }
   .title-container{
     margin-left: 200px !important;
   }

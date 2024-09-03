@@ -17,6 +17,9 @@ const apiService = {
     } ,
     getMenuesItem(){
         return BaseServices.get("/ComboData/InsuranceCentrePortalMenues",{subDomain:"sabz"});
+    },
+    sendSms(nationalCode,mobile){
+        return BaseServices.get("/Account/SendSmsToken",{mobile:mobile,insuranceCentreSubDomain:"sabz"});
     }
     
 }

@@ -5,7 +5,7 @@
     src: url('/fonts/IRANSansXNoEn-Regular.ttf');
 }
 
-body , p, h1, h2, h3{
+body , p, h1, h2, h3,input{
     font-family: 'IRANSans' !important;
     margin: 0px !important;
     padding: 0px !important;
