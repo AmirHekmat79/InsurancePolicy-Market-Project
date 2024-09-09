@@ -47,12 +47,16 @@ const services = {
     },
     insertRequestDemo(data){
         let domain=BaseServices.getDomain();
-        data.insuranceCentreDomain=domain;
+        data.subDomainName=domain;
         return BaseServices.post("/RequestDemo/InsertRequestDemo",data);
     },
     logout(headers){
         let data={};
         return BaseServices.post("/Account/logout",data,headers);
+    },
+    getCaptchCode(){
+        var captchaUrl = "https://captcha.kn2.ir";
+        return BaseServices.getCaptch(`${captchaUrl}/captcha/get?rand=${Math.random()}`,{});
     },
 }
 
