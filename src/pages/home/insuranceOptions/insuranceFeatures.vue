@@ -1,5 +1,5 @@
 <template>
-  <section class="row justify-around items-center feature-banner q-pa-md q-gutter-sm">
+  <section class="row justify-around items-center feature-banner q-pa-md q-gutter-sm q-mt-lg">
         <div class="row justify-center items-center q-my-sm">
           
           <div>

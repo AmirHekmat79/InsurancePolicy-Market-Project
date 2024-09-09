@@ -1,20 +1,13 @@
 <template>
   <q-layout view=" Lpr lFf">
-    <div class="banner-styles relative-position">
+    <div class="banner-section  relative-position">
       <q-header class="q-pa-md header absolute text-white">
         <ToolbarNavigation />
       </q-header>
-      <div
-        ref="bannerTitle"
-        class="absolute banner-title rounded-borders text-white row justify-center  items-center q-gutter-md"
-      >
-        <div
-          class="q-pa-md sm-device-carousel rounded-borders"
-          style="width: 40% "
-        >
+      <div class="row descriptions">
+        <div class="col-6">
           <q-carousel
-          class="rounded-borders"
-            style="aspect-ratio: 3/1; height: auto; margin-top: 120px"
+            class="rounded-borders"
             animated
             v-model="slide"
             navigation
@@ -26,33 +19,19 @@
             @mouseenter="autoplay = false"
             @mouseleave="autoplay = true"
           >
-            <q-carousel-slide
-              :name="1"
-              img-src="src/assets/637447452444242558.jpg"
-            />
-            <q-carousel-slide
-              :name="2"
-              img-src="https://cdn.quasar.dev/img/parallax1.jpg"
-            />
-            <q-carousel-slide
-              :name="3"
-              img-src="https://cdn.quasar.dev/img/parallax2.jpg"
-            />
-            <q-carousel-slide
-              :name="4"
-              img-src="https://cdn.quasar.dev/img/quasar.jpg"
+            <q-carousel-slide @click="openArticle(item)" v-for="(item,index) in summaryNotics" :key="index"
+              :name="index"
+              :img-src="item.metaMediaFileUrl"
             />
           </q-carousel>
         </div>
-        <div class="column justify-center items-center">
-          <h3 class="main-banner-title">بیمه،راه جبران خسارت</h3>
-          <h6 class="text-subtitle-1">ساعات کاری از ساعت 8 صبح تا 5 عصر</h6>
+        <div class="col-6 flex column justify-center items-center">
+          <h1 v-if="baseData.insuranceCentrePortal" class="main-banner-title">{{ baseData.insuranceCentrePortal.title }}</h1>
+          <h6 v-if="baseData.insuranceCentrePortal" class="text-subtitle-1 text-white">{{ baseData.insuranceCentrePortal.subTitle }}</h6>
         </div>
       </div>
     </div>
-    <q-page-container>
-      <router-view />
-    </q-page-container>
+    <router-view />
     <FooterSection />
   </q-layout>
 </template>
@@ -68,25 +47,32 @@ export default defineComponent({
     ToolbarNavigation,
     FooterSection,
   },
+  data() {
+      return {
+         baseData:[],
+         summaryNotics:[]
+      };
+    },
   mounted() {
-    // this.TypeWritterEffect();
+      this.baseData=JSON.parse(localStorage.getItem("baseData"));
+      for(var a of this.baseData.summaryNotics)
+      {
+        if(a.isSpecial==true)
+          this.summaryNotics.push(a)
+      }
   },
   methods: {
-    // TypeWritterEffect() {
-    //   const bannerTitle = this.$refs.bannerTitle;
-    //   if (!bannerTitle) return;
-    //   let text = bannerTitle.textContent;
-    //   bannerTitle.textContent = "";
-    //   let i = 0;
-    //   let timer = setInterval(() => {
-    //     if (i >= text.length) {
-    //       clearInterval(timer);
-    //       return;
-    //     }
-    //     bannerTitle.textContent += text[i];
-    //     i++;
-    //   }, 100);
-    // },
+     openArticle(article)
+     {
+       if(!article.disableLink){
+         if(article.directUrl)
+         {
+           window.open(article.directUrl)
+         }
+         else
+         window.open('./article/'+article.id)
+       } 
+     }
   },
   setup() {
     return {
@@ -97,34 +83,38 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-@media screen and (max-width: 600px) {
-  .sm-device-carousel {
-    width: 100% !important;
-  }
-}
-@media screen and (min-width: 600px) and (max-width: 800px) {
-  .sm-device-carousel {
-    width: 80% !important;
-  }
-}
-.banner-styles {
+<style lang="scss">
+
+.banner-section {
   background: var(--q-Blue) !important;
   background-position: center;
   background-size: center;
   width: 100%;
   min-height: 400px;
   opacity: 0/6;
+  direction: rtl;
+  .descriptions{
+    padding:165px 150px 50px 150px;
+    .q-carousel{
+      height: 300px;
+      border-radius: 20px;
+      cursor: pointer;
+      .q-carousel__control{
+        transform: rotate(180deg) !important;
+      }
+    }
+  }
 }
 .main-banner-title {
   margin-bottom: 24px !important;
-  font-size: 40px !important;
+  font-size: 30px !important;
+  color:#fff;
+  font-weight: 600;
 }
 .banner-title {
   font-weight: 900;
   width: 100%;
   padding: 10px;
-  /* font-size: 50px; */
 }
 .header {
   padding: 20px;
@@ -161,4 +151,15 @@ export default defineComponent({
   font-weight: bolder;
 }
 }
+@media screen and (min-width: 600px) and (max-width: 800px) {
+  .sm-device-carousel {
+    width: 80% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .sm-device-carousel {
+    width: 100% !important;
+  }
+}
 </style>
+ 

@@ -2,26 +2,58 @@ import axios from "axios";
 import BaseServices from "./baseServices";
 const BASE_URL = 'https://server.easybimeh.com/api';
 
-const apiService = {
+const services = {
     getInsuranceCentreInfo(subDomain){
         return  axios.get(`${BASE_URL}/InsuranceCentre/Info?subDomain=${subDomain}`);
     } ,
-    getInsurancePlan(subDomain){
-        return  axios.get(`${BASE_URL}/InsurancePolicyPlan/SpecialPlan?subDomain=${subDomain}`);
+    getInsurancePlans(){
+        let domain=BaseServices.getDomain();
+        return  axios.get(`${BASE_URL}/InsurancePolicyPlan/SpecialPlan?subDomain=${domain}`);
     },
-    getSuggestionFormPlans(subDomain){
-        return  axios.get(`${BASE_URL}/InsurancePolicyPlan/SuggestionForm_Plans?subDomain=${subDomain}`);
+    getSuggestionForms(){
+        let domain=BaseServices.getDomain();
+        return  axios.get(`${BASE_URL}/InsurancePolicyPlan/SuggestionForm_Plans?subDomain=${domain}`);
     },
-    getPolicyIntroduction(id){
-        return  axios.get(`${BASE_URL}/InsuranceCentre/PortalLandingPage?id=${id}`);
+    getPortalLandingPage(){
+        let domain=BaseServices.getDomain();
+        return  axios.get(`${BASE_URL}/InsuranceCentre/PortalLandingPage?id=${domain}`);
+    } ,
+    getInsurancePolicies(){
+        let domain=BaseServices.getDomain();
+        return  axios.get(`${BASE_URL}/ComboData/InsuranceCentrePolicyTypes?landingCall=true&subDomain=${domain}`);
     } ,
     getMenuesItem(){
         return BaseServices.get("/ComboData/InsuranceCentrePortalMenues",{subDomain:"sabz"});
     },
     sendSms(nationalCode,mobile){
-        return BaseServices.get("/Account/SendSmsToken",{mobile:mobile,insuranceCentreSubDomain:"sabz"});
-    }
-    
+        let domain=BaseServices.getDomain();
+        return BaseServices.get("/Account/SendSmsToken",{mobile:mobile,insuranceCentreSubDomain:domain});
+    },
+    getMessageWithoutAuthorization(nationalCode,mobile,token,aliasName,resource,insuranceCentreSubDomain,onlyOtp){
+        return BaseServices.get("/Account/verifySmsToken",{nationalCode,mobile,token,aliasName,resource,insuranceCentreSubDomain,onlyOtp});
+    },
+    verifySms(nationalCode,mobile,token,aliasName){
+        let domain=BaseServices.getDomain();
+        return BaseServices.get("/Account/verifySmsToken",{nationalCode,mobile,token,aliasName,insuranceCentreSubDomain:domain});
+    },
+    verifySmsWithOnlyOtp(nationalCode,mobile,token,aliasName,onlyOtp){
+        let domain=BaseServices.getDomain();
+        return BaseServices.get("/Account/verifySmsToken",{nationalCode,mobile,token,aliasName,onlyOtp,insuranceCentreSubDomain:domain});
+    },
+    fastRegister(data){
+        let domain=BaseServices.getDomain();
+        data.insuranceCentreDomain=domain;
+        return BaseServices.post("/Account/FastRegister",data);
+    },
+    insertRequestDemo(data){
+        let domain=BaseServices.getDomain();
+        data.insuranceCentreDomain=domain;
+        return BaseServices.post("/RequestDemo/InsertRequestDemo",data);
+    },
+    logout(headers){
+        let data={};
+        return BaseServices.post("/Account/logout",data,headers);
+    },
 }
 
-export default apiService;
+export default services;

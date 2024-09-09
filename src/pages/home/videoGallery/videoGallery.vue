@@ -64,7 +64,7 @@ export default defineComponent({
   methods: {
     getPolicyIntroduction() {
       services
-        .getPolicyIntroduction("sabz")
+        .getPortalLandingPage()
         .then((response) => {
           this.InsuranceVideoGalleries =
             response.data.message?.videoGalleries || [];

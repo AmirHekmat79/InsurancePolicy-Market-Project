@@ -76,9 +76,8 @@ export default defineComponent({
 
   methods: {
     getPolicyIntroduction() {
-      console.log(23, "sdasd");
       services
-        .getPolicyIntroduction("sabz")
+        .getPortalLandingPage()
         .then((response) => {
           this.InsuranceCompanies =
             response.data.message?.insuranceCentre?.insuranceCompanies || [];

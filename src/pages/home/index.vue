@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
+  <div class="flex flex-center">
     <InsuranceTypes />
 
     <div class="column">
@@ -12,7 +12,7 @@
       <ImageGallery />
       <VideoGallery />
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>

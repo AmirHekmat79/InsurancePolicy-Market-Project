@@ -140,7 +140,7 @@ export default {
     },
     getPolicyIntroduction() {
       services
-        .getPolicyIntroduction("sabz")
+        .getPortalLandingPage()
         .then((response) => {
           this.InsuranceFooterTitle = response.data.message;
           this.InsuranceCompanies =

@@ -1,6 +1,6 @@
 <template>
     <div v-if="this.$q.screen.width > 992" class="menu flex " >
-        <a @click="handleMainMenuItemClick(item)" v-for="(item, index) in this.menuItems"  :key="index" class="menu-item"  >
+        <a @click="handleMainMenuItemClick(item)" v-for="(item, index) in this.menuItems"  :key="index" class="menu-item">
               <span>{{item.title}}</span>
                <q-icon v-if="item.childrens.length" class="more-icon" name="expand_more" ></q-icon>
               <div class="sub-menu-1">
@@ -31,14 +31,24 @@
 
   </div>
    <div class="mobile-menu flex column justify-start items-start" v-else>
-      <div class="action-bar ">
-        <div class="close-button-container q-mb-md flex justify-end items-center ">
+      <div class="action-bar">
+        <div class="q-mb-md flex justify-start items-center ">
+          <div v-if="userIsLogin" class="alias-name">
+            <q-icon
+              name="person"
+              size="20px"
+             >
+           </q-icon>
+            <span class="q-ml-md">{{currentUser.aliasName}}</span>
+        </div>
+        <q-space />
           <a @click="handleCloseMobileMenu" class="close-button flex justify-center items-center">
             <q-icon size="20px" name="close" ></q-icon>
           </a>
         </div>
-        <q-btn class="button register-btn" color="primary"  @click="this.$router.push('/RegisterPage')"><a>ثبت نام</a></q-btn>
-        <q-btn class="button entrance-btn" color="green" @click="handleLoginClick"><a>ورود</a></q-btn>
+        <q-btn class="button register-btn" color="primary" v-if="!userIsLogin" @click="signUp"><a>ثبت نام</a></q-btn>
+        <q-btn class="button entrance-btn" color="green" @click="login"><a>{{this.userIsLogin ? "ورود به پورتال" : "ورود"}}</a></q-btn>
+        <q-btn v-if="userIsLogin" class="button logout-button" color="red-6" label="خروج" @click="logout()"></q-btn>
       </div>
       <div class="content flex column justify-start items-start">
          <a @click="handleMenuItemClick(index,item)" v-for="(item, index) in this.menuItems"  :key="index" class="menu-item flex justify-start items-start"  >
@@ -97,7 +107,11 @@ export default defineComponent({
     };
   },
   props: {
-     
+     currentUser:{},
+     userIsLogin: {
+        type: Boolean,
+        default: true
+      },
   },
   mounted(){
     this.getMenueItems();
@@ -217,8 +231,14 @@ export default defineComponent({
             window.open(url.url);
           }
       },
-      handleLoginClick(){
-        this.$emit("goToLogin") 
+      signUp(){
+        this.$emit("onSignUp") 
+      },
+      login(){
+        this.$emit("onLogin") 
+      },
+      logout(){
+        this.$emit("onLogout") 
       },
   },
 });

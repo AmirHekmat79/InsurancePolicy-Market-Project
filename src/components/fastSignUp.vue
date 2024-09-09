@@ -1,26 +1,23 @@
 <template>
-     <div class="fast-registration">
+     <div class="fast-sign-up">
      <q-form  @submit="sendSms()" >
-        <q-input   v-model="registerationModel.firstName"
+        <q-input class="label-right" label="نام*"   v-model="registerationModel.firstName"
                  :rules="[val => val !== null && val !== undefined  && val !== '' || ' الزامی است']">
-                 <template v-slot:prepend>
-                    <div class="flex justify-center items-center">
-                      <q-icon name="perm_identity" />
-                      <span style="font-size:15px;margin-left:5px">نام*</span>
-                    </div>
-                 </template>
-                        
+          <template v-slot:prepend>
+             <div class="flex justify-center items-center">
+               <q-icon name="perm_identity" />
+             </div>
+          </template>
         </q-input>
-        <q-input   v-model="registerationModel.lastname"
+        <q-input class="label-right" label="نام خانوادگی*"   v-model="registerationModel.lastName"
                 :rules="[val => val !== null && val !== undefined  && val !== '' || ' الزامی است']">
                  <template v-slot:prepend>
                     <div class="flex justify-center items-center">
                       <q-icon name="perm_identity" />
-                      <span style="font-size:15px;margin-left:5px">نام خانوادگی*</span>
                     </div>
                  </template>
         </q-input>
-        <q-input   v-model="registerationModel.nationalCode"
+        <q-input class="label-right" label="کد ملی*"  v-model="registerationModel.nationalCode"
                     @keypress="controlLength($event,10)"
                      type="number"  
                      :rules="[ 
@@ -30,11 +27,10 @@
                        <template v-slot:prepend>  
                           <div class="flex justify-center items-center">
                            <q-icon name="badge" />
-                           <span style="font-size:15px;margin-left:5px">کد ملی*</span>
                          </div>
                        </template>
         </q-input>
-        <q-input   v-model="registerationModel.mobile"
+        <q-input class="label-right" label="تلفن همراه*"  v-model="registerationModel.mobile"
                        @keypress="controlLength($event,11)"
                        type="number" 
                        :rules="[ 
@@ -43,15 +39,14 @@
          <template v-slot:prepend>  
                           <div class="flex justify-center items-center">
                            <q-icon name="smartphone" />
-                           <span style="font-size:15px;margin-left:5px"> تلفن همراه*</span>
                          </div>
                        </template>
         </q-input>
-         <q-input
+         <q-input class="label-right" label="کد معرف"
             v-model="registerationModel.representativeCode">
             <template v-slot:prepend>  
                <div class="flex justify-center items-center">
-                <span style="font-size:15px;margin-left:5px">کد معرف</span>
+                <span style="font-size:15px;margin-left:5px"></span>
               </div>
             </template>
          </q-input>
@@ -61,11 +56,11 @@
          </div>
         <div class="col-12 flex justify-between items-center" style="margin-top:15px">
             <q-btn  color="blue-grey-4" label="کلمه عبور خود را فراموش کرده اید؟" @click="forgetPassword"  ></q-btn>
-            <q-btn label="ثبت نام" color="primary" style="width:100px" :loading='registrationLoading' type="submit"  />
+            <q-btn label="ثبت نام" color="primary" style="width:100px" :loading='signUpLoading' type="submit"  />
         </div>
     </q-form>
-    <!-- <PopupLogin :needOnlyOtp="true" v-if="showOTPDialog" :model="registerationModel"  v-model="showOTPDialog" @onLogin="userRegistration()" />
-    <q-dialog v-model="roles">
+    <OtpDialog  @close="handleCloseOtpDialog"  :needOnlyOtp="true" v-if="showOtpDialog" :model="registerationModel"   @onLogin="userSignUp" />
+    <!-- <q-dialog v-model="roles">
       <q-card
         style="font-family: iransans; width: 700px; max-width: 80vw; direction: rtl"
       >
@@ -84,28 +79,32 @@
 <script>
 import { defineComponent } from "vue";
 import services from "src/services/services";
+import OtpDialog from "src/components/otpDialog.vue";
 export default defineComponent({
   name: "FastRegistration",
+  components:{
+      OtpDialog
+  },
   data() {
     return {
       registerationModel:{
       firstName:"",
-      lastname:"",
+      lastName:"",
       mobile:"",
       nationalCode:"",
       representativeCode:"",
       termsConditionsAccept:false
       },
       roles:false,  
-      registrationLoading:false,  
-      showOTPDialog:false,  
+      signUpLoading:false,  
+      showOtpDialog:false,  
     };
   },
   props: {
      
   },
   mounted(){
-     
+      
   },
   methods: {
      async sendSms(){
@@ -117,25 +116,28 @@ export default defineComponent({
                 message: "مطالعه و پذیرش قوانین و مقررات الزامی است"
              })
       }else{
-         this.registrationLoading=true;
+         this.signUpLoading=true;
           await services.sendSms(this.registerationModel.nationalCode,this.registerationModel.mobile).then((response)=>{
-           this.showOTPDialog=true;
+           this.showOtpDialog=true;
            }).catch((error)=>{
-            if(error.message){
-                this.$q.notify({
-                color:'red',
-                textColor: 'white',
-                icon: 'cloud_done',
-                message: error.message
-             })
-            }
-            this.registrationLoading=false;
+            if(error.response.data.message){
+            this.$q.notify({
+            color:'red',
+            textColor: 'white',
+            icon: 'cloud_done',
+            message: error.response.data.message
+            })
+          }
+          if(error.response.data.message=="شناسه رمز شما ارسال شده است، ارسال شناسه رمز ممکن است 3 دقیقه طول بکشد"){
+             this.showOtpDialog=true;
+          }
+            this.signUpLoading=false;
           })
-         this.registrationLoading=false;
+         this.signUpLoading=false;
       }
      }, 
-     forgetPassword(){
-
+    async forgetPassword(){
+         
      }, 
      controlLength(event, maxlength) {
        var targetLength = event.target.value.length;
@@ -147,12 +149,44 @@ export default defineComponent({
        } else if (targetLength > maxlength) {
          event.target.value = event.target.value.substring(0, maxlength);
        }
+     },
+    async userSignUp(){
+         this.showOtpDialog=false;
+         this.signUpLoading=true;
+         try{
+            let response=await services.fastRegister(this.registerationModel);
+            console.log("this is response",response.data.message);
+            localStorage.setItem("current_user",JSON.stringify(response.data.message));
+            localStorage.setItem("access_token",JSON.stringify(response.data.message.access_token));
+            this.$q.notify({
+               color:'green',
+               textColor: 'white',
+               icon: 'cloud_done',
+               message:"ثبت اطلاعات با موفقیت انجام شد"
+            });
+            this.signUpLoading=false;
+            this.$emit('signUpSuccessful');
+            // window.location.href="/vuejs/#/admin/";    
+          }catch(error){
+            this.signUpLoading=false;
+            if(error.response.data.message){
+                 this.$q.notify({
+                 color:'red',
+                 textColor: 'white',
+                 icon: 'cloud_done',
+                 message: error.response.data.message
+                 })
+               }
+          }
+     },
+     handleCloseOtpDialog(){
+       this.showOtpDialog=false;
      }
   },
 });
 </script>
 <style lang="scss">
-  .q-card.fast-registration{
+  .q-card.fast-sign-up{
       direction: rtl;
       padding: 15px !important;
   }

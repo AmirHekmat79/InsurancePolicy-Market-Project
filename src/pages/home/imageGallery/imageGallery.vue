@@ -61,7 +61,7 @@ export default defineComponent({
   methods: {
     getPolicyIntroduction() {
       services
-        .getPolicyIntroduction("sabz")
+        .getPortalLandingPage()
         .then((response) => {
           this.InsuranceImageAlbums = response.data.message?.imageAlbums || [];
         })

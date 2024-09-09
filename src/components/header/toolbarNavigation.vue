@@ -1,14 +1,15 @@
 
 <template>
   <q-toolbar class="text-primary text-center column justify-start items-center q-py-md">
+    <div hidden>{{counter}}</div>
     <div v-if="this.$q.screen.width < 992" class="row justify-between items-center" style="width: 98%;">
       <q-btn @click="toggleMobileMenu" round size="12px" :icon="showMobileMenu?'close':'menu'"></q-btn>
       <q-toolbar-title  class="text-white title-container  q-ml-auto">
-        <div class="logo-sm-container q-ml-auto">
+        <div class="logo-sm-container q-ml-auto q-mr-md">
           <q-img src="../../assets/logo.png" width="115px"></q-img>
         </div>
       </q-toolbar-title>
-      <MainMenu @closeMobileMenu="toggleMobileMenu" @goToLogin="goToLogin('/vuejs/#/auth')" v-if="showMobileMenu" /> 
+      <MainMenu :currentUser="currentUser" :userIsLogin="userIsLogin" @closeMobileMenu="toggleMobileMenu" @onSignUp="showFastSignUpDialog=true" @onLogin="login()" @onLogout="logout()" v-if="showMobileMenu" /> 
     </div>
     
     <div v-else class="row no-wrap justify-start text-center q-mx-auto items-center q-ml-auto">
@@ -18,21 +19,32 @@
           </div>
           <MainMenu />
         </q-list>
-        <div class="login-btn-group">
-        <q-btn class="register-btn"  @click="showFastRegistrationDialog=true"><a>ثبت نام</a></q-btn>
-        <q-btn class="entrance-btn" @click="goToLogin('/vuejs/#/auth')"><a>ورود</a></q-btn>
+        <div class="login-btn-group flex justify-center items-center">
+         <div v-if="userIsLogin" class="alias-name">
+          <q-icon
+           name="person"
+           size="20px"
+          >
+        </q-icon>
+        <span class="q-ml-md">{{currentUser.aliasName}}</span>
+         </div>
+        
+        <q-btn v-if="this.hostName!=='mbime.ir' && !userIsLogin" class="register-btn"  @click="showFastSignUpDialog=true">
+          <a>ثبت نام</a>
+        </q-btn>
+        <q-btn class="entrance-btn" @click="login()"><a>{{this.userIsLogin ? "ورود به پورتال" : "ورود"}}</a></q-btn>
+        <q-btn v-if="userIsLogin" class="logout-button" color="red-6" label="خروج" @click="logout()"></q-btn>
        </div>
     </div>
-    <q-dialog dir="rtl" v-model="showFastRegistrationDialog">
-            <q-card  class="fast-registration-dialog-content" v-if="showFastRegistrationDialog">
+    <q-dialog dir="rtl" v-model="showFastSignUpDialog">
+            <q-card  class="fast-registration-dialog-content" v-if="showFastSignUpDialog">
                <q-card-section class="row items-center q-pb-none" style="direction:rtl">
                  <div class="text-h6">ثبت نام</div>
                  <q-space />
                  <q-btn icon="close" flat round dense v-close-popup />
                </q-card-section>
                <q-card-section >
-                <!-- @registrationSuccessful="registrationSuccessful" -->
-                   <FastRegistration  />
+                   <FastSignUp @signUpSuccessful="signUpSuccessful" />
                </q-card-section>
             </q-card>
       </q-dialog>
@@ -44,35 +56,43 @@
 import { defineComponent, ref } from "vue";
 import services from "src/services/services";
 import MainMenu from "src/components/menu/menu.vue"
-import FastRegistration from "src/components/fastRegistration.vue"
+import FastSignUp from "src/components/fastSignUp.vue"
 export default defineComponent({
   name: "ToolbarNavigation",
   components:{
      MainMenu,
-     FastRegistration
+     FastSignUp
   },
+   
   data() {
       return {
         InsuranceHeaderInfo: null,
         InsuranceNavbarMenuItems: [],
         showMobileMenu:false,
         hostName:"",
-        showFastRegistrationDialog:false,
+        showFastSignUpDialog:false,
+        userIsLogin:false,
+        currentUser: {},
+        counter:0,
       };
     },
-  
     mounted() {
-      this.getPolicyIntroduction();
+      this.getPortalLandingPage();
+      this.getUserInformation();
       this.hostName=window.location.hostname;
     },
-  
+     computed: {
+      sortedMenuItems() {
+        return this.InsuranceNavbarMenuItems.filter(item => item.parentId == null).sort((a, b) => b.order - a.order)
+      },
+    },
     methods: {
-      getPolicyIntroduction() {
+      getPortalLandingPage() {
         services
-          .getPolicyIntroduction('sabz')
+          .getPortalLandingPage()
           .then((response) => {
             this.InsuranceHeaderInfo = response.data.message?.insuranceCentrePortal;
-            
+            localStorage.setItem("baseData",JSON.stringify(response.data.message));
           })
           .catch((error) => {
             console.error('Error fetching insurance centre info:', error);
@@ -81,21 +101,58 @@ export default defineComponent({
       toggleMobileMenu(){
         this.showMobileMenu=!this.showMobileMenu;
       },
-      goToLogin(url)
+      login()
       {
-      if(this.hostName=='mbime.ir'){
-        location.href = 'https://server.mbime.ir/api/ApplicationBime/Rsintialize';
-      }else{
-        window.location.href=url;
-      }
-     }
+        if(this.userIsLogin){
+          window.location.href='/vuejs/#/';
+        }else{
+          if(this.hostName=='mbime.ir'){
+          location.href = 'https://server.mbime.ir/api/ApplicationBime/Rsintialize';
+          }else{
+            window.location.href="/vuejs/#/auth";
+          }
+        }
+      
+     },
+     signUpSuccessful(){
+      this.showFastSignUpDialog=false;
+      this.userIsLogin=true;
+      this.counter++;
+      window.location.reload();
+     },
+     getUserInformation(){
+     if(this.hostName!=='mbime.ir'){
+        var accessToken=localStorage.getItem("access_token");
+        if(accessToken && accessToken!==null){
+          this.userIsLogin=true;
+          let currentUserString=localStorage.getItem('current_user');
+          this.currentUser =  JSON.parse(currentUserString);
+          this.userName=this.currentUser.aliasName;
+         }
+        }
+      },
+    gotoPortal()
+     {
+       window.location.href='/vuejs/#/'
+     },
+     async logout() {
+       try {
+        console.log("this is this.currentUser",this.currentUser);
+        let headers={
+          Authorization: JSON.parse(localStorage.getItem("access_token")),
+          "x-api-key": this.currentUser?.id
+        };
+        await services.logout(headers);
+        window.localStorage.clear();
+       } catch (err) {
+        throw new Error("api error" + err);
+       } finally {
+         window.location.reload();
+       }
+     },
+       
     },
-    computed: {
-      sortedMenuItems() {
-      return this.InsuranceNavbarMenuItems.filter(item => item.parentId == null).sort((a, b) => b.order - a.order)
-    },
-    
-},
+   
 });
 </script>
 <style scoped>
@@ -129,14 +186,15 @@ export default defineComponent({
   margin-left: 20px !important;
   font-size: 14px;
   font-weight: 500;
-  width: 160px;
+  /* width: 160px; */
   height: 40px;
+  padding:0px 10px !important;
 }
 .register-btn {
   margin-right: 10px;
-  width: 160px;
+  /* width: 160px; */
   height: 40px;
-  margin-right: 10px;
+  margin: 0px 10px;
   background: var(--q-Blue);
   color: #ffffff;
   font-size: 17px;
@@ -145,8 +203,16 @@ export default defineComponent({
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+  padding:0px 10px !important;
 }
-
+.logout-button{
+ padding: 0px 15px !important;
+ border-radius: 16px; 
+}
+.alias-name{
+  color: #939393;
+  font-size: 14px;
+}
 .navLink-container {
   list-style-type: none;
 }
