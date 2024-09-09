@@ -54,7 +54,7 @@
         <li class="row  items-center"><a @click="this.$router.push('/')">  پیگیری بیمه نامه </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/')">    سامانه بازاریابان </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/')">   همکاری با نمایندگان بیمه  </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')">   همکاری با  ما  </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/ContactUs')">   همکاری با  ما  </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/')">    قوانین و مقررات   </a></li>
       </ul>
     </div>
