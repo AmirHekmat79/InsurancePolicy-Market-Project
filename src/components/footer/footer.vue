@@ -46,14 +46,19 @@
     <div class="col-auto site-feature-container">
       <h2 class="title">امکانات سایت</h2>
       <ul class="site-features">
-        <li class="row  items-center"><a> درباره ما </a></li>
-        <li class="row  items-center"><a> خدمات ما </a></li>
-        <li class="row  items-center"><a> تماس با ما </a></li>
-        <li class="row  items-center"><a> پیشنهادات ، انتقادات و شکایات </a></li>
-        <li class="row  items-center"><a> پرسش های متداول</a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/AboutUs')"> درباره ما </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')"> خدمات ما </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/ContactUs')"> تماس با ما </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')"> پیشنهادات ، انتقادات و شکایات </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')"> پرسش های متداول</a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')">  پیگیری بیمه نامه </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')">    سامانه بازاریابان </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')">   همکاری با نمایندگان بیمه  </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')">   همکاری با  ما  </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/')">    قوانین و مقررات   </a></li>
       </ul>
     </div>
-    <div class="col-auto common-link-container">
+    <!-- <div class="col-auto common-link-container">
       <h2 class="title">لینک های پر کاربرد</h2>
       <ul class="contactus">
         <li class="row   q-my-sm">آدرس بیمه مرکزی</li>
@@ -64,7 +69,7 @@
         <li class="row   q-my-sm">دانلود نسخه موبایل</li>
         <li class="row   q-my-sm">قوانین و مقررات</li>
       </ul>
-    </div>
+    </div> -->
     <div class="col-auto">
       <div id="footer-map" style="height: 200px; width: 340px"></div>
     </div>
@@ -156,6 +161,9 @@ export default {
 </script>
 
 <style scoped>
+li a {
+  text-decoration: none;
+}
 .img-inner{
   color: var(--q-Blue);
 }

@@ -31,7 +31,7 @@
   
   <script>
   import { defineComponent } from "vue";
-  import LottieAnimation from '../../components/lottie-animation.vue';
+  import LottieAnimation from '../../components/lottieAnimation.vue';
   import lottieData from 'src/About.json';
   export default defineComponent({
     name: "AboutUs",
