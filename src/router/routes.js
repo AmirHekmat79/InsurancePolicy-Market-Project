@@ -32,6 +32,34 @@ const routes = [
         path: 'SubmitDamage',
         component: () => import('src/pages/submitDamage/submitDamage.vue'),
       },
+      {
+        path: 'marketerRegistration',
+        component: () => import('src/pages/marketerRegistration/marketerRegistration.vue'),
+      },
+      {
+        path: 'commonFaq',
+        component: () => import('src/pages/faq/commonFaq.vue'),
+      },
+      {
+        path: 'rulesAndObligations',
+        component: () => import('src/pages/rule/rulesAndObligations.vue'),
+      },
+      {
+        path: 'ourService',
+        component: () => import('src/pages/ourService/ourService.vue'),
+      },
+      {
+        path: 'registerComplaint',
+        component: () => import('src/pages/registerComplaint/registerComplaint.vue'),
+      },
+      {
+        path: 'otherJobsRegisteration',
+        component: () => import('src/pages/otherJobsRegisteration/otherJobsRegisteration.vue'),
+      },
+      {
+        path: 'agentRegisteration',
+        component: () => import('src/pages/agentRegisteration/agentRegisteration.vue'),
+      },
     ]
   },
  {
