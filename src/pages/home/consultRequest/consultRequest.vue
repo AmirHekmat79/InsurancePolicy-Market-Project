@@ -24,7 +24,7 @@
             <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path class="icon-color" stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
-            <label class="text-subtitle2 label-font q-ml-sm"
+            <label class="text-subtitle2 label-font q-ml-sm q-mr-xs"
               >نام
             </label>
           </template>
@@ -37,24 +37,54 @@
             <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path class="icon-color" stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
-            <label class="text-subtitle2 label-font q-ml-sm"
+            <label class="text-subtitle2 label-font q-ml-sm q-mr-xs"
               >نام خانوادگی
             </label>
           </template>
            
         </q-input>
-        <q-input 
-          :rules="[val => val !== null && val !== '' || 'الزامی می باشد']"
+        <q-input type="number" @keypress="controlLength($event,11)" 
+          :rules="[val => (val !== null && val !== '') && val.length == 11 || ' الزامی است و شامل 11 رقم باشد' ]"
         input-style="text-align:right"  outlined rounded v-model="model.mobile">
           <template v-slot:prepend>
             <q-icon class="img-inner" name="phone" ></q-icon>
-            <label class="text-subtitle2 label-font q-ml-sm">
+            <label class="text-subtitle2 label-font q-ml-sm q-mr-xs">
               تلفن همراه
             </label>
             
           </template>
            
         </q-input>
+        <div class="row no-wrap justify-center items-center">
+                <q-input class="col-6"
+                :rules="[val => val !== null && val !== '' || 'الزامی می باشد']"
+                 input-style="text-align:right"  outlined rounded v-model="model.captchaCode">
+                   <template v-slot:prepend>
+                     <q-icon class="img-inner" name="lock" ></q-icon>
+                     <label class="text-subtitle2 label-font q-ml-sm q-mr-xs">
+                       کد امنیتی 
+                     </label>
+                   </template>
+           
+              </q-input>
+                <span class="col-6 row justify-center items-center" style="min-width: 130px">
+                  <img
+                    style="width: 100px; height: 30px;"
+                    id="base64image"
+                    v-if="captchaImage"
+                    :src="'data:image/jpeg;base64,' + captchaImage"
+                    spinner-color="primary"
+                  />
+                  <q-icon
+                    style="margin-right:10px"
+                    name="refresh"
+                    class="cursor-pointer"
+                    size="sm"
+                    @click="loadCpatcha"
+                  >
+                  </q-icon>
+                </span>
+              </div>
         <q-input
          :rules="[val => val !== null && val !== '' || 'الزامی می باشد']"
          type="textarea" input-style="text-align:right"    rounded outlined v-model="model.message">
@@ -62,12 +92,12 @@
             <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path class="icon-color" stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
             </svg>
-            <label class="text-subtitle2 label-font q-ml-sm">متن پیام </label>
+            <label class="text-subtitle2 label-font q-ml-sm q-mr-xs">متن پیام </label>
             
           </template>
         </q-input>
         <div class="flex  justify-end items-center">
-          <q-btn type="submit" color="primary" class=" q-my-md">
+          <q-btn type="submit" :loading="loading" color="primary" class=" q-my-md">
           <q-img
             class="q-mx-sm"
             src="src/assets/requestSubmit.png"
@@ -92,18 +122,69 @@ export default defineComponent({
           firstName:'',
           lastName:'',
           mobile:'',
-          message:''
-        }
+          message:'',
+          requestType:1,
+          captchaCode:'',
+        },
+        captchaImage:"",
+        captchaId:'',
+        loading:false
       };
     },
+    mounted(){
+      this.loadCpatcha();
+    },
   methods:{
-    handleSubmit(){
+    loadCpatcha() {
       try{
-        
+        this.captchaImage = "";
+        services.getCaptchCode().then((response) => {   
+        this.captchaImage = response.data.data.image;
+        this.captchaId = response.data.data.id;
+        });
       }catch(err){
         
       }
-    }
+      
+    },
+   async handleSubmit(){
+    this.loading=true;
+      try{
+        this.model.captchaId=this.captchaId;
+       let response= await services.insertRequestDemo(this.model);
+       this.$q.notify({
+                color:'green-5',
+                textColor: 'white',
+                icon: 'cloud_done',
+                message:response.data.message
+             })
+         this.loadCpatcha();
+       this.loading=false;
+      }catch(error){
+        console.log("this is error",error);
+        if(error.response.data.message){
+          this.$q.notify({
+                color:'red',
+                textColor: 'white',
+                icon: 'cloud_done',
+                message:error.response.data.message
+             })
+        }
+        this.loadCpatcha();
+        this.loading=false;
+      }
+    },
+    controlLength(event, maxlength) {
+       var targetLength = event.target.value.length;
+       if (event.which < 0x20) {
+         return;  
+       }
+       if (targetLength == maxlength) {
+         event.preventDefault();
+       } else if (targetLength > maxlength) {
+         event.target.value = event.target.value.substring(0, maxlength);
+       }
+     },
   }
 });
 </script>

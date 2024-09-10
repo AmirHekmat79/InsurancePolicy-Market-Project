@@ -8,6 +8,13 @@ const baseURL = "https://server.notifaano.ir/api";
            });
            return response;
     },
+   async getCaptch(endpoint,params,headers){
+        let response= await axios.get(endpoint, {
+            params: params,
+            headers: headers
+           });
+           return response;
+    },
    async post(endpoint,data,headers){
     let response=await axios.post(baseURL + endpoint, data, {
         headers: headers,
