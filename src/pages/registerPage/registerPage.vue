@@ -3,7 +3,7 @@
       <div class="q-my-sm card-alignment bg-white">
         <div class="row justify-around wrap items-center">
           <div class="img-container col-12 col-md-6  q-pa-sm">
-            <q-img src="../assets/7070629_3293465.jpg"></q-img>
+            <!-- <q-img src="../assets/7070629_3293465.jpg"></q-img> -->
           </div>
           <div class="form-container col-12 col-md-4  login-form-bg">
             <div class="column justify-between items-center">

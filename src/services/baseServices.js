@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = "https://server.notifaano.ir/api";
+const baseURL = "https://server.easybimeh.com/api";
  let BaseServices={
    async get(endpoint,params,headers){
         let response= await axios.get(baseURL + endpoint, {

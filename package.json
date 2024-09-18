@@ -6,11 +6,13 @@
   "author": "majid abbasi",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue ./",
-    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
-    "build": "quasar build"
+    "ssr": "node -v && npm -v && quasar dev -m ssr --port 8080 --hostname sabz.easybimeh.loc",
+    "pwa": "node -v && npm -v && quasar dev -m pwa --port 8080 --hostname sabz.easybimeh.loc",
+    "build-ssr": "node -v && npm -v && quasar build -m ssr",
+    "build-pwa": "node -v && npm -v && quasar build --mode pwa",
+    "build": "node -v && npm -v && quasar build",
+    "serve": "node -v && npm -v && quasar dev --port 8080 --hostname sabz.easybimeh.loc"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
@@ -18,8 +20,7 @@
     "pinia": "^2.0.11",
     "quasar": "^2.16.0",
     "vue": "^3.4.18",
-    "vue-router": "^4.0.12",
-    "vue3-carousel": "^0.3.3"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.9.0",

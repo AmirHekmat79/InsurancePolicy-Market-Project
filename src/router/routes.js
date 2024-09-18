@@ -16,10 +16,10 @@ const routes = [
         component: () => import('src/pages/blogDetails/blogDetails.vue'),
         props: true
       } ,
-      {
-        path: 'TrackingInsurance',
-        component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
-      },
+      // {
+      //   path: 'TrackingInsurance',
+      //   component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
+      // },
       {
         path: 'HomeBlogDetails',
         component: () => import('src/pages/homeBlogDetails/homeBlogDetails.vue'),

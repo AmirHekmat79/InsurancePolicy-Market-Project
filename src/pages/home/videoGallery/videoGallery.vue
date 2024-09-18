@@ -7,13 +7,20 @@
 
     </div>
  <div class="row justify-around items-center q-py-lg">
-  <div class="col-md-4 col-sm-6 q-pa-md relative-position" v-for="item in InsuranceVideoGalleries.filter(item => item.id !== 51361)" :key="item.id">
-    <video  ref="videoPlayer"   class="expand-video"   width="100%">
-              <source :src="item.metaMediaFileUrl" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div @click="openDialog(item.metaMediaFileUrl , item.title)" class="cursor-pointer"><q-img  width="60px" class="absolute-center" src="src/assets/play-button-round-icon.svg"></q-img></div>
-  </div>
+  <!-- <Carousel v-bind="settings" :breakpoints="breakpoints">
+      <Slide class="col-md-4 col-sm-6 q-pa-md relative-position" v-for="item in videoGalleries" :key="item.id">
+        <video  ref="videoPlayer"   class="video"   width="100%">
+                  <source :src="item.metaMediaFileUrl" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div @click="openDialog(item.metaMediaFileUrl , item.title)" class="cursor-pointer"><q-img  width="60px" class="absolute-center" src="src/assets/play-button-round-icon.svg"></q-img></div>
+      </Slide>
+         <template #addons>
+           <Navigation />
+           <Pagination />
+         </template>
+     </Carousel> -->
+  
  </div>
  <q-dialog
      class="Dialog"
@@ -26,13 +33,11 @@
         </q-card-actions>
 
         <q-card-section class="q-pt-none">
-          <video ref="videoPlayer"   class="expand-video" controls   style="width: 100% !important;border-radius: 10px !important;">
+          <video ref="videoPlayer" controls style="width: 100% !important;border-radius: 10px !important;max-height: 600px;">
               <source :src="selectedVideoUrl" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
         </q-card-section>
-
-      
       </q-card>
     </q-dialog>
 </template>
@@ -40,41 +45,62 @@
 <script>
 import { defineComponent } from "vue";
 import services from "src/services/services";
-
+// import 'vue3-carousel/dist/carousel.css'
+// import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 export default defineComponent({
   name: "VideoGallery",
-
+  components:{
+    // Carousel,
+    // Slide,
+    // Pagination,
+    // Navigation,
+  },
   data() {
     return {
-      InsuranceVideoGalleries: [],
-      currentSlide: "0",
-      autoplay: true,
-      autoplayInterval: 3000,
-      numSlides: 0,
+      videoGalleries: [],
       showDialog: false,
       selectedVideoUrl : '' ,
-      videoTitle : ''
+      videoTitle : '',
+      settings: {
+       itemsToShow: 3,
+       snapAlign: 'center',
+      },
+      breakpoints: {
+      // 1024 and up
+      1024: {
+        itemsToShow: 3,
+        snapAlign: 'start',
+      },
+      900: {
+        itemsToShow: 2,
+        snapAlign: 'center',
+      },
+      768: {
+        itemsToShow: 2,
+        snapAlign: 'center',
+      },
+      600: {
+        itemsToShow: 2,
+        snapAlign: 'center',
+      },
+      480: {
+        itemsToShow:1,
+        snapAlign: 'center',
+      },
+      300: {
+        itemsToShow:1,
+        snapAlign: 'center',
+      },
+      },
     };
   },
 
   mounted() {
-    this.getPolicyIntroduction();
+   this.baseData=JSON.parse(localStorage.getItem("baseData"));
+   this.videoGalleries=this.baseData.videoGalleries;
   },
 
   methods: {
-    getPolicyIntroduction() {
-      services
-        .getPortalLandingPage()
-        .then((response) => {
-          this.InsuranceVideoGalleries =
-            response.data.message?.videoGalleries || [];
-          // this.numSlides = Math.ceil(this.InsuranceVideoGalleries.length / 3);
-        })
-        .catch((error) => {
-          console.error("Error fetching insurance centre info:", error);
-        });
-    },
- 
     openDialog(videoUrl , videoTitle) {
       this.showDialog = true;
       this.selectedVideoUrl = videoUrl;
@@ -82,13 +108,7 @@ export default defineComponent({
     },
  }
 
-  // watch: {
-  //   currentSlide(newSlide) {
-  //     if (newSlide === this.numSlides.toString()) {
-  //       this.currentSlide = "0"; // Reset the slide to the first one
-  //     }
-  //   },
-  // },
+   
 });
 </script>
 
@@ -107,8 +127,9 @@ export default defineComponent({
   color: #003975 !important;
   text-align: right;
 }
-video{
+.video{
   border-radius: 16px !important;
+  max-height: 200px;
 }
 
 .lg-width {

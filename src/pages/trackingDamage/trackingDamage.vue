@@ -2,7 +2,7 @@
     <q-page >  
         <div class="row justify-center items-center">
         <h4 class="tracking-title q-mx-md"> ثبت خسارت</h4>
-        <q-img width="36px" src="../icons/verify 1.svg"></q-img>
+        <!-- <q-img width="36px" src="../icons/verify 1.svg"></q-img> -->
      </div>
      <q-form>
       <div class="row justify-center items-center q-gutter-lg q-pa-lg">

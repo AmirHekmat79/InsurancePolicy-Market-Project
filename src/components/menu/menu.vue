@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.$q.screen.width > 992" class="menu flex " >
+    <div v-if="!isSmallDevice && showMenu" class="menu flex " >
         <a @click="handleMainMenuItemClick(item)" v-for="(item, index) in this.menuItems"  :key="index" class="menu-item">
               <span>{{item.title}}</span>
                <q-icon v-if="item.childrens.length" class="more-icon" name="expand_more" ></q-icon>
@@ -30,7 +30,7 @@
         </a> 
 
   </div>
-   <div class="mobile-menu flex column justify-start items-start" v-else>
+   <div v-if="isSmallDevice && showMenu" class="mobile-menu flex column justify-start items-start">
       <div class="action-bar">
         <div class="q-mb-md flex justify-start items-center ">
           <div v-if="userIsLogin" class="alias-name">
@@ -39,7 +39,7 @@
               size="20px"
              >
            </q-icon>
-            <span class="q-ml-md">{{currentUser.aliasName}}</span>
+            <span v-if="currentUser && currentUser.aliasName" class="q-ml-md">{{currentUser.aliasName}}</span>
         </div>
         <q-space />
           <a @click="handleCloseMobileMenu" class="close-button flex justify-center items-center">
@@ -47,7 +47,8 @@
           </a>
         </div>
         <q-btn class="button register-btn" color="primary" v-if="!userIsLogin" @click="signUp"><a>ثبت نام</a></q-btn>
-        <q-btn class="button entrance-btn" color="green" @click="login"><a>{{this.userIsLogin ? "ورود به پورتال" : "ورود"}}</a></q-btn>
+        <q-btn v-if="userIsLogin" class="button entrance-btn" color="green" @click="login"><a>{{"ورود به پورتال"}}</a></q-btn>
+        <q-btn v-else class="button entrance-btn" color="green" @click="login"><a>{{"ورود"}}</a></q-btn>
         <q-btn v-if="userIsLogin" class="button logout-button" color="red-6" label="خروج" @click="logout()"></q-btn>
       </div>
       <div class="content flex column justify-start items-start">
@@ -104,6 +105,9 @@ export default defineComponent({
        subMenuItem1ActiveIndex:-1,
        subMenuItem2ActiveIndex:-1,
        subMenuItem3ActiveIndex:-1,
+       isSmallDevice:false,
+       showMenu:false,
+        
     };
   },
   props: {
@@ -115,6 +119,9 @@ export default defineComponent({
   },
   mounted(){
     this.getMenueItems();
+    if(this.$q.screen < 992){
+        this.isSmallDevice=true;
+      }
   },
   methods: {
      getMenueItems() {
@@ -123,6 +130,9 @@ export default defineComponent({
           .then((response) => {
             this.mainItems = response.data.message;
             this.setMenuItems(this.mainItems);
+            setTimeout(()=>{
+             this.showMenu=true;
+            },2000)
           })
           .catch((error) => {
             console.error('this is error', error);
@@ -264,7 +274,7 @@ export default defineComponent({
      position: absolute;
      top:30px;
      background-color: #fff;
-     right: 0;
+     right: 0px;
      .sub-menu-item-1{
        white-space: nowrap;
        position: relative;
@@ -365,9 +375,9 @@ export default defineComponent({
     }
     width: 300px;
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: 0px;
+    right: 0px;
+    bottom:0px;
     background-color: #fff;
     direction: rtl;
     .content{

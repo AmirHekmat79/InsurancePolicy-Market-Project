@@ -16,7 +16,7 @@
     </div>
     <div class="row justify-center  items-center text-center q-mt-md q-pb-md">
       <div class="carousel-container">
-      <Carousel v-bind="settings" :breakpoints="breakpoints">
+      <!-- <Carousel v-bind="settings" :breakpoints="breakpoints">
          <Slide v-for="item in summaryNotics" :key="item.id">
             <q-card class="my-card flex column shadow-1">
               <q-img class="card-img" :src="item.metaMediaFileUrl">
@@ -37,7 +37,7 @@
            <Navigation />
            <Pagination />
          </template>
-     </Carousel>
+     </Carousel> -->
      </div>
     </div>
     <div class="shape3-img3 text-right q-ma-md">
@@ -57,15 +57,15 @@
 
 <script>
 import { defineComponent } from "vue";
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+// import 'vue3-carousel/dist/carousel.css'
+// import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 export default defineComponent({
   name: "InsuranceNews",
   components:{
-    Carousel,
-    Slide,
-    Pagination,
-    Navigation,
+    // Carousel,
+    // Slide,
+    // Pagination,
+    // Navigation,
   },
   data() {
     return {

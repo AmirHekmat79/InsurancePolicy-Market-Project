@@ -2,13 +2,13 @@
   <section class="row justify-around items-center feature-banner q-pa-md q-gutter-sm q-mt-lg">
         <div class="row justify-center items-center q-my-sm">
           
-          <div>
+          <!-- <div>
             <LottieAnimation
             :animationData="lottieData"
             :loop="true"
             :autoplay="true"
             />
-          </div>
+          </div> -->
         
           <div class="column justify-around items-center">
             <div class="just-click-title-container">
@@ -18,7 +18,7 @@
              <div class="row  reverse justify-center items-center q-my-lg ">
               <div class="text-center card  cursor-pointer " v-for="(item , index) in insuranceFeatures" :key="item.id">
               <div class="feature-img-container q-my-sm">
-                      <!-- <q-img src="../../assets/life-insurance.svg" style="width: 40px"></q-img> -->
+                      <q-img src="../../assets/life-insurance.svg" style="width: 40px"></q-img>
                        <q-badge rounded  class="number-value q-pa-sm" :label="(index + 1).toLocaleString('fa-IR')" />
                     </div>
                   <div class="row justify-center items-center">

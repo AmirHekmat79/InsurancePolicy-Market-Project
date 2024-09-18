@@ -90,15 +90,6 @@
         width="62px"
       ></q-img>
     </div>
-    <div
-      class="col-sm-1 col-xs-3"
-      v-for="(item, index) in InsuranceCompanies.filter(
-        (item) => item.id == 32
-      )"
-      :key="index"
-    >
-      <q-img :src="item.metaMediaLogoFileUrl" width="62px"> </q-img>
-    </div>
     <div class="col-sm-1  col-xs-3 sign-img-container">
       <q-img
         class="international-sign"
@@ -108,7 +99,7 @@
     </div>
   </section>
   <footer class="Footer text-center" >
-    {{ InsuranceFooterTitle?.footerContent }}
+    {{ baseData.footerContent }}
   </footer>
 </template>
 
@@ -121,13 +112,12 @@ export default {
   data() {
     return {
       map: null,
-      InsuranceFooterTitle: null,
-      InsuranceCompanies: [],
+      baseData: [],
     };
   },
   mounted() {
     this.initMap();
-    this.getPolicyIntroduction();
+    this.baseData=JSON.parse(localStorage.getItem("baseData"));
   },
   methods: {
     initMap() {
@@ -143,19 +133,7 @@ export default {
       L.marker([35.72713135221933, 51.4136544156329]).addTo(this.map);
       
     },
-    getPolicyIntroduction() {
-      services
-        .getPortalLandingPage()
-        .then((response) => {
-          this.InsuranceFooterTitle = response.data.message;
-          this.InsuranceCompanies =
-            response.data.message?.insuranceCentre?.insuranceCompanies || [];
-          console.log(this.InsuranceFooterTitle);
-        })
-        .catch((error) => {
-          console.error("Error fetching insurance centre info:", error);
-        });
-    },
+     
   },
 };
 </script>

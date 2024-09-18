@@ -12,6 +12,7 @@ body , p, h1, h2, h3,input{
     margin: 0px !important;
     padding: 0px !important;
 }
+
 /* راست چین کردن لیبل اینپوت ها */
 .label-right .q-field__label{
    left: unset !important;
@@ -22,5 +23,11 @@ body , p, h1, h2, h3,input{
     font-size: 11px;
     top: 12px !important;
     transition:unset !important;
+}
+/*  */
+
+/* آیتم داخل دراپ داین کومبوباکس ها راست چین می شود */
+.q-item .q-item__section{
+    direction: rtl !important;
 }
 /*  */

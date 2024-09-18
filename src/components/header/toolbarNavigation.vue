@@ -1,24 +1,24 @@
 
 <template>
-  <q-toolbar class="text-primary text-center column justify-start items-center q-py-md">
+  <q-toolbar >
     <div hidden>{{counter}}</div>
-    <div v-if="this.$q.screen.width < 992" class="row justify-between items-center" style="width: 98%;">
+    <div  v-if="isSmallDevice" class="row justify-between items-center" style="width: 98%;">
       <q-btn @click="toggleMobileMenu" round size="12px" :icon="showMobileMenu?'close':'menu'"></q-btn>
-      <q-toolbar-title  class="text-white title-container  q-ml-auto">
+      <q-toolbar-title >
         <div class="logo-sm-container q-ml-auto q-mr-md">
           <q-img src="../../assets/logo.png" width="115px"></q-img>
         </div>
       </q-toolbar-title>
-      <MainMenu :currentUser="currentUser" :userIsLogin="userIsLogin" @closeMobileMenu="toggleMobileMenu" @onSignUp="showFastSignUpDialog=true" @onLogin="login()" @onLogout="logout()" v-if="showMobileMenu" /> 
+      <!-- <MainMenu :currentUser="currentUser" :userIsLogin="userIsLogin" @closeMobileMenu="toggleMobileMenu" @onSignUp="showFastSignUpDialog=true" @onLogin="login()" @onLogout="logout()" v-if="showMobileMenu" />  -->
     </div>
     
-    <div v-else class="row no-wrap justify-start text-center q-mx-auto items-center q-ml-auto">
-        <q-list v-if="!sidebarVisible" style="direction: rtl;" class="navLink-container row no-wrap justify-start items-center">
+    <div v-else  class="row no-wrap justify-start text-center q-mx-auto items-center q-ml-auto">
+        <div style="direction: rtl;" class="navLink-container row no-wrap justify-start items-center">
           <div class="logo-container q-ml-auto flex justify-center items-center">
             <img src="../../assets/logo.png" width="54%"/>
           </div>
           <MainMenu />
-        </q-list>
+        </div>
         <div class="login-btn-group flex justify-center items-center">
          <div v-if="userIsLogin" class="alias-name">
           <q-icon
@@ -26,13 +26,14 @@
            size="20px"
           >
         </q-icon>
-        <span class="q-ml-md">{{currentUser.aliasName}}</span>
+        <span v-if="currentUser && currentUser.aliasName" class="q-ml-md">{{currentUser.aliasName}}</span>
          </div>
         
-        <q-btn v-if="this.hostName!=='mbime.ir' && !userIsLogin" class="register-btn"  @click="showFastSignUpDialog=true">
+        <q-btn v-if="!userIsLogin" class="register-btn"  @click="showFastSignUpDialog=true">
           <a>ثبت نام</a>
         </q-btn>
-        <q-btn class="entrance-btn" @click="login()"><a>{{this.userIsLogin ? "ورود به پورتال" : "ورود"}}</a></q-btn>
+        <q-btn v-if="userIsLogin" class="entrance-btn" @click="login"><a>{{"ورود به پورتال"}}</a></q-btn>
+        <q-btn v-else class="entrance-btn" @click="login"><a>{{"ورود"}}</a></q-btn>
         <q-btn v-if="userIsLogin" class="logout-button" color="red-6" label="خروج" @click="logout()"></q-btn>
        </div>
     </div>
@@ -66,12 +67,11 @@ export default defineComponent({
    
   data() {
       return {
-        InsuranceHeaderInfo: null,
-        InsuranceNavbarMenuItems: [],
         showMobileMenu:false,
         hostName:"",
         showFastSignUpDialog:false,
         userIsLogin:false,
+        isSmallDevice:false,
         currentUser: {},
         counter:0,
       };
@@ -79,19 +79,18 @@ export default defineComponent({
     mounted() {
       this.getPortalLandingPage();
       this.getUserInformation();
-      this.hostName=window.location.hostname;
+      if(this.$q.screen < 992){
+        this.isSmallDevice=true;
+      }
     },
      computed: {
-      sortedMenuItems() {
-        return this.InsuranceNavbarMenuItems.filter(item => item.parentId == null).sort((a, b) => b.order - a.order)
-      },
+      
     },
     methods: {
       getPortalLandingPage() {
         services
           .getPortalLandingPage()
           .then((response) => {
-            this.InsuranceHeaderInfo = response.data.message?.insuranceCentrePortal;
             localStorage.setItem("baseData",JSON.stringify(response.data.message));
           })
           .catch((error) => {
@@ -121,6 +120,8 @@ export default defineComponent({
       window.location.reload();
      },
      getUserInformation(){
+      // this.hostName=window.location.hostname;
+        this.hostName="notifaano.ir";
      if(this.hostName!=='mbime.ir'){
         var accessToken=localStorage.getItem("access_token");
         if(accessToken && accessToken!==null){
@@ -150,7 +151,6 @@ export default defineComponent({
          window.location.reload();
        }
      },
-       
     },
    
 });
