@@ -11,7 +11,7 @@
       </div>
       <q-img
         class="consult-img q-my-sm"
-        src="src/assets/consultRequest.png"
+        src="/images/consultRequest.png"
       ></q-img>
     </div>
 
@@ -100,7 +100,7 @@
           <q-btn type="submit" :loading="loading" color="primary" class=" q-my-md">
           <q-img
             class="q-mx-sm"
-            src="src/assets/requestSubmit.png"
+            src="/images/requestSubmit.png"
             width="20px"
           ></q-img
           >ثبت درخواست</q-btn>
@@ -193,6 +193,7 @@ export default defineComponent({
 .consult-request-section{
   margin-top: 20px;
   direction: rtl;
+  width: 100%;
   .q-form{
     padding-top: 50px;
   }

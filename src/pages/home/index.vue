@@ -1,14 +1,12 @@
 <template>
   <div class="flex flex-center">
     <InsuranceTypes />
-    <div class="column">
       <InsuranceFeatures />
-      <!-- <ConsultRequest /> -->
+      <ConsultRequest />
       <!-- <InsuranceNews /> -->
       <!-- <InsuranceForm /> -->
       <!-- <ImageGallery /> -->
       <!-- <VideoGallery /> -->
-    </div>
   </div>
 </template>
 
@@ -16,7 +14,7 @@
 import { defineComponent } from "vue";
 import InsuranceTypes from "./insuranceTypes/insuranceTypes.vue";
 import InsuranceFeatures from "./insuranceOptions/insuranceFeatures.vue";
-// import ConsultRequest from "./consultRequest/consultRequest.vue";
+import ConsultRequest from "./consultRequest/consultRequest.vue";
 // import InsuranceCompanies from "../components/Co-Companies/insurance-companies.vue";
 // import VideoGallery from "./videoGallery/videoGallery.vue"; 
 // import ImageGallery from "./imageGallery/imageGallery.vue";
@@ -27,7 +25,7 @@ export default defineComponent({
   components: {
     InsuranceTypes,
     InsuranceFeatures,
-    // ConsultRequest,
+    ConsultRequest,
     // VideoGallery,
     // ImageGallery,
     // InsuranceForm,

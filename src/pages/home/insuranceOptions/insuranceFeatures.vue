@@ -18,7 +18,7 @@
              <div class="row  reverse justify-center items-center q-my-lg ">
               <div class="text-center card  cursor-pointer " v-for="(item , index) in insuranceFeatures" :key="item.id">
               <div class="feature-img-container q-my-sm">
-                      <q-img src="../../assets/life-insurance.svg" style="width: 40px"></q-img>
+                      <q-img src="/images/life-insurance.svg" style="width: 40px"></q-img>
                        <q-badge rounded  class="number-value q-pa-sm" :label="(index + 1).toLocaleString('fa-IR')" />
                     </div>
                   <div class="row justify-center items-center">
@@ -74,6 +74,7 @@ export default defineComponent({
   cursor: pointer;
 }
 .feature-banner {
+  width: 100%;
   background: #EEEEEE;
   /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(204, 228, 255, 1) 16%, rgba(204, 228, 255, 1) 100%); */
   background-size: contain;

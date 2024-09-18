@@ -6,7 +6,7 @@
       <q-btn @click="toggleMobileMenu" round size="12px" :icon="showMobileMenu?'close':'menu'"></q-btn>
       <q-toolbar-title >
         <div class="logo-sm-container q-ml-auto q-mr-md">
-          <q-img src="../../assets/logo.png" width="115px"></q-img>
+          <q-img src="/images/logo.png" width="115px"></q-img>
         </div>
       </q-toolbar-title>
       <!-- <MainMenu :currentUser="currentUser" :userIsLogin="userIsLogin" @closeMobileMenu="toggleMobileMenu" @onSignUp="showFastSignUpDialog=true" @onLogin="login()" @onLogout="logout()" v-if="showMobileMenu" />  -->
@@ -15,7 +15,7 @@
     <div v-else  class="row no-wrap justify-start text-center q-mx-auto items-center q-ml-auto">
         <div style="direction: rtl;" class="navLink-container row no-wrap justify-start items-center">
           <div class="logo-container q-ml-auto flex justify-center items-center">
-            <img src="../../assets/logo.png" width="54%"/>
+            <img src="/images/logo.png" width="54%"/>
           </div>
           <MainMenu />
         </div>
