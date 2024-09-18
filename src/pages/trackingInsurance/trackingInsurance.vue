@@ -2,7 +2,7 @@
     <q-page >  
      <div class="row justify-center items-center">
         <h4 class="tracking-title q-mx-md">پیگیری بیمه نامه</h4>
-        <q-img width="36px" src="../icons/tracking 1.svg"></q-img>
+        <q-img width="36px" src="../../icons/tracking 1.svg"></q-img>
      </div>
      <q-form class="q-my-lg">
       <div class="row justify-center items-center q-gutter-xl">
@@ -44,7 +44,7 @@
     </div>
     </div>
    <div class="col-md-4 text-center q-mr-xl" >
-    <img src="../assets/health-banner.png"/>
+    <img src="../../assets/health-banner.png"/>
    </div>
     <div class="col-md-3">
         <div class="column justify-center items-center q-mx-lg">

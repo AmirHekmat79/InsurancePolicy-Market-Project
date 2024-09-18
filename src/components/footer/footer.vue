@@ -47,15 +47,15 @@
       <h2 class="title">امکانات سایت</h2>
       <ul class="site-features">
         <li class="row  items-center"><a @click="this.$router.push('/AboutUs')"> درباره ما </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')"> خدمات ما </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/ourService')"> خدمات ما </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/ContactUs')"> تماس با ما </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')"> پیشنهادات ، انتقادات و شکایات </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')"> پرسش های متداول</a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')">  پیگیری بیمه نامه </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')">    سامانه بازاریابان </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')">   همکاری با نمایندگان بیمه  </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/ContactUs')">   همکاری با  ما  </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/')">    قوانین و مقررات   </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/registerComplaint')"> پیشنهادات ، انتقادات و شکایات </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/commonFaq')"> پرسش های متداول</a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/trackingInsurance')">  پیگیری بیمه نامه </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/marketerRegistration')">    سامانه بازاریابان </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/agentRegisteration')">   همکاری با نمایندگان بیمه  </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/otherJobsRegisteration')">   همکاری با  ما  </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/rulesAndObligations')">    قوانین و مقررات   </a></li>
       </ul>
     </div>
     <!-- <div class="col-auto common-link-container">
