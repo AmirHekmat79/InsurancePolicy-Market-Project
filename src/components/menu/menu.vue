@@ -259,7 +259,7 @@ export default defineComponent({
   color:#000;
   margin-left: 20px;
   .menu-item{
-    padding:5px 10px;
+    padding:5px 10px !important;
     position: relative;
     cursor: pointer;
     &:hover{
@@ -279,7 +279,7 @@ export default defineComponent({
        white-space: nowrap;
        position: relative;
        text-align: right;
-       padding:5px 10px;
+       padding:5px 10px !important;
        cursor: pointer;
        &:hover{
          background-color: #f1f1f1;
@@ -301,7 +301,7 @@ export default defineComponent({
        white-space: nowrap;
        position: relative;
        text-align: right;
-       padding:5px 10px;
+       padding:5px 10px !important;
        cursor: pointer;
        &:hover{
          background-color: #f1f1f1;
@@ -323,7 +323,7 @@ export default defineComponent({
        white-space: nowrap;
        position: relative;
        text-align: right;
-       padding:5px 10px;
+       padding:5px 10px !important;
        cursor: pointer;
        &:hover{
          background-color: #f1f1f1;
@@ -348,7 +348,7 @@ export default defineComponent({
       white-space: nowrap;
        position: relative;
        text-align: right;
-       padding:5px 10px;
+       padding:5px 10px !important;
        cursor: pointer;
        &:hover{
         background-color: #f1f1f1;

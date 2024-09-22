@@ -6,6 +6,9 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
+  mounted(){
+    console.log("version is 1.0.0");
+  }
 })
 </script>

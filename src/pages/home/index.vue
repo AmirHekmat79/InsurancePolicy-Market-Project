@@ -3,10 +3,10 @@
     <InsuranceTypes />
       <InsuranceFeatures />
       <ConsultRequest />
-      <!-- <InsuranceNews /> -->
-      <!-- <InsuranceForm /> -->
-      <!-- <ImageGallery /> -->
-      <!-- <VideoGallery /> -->
+      <InsuranceNews /> 
+      <InsuranceForm />
+      <ImageGallery />
+      <VideoGallery />
   </div>
 </template>
 
@@ -16,20 +16,20 @@ import InsuranceTypes from "./insuranceTypes/insuranceTypes.vue";
 import InsuranceFeatures from "./insuranceOptions/insuranceFeatures.vue";
 import ConsultRequest from "./consultRequest/consultRequest.vue";
 // import InsuranceCompanies from "../components/Co-Companies/insurance-companies.vue";
-// import VideoGallery from "./videoGallery/videoGallery.vue"; 
-// import ImageGallery from "./imageGallery/imageGallery.vue";
-// import InsuranceForm from "./insurancePolicyRenewalReminder/insurancePolicyRenewalReminder.vue";
-// import InsuranceNews from "./insuranceNews/insuranceNews.vue";
+import VideoGallery from "./videoGallery/videoGallery.vue"; 
+import ImageGallery from "./imageGallery/imageGallery.vue";
+import InsuranceForm from "./insurancePolicyRenewalReminder/insurancePolicyRenewalReminder.vue";
+import InsuranceNews from "./insuranceNews/insuranceNews.vue";
 export default defineComponent({
   name: "IndexPage",
   components: {
     InsuranceTypes,
     InsuranceFeatures,
     ConsultRequest,
-    // VideoGallery,
-    // ImageGallery,
-    // InsuranceForm,
-    // InsuranceNews,
+    VideoGallery,
+    ImageGallery,
+    InsuranceForm,
+     InsuranceNews,
   },
 });
 </script>

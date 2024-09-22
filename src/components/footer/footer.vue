@@ -2,7 +2,7 @@
   <section dir="rtl" class="row justify-around  items-center sub-footer">
     <div class="col-auto">
       <q-btn class="logo-btn q-my-md"
-        ><q-img src="../../assets/footerLogo.png" width="140px"></q-img
+        ><q-img src="images/footerLogo.png" width="140px"></q-img
       ></q-btn>
       <div class="row justify-start items-center q-my-lg q-gutter-md">
         <a class="cursor-pointer">
@@ -79,44 +79,44 @@
     <div class="col-sm-1 col-xs-3 sign-img-container">
       <q-img
         class="enahad-sign"
-        src="../../assets/enahad.png"
+        src="images/enahad.png"
         width="62px"
       ></q-img>
     </div>
     <div class="col-sm-1 col-xs-3 sign-img-container">
       <q-img
         class="kargozar-sign"
-        src="../../assets/kargozar.png"
+        src="images/kargozar.png"
         width="62px"
       ></q-img>
     </div>
     <div class="col-sm-1  col-xs-3 sign-img-container">
       <q-img
         class="international-sign"
-        src="../../assets/internationalSign.png"
+        src="images/internationalSign.png"
         width="62px"
       ></q-img>
     </div>
   </section>
-  <footer class="Footer text-center" >
+  <footer v-if="baseData && baseData.footerContent" class="Footer text-center" >
     {{ baseData.footerContent }}
   </footer>
 </template>
 
 <script>
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+// import L from "leaflet";
+// import "leaflet/dist/leaflet.css";
 import services from "src/services/services";
 export default {
   name: "FooterSection",
   data() {
     return {
-      map: null,
+      // map: null,
       baseData: [],
     };
   },
   mounted() {
-    this.initMap();
+    // this.initMap();
     this.baseData=JSON.parse(localStorage.getItem("baseData"));
   },
   methods: {

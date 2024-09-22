@@ -6,7 +6,7 @@
       <q-btn @click="toggleMobileMenu" round size="12px" :icon="showMobileMenu?'close':'menu'"></q-btn>
       <q-toolbar-title >
         <div class="logo-sm-container q-ml-auto q-mr-md">
-          <q-img src="/images/logo.png" width="115px"></q-img>
+          <q-img  src="/images/logo.png" width="115px"></q-img>
         </div>
       </q-toolbar-title>
       <!-- <MainMenu :currentUser="currentUser" :userIsLogin="userIsLogin" @closeMobileMenu="toggleMobileMenu" @onSignUp="showFastSignUpDialog=true" @onLogin="login()" @onLogout="logout()" v-if="showMobileMenu" />  -->
@@ -58,13 +58,17 @@ import { defineComponent, ref } from "vue";
 import services from "src/services/services";
 import MainMenu from "src/components/menu/menu.vue"
 import FastSignUp from "src/components/fastSignUp.vue"
+import { useCounterStore } from 'src/stores/example-store.js'
 export default defineComponent({
   name: "ToolbarNavigation",
   components:{
      MainMenu,
      FastSignUp
   },
-   
+   setup() {
+    const counterStore = useCounterStore()
+    return { counterStore }
+  },
   data() {
       return {
         showMobileMenu:false,
@@ -85,7 +89,7 @@ export default defineComponent({
     },
      computed: {
       
-    },
+     },
     methods: {
       getPortalLandingPage() {
         services
@@ -151,6 +155,10 @@ export default defineComponent({
          window.location.reload();
        }
      },
+     incrementAndPrint() {
+      this.counterStore.increment();
+      console.log('New Count:', this.counterStore.counter)
+    },
     },
    
 });

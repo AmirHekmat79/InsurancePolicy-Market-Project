@@ -32,20 +32,20 @@
       </div>
     </div>
     <router-view />
-    <!-- <FooterSection /> -->
+    <FooterSection />
   </q-layout>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
 import ToolbarNavigation from "src/components/header/toolbarNavigation.vue";
-// import FooterSection from "src/components/footer/footer.vue";
+import FooterSection from "src/components/footer/footer.vue";
 
 export default defineComponent({
   name: "MainLayout",
   components: {
     ToolbarNavigation,
-    // FooterSection,
+    FooterSection,
   },
   data() {
       return {

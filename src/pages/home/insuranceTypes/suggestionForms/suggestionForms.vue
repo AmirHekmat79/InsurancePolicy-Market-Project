@@ -1,6 +1,6 @@
 <template>
     <section class="suggestion-forms" v-if="suggestionForms.length" >
-      <div class="row justify-around items-center">
+      <div class="row justify-center items-center">
         <q-card
           v-for="(item, index) in suggestionForms"
           :key="index"

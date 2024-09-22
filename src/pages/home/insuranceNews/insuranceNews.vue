@@ -1,10 +1,10 @@
 <template>
-  <div class="news-section  q-py-sm ">
+  <div v-if="summaryNotics && summaryNotics.length" class="news-section  q-py-sm ">
    <div class="text-right q-ma-lg">
-    <q-img class="shape1-img3" src="src/assets/shape1.svg" width="20px"></q-img>
+    <q-img class="shape1-img3" src="images/shape1.svg" width="20px"></q-img>
    </div>
    <div class="text-right q-ma-lg">
-    <q-img class="shape2-img3" src="src/assets/triangle.svg" width="20px"></q-img>
+    <q-img class="shape2-img3" src="images/triangle.svg" width="20px"></q-img>
    </div>
   
     <div class="row justify-center items-center">
@@ -16,94 +16,62 @@
     </div>
     <div class="row justify-center  items-center text-center q-mt-md q-pb-md">
       <div class="carousel-container">
-      <!-- <Carousel v-bind="settings" :breakpoints="breakpoints">
-         <Slide v-for="item in summaryNotics" :key="item.id">
-            <q-card class="my-card flex column shadow-1">
-              <q-img class="card-img" :src="item.metaMediaFileUrl">
-                <div class="title absolute-bottom text-h6">{{ item.title }}</div>
-              </q-img>
+     <Flicking  :options="{ align: 'center',circular: true, }" :plugins="plugins">
+      <q-card v-for="item in summaryNotics" :key="item.id" class="my-card flex column shadow-1">
+        <q-img class="card-img" :src="item.metaMediaFileUrl">
+          <div class="title absolute-bottom text-h6">{{ item.title }}</div>
+        </q-img>
       
-              <q-card-section class="summary" dir="rtl">
-                {{ item.summary }}
-              </q-card-section>
-              <q-separator light />
-              <q-btn class="details-btn text-center q-my-sm rounded-borders" @click="this.$router.push('/HomeBlogDetails')"
-                >جزئیات بیشتر</q-btn
-              >
-             </q-card>
-         </Slide>
-
-         <template #addons>
-           <Navigation />
-           <Pagination />
-         </template>
-     </Carousel> -->
+        <q-card-section class="summary" dir="rtl">
+          {{ item.summary }}
+        </q-card-section>
+        <q-separator light />
+        <q-btn class="details-btn text-center q-my-sm rounded-borders" @click="this.$router.push('/HomeBlogDetails')"
+          >جزئیات بیشتر</q-btn
+        >
+       </q-card>
+       <template #viewport>
+         <span class="flicking-arrow-prev"></span>
+         <span class="flicking-arrow-next"></span>
+         <div class="flicking-pagination"></div>
+       </template>
+         
+     </Flicking>
      </div>
     </div>
     <div class="shape3-img3 text-right q-ma-md">
-    <q-img  src="src/assets/6.png" width="80px"></q-img>
+    <q-img  src="images/6.png" width="80px"></q-img>
    </div>
     <div class="shape4-img3 text-right q-ma-md">
-    <q-img  src="src/assets/shape5.png" width="25px"></q-img>
+    <q-img  src="images/shape5.png" width="25px"></q-img>
    </div>
     <div class="shape6-img3 text-right q-ma-md">
-    <q-img  src="src/assets/shape1.svg" width="15px"></q-img>
+    <q-img  src="images/shape1.svg" width="15px"></q-img>
    </div>
     <div class="shape5-img3 text-right q-ma-md">
-    <q-img  src="src/assets/shape5.png" width="26px"></q-img>
+    <q-img  src="images/shape5.png" width="26px"></q-img>
    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-// import 'vue3-carousel/dist/carousel.css'
-// import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import Flicking from "@egjs/vue3-flicking";
+import "@egjs/vue3-flicking/dist/flicking.css";
+import { Arrow } from "@egjs/flicking-plugins";
+import "@egjs/flicking-plugins/dist/arrow.css";
+import { Pagination } from "@egjs/flicking-plugins";
+import "@egjs/flicking-plugins/dist/pagination.css";
 export default defineComponent({
   name: "InsuranceNews",
   components:{
-    // Carousel,
-    // Slide,
-    // Pagination,
-    // Navigation,
+    Flicking
   },
   data() {
     return {
       baseData:[],
-      summaryNotics: [
-          
-      ],
-      settings: {
-       itemsToShow: 3,
-       snapAlign: 'center',
-      },
-      breakpoints: {
-      // 1024 and up
-      1024: {
-        itemsToShow: 3,
-        snapAlign: 'start',
-      },
-      900: {
-        itemsToShow: 2,
-        snapAlign: 'center',
-      },
-      768: {
-        itemsToShow: 2,
-        snapAlign: 'center',
-      },
-      600: {
-        itemsToShow: 2,
-        snapAlign: 'center',
-      },
-      480: {
-        itemsToShow:1,
-        snapAlign: 'center',
-      },
-      300: {
-        itemsToShow:1,
-        snapAlign: 'center',
-      },
-    },
+      summaryNotics: [],
+      plugins: [new Arrow(),new Pagination({ type: 'bullet' })]
     };
   },
   mounted(){
@@ -113,6 +81,9 @@ export default defineComponent({
         this.summaryNotics.push(item);
       }
     }
+    // setTimeout(()=>{
+    //   this.showCarousel=true;
+    //  },1000)
   }
 });
 </script>
@@ -124,17 +95,16 @@ export default defineComponent({
   background-position: center;
   position: relative;
   margin-top: 20px;
+  width: 100%;
   .section-title {
       color: #002247;
       margin: 0px 10px;
    }
   .carousel-container{
-    width: calc(100% - 30%);
-    max-width: 1000px;
-  .carousel{
-    width: 100%;
+    // width: calc(100% - 20%);
+    max-width: 90%;
     .my-card{
-     width:100%;
+     width:300px;
      text-align: center;
      margin:5px;
      height: 450px;
@@ -152,6 +122,12 @@ export default defineComponent({
     .icon-color{
       fill: var(--q-Blue);
     }
+  .flicking-arrow-prev::before, .flicking-arrow-prev::after, .flicking-arrow-next::before, .flicking-arrow-next::after {
+    content: "";
+    width: 16px !important;
+    height: 5px !important;
+    position: absolute;
+    background-color: #f2a65e;
   }
 }
 }
@@ -202,27 +178,19 @@ export default defineComponent({
     transform: translateX(0px);
   }
 }
- 
-
-
-
-
 .card-title {
   color: #002247;
   margin: 20px;
 }
-
-
-
 .card-img:hover {
   transform: scale(0.9);
   cursor: pointer;
 }
-
 .details-btn {
   background: var(--q-Blue);
   color : #ffff;
 }
-
-
+.panel{
+  width: 200px;
+}
 </style>

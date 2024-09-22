@@ -8,7 +8,7 @@
       </svg>
 
       </div>
-      <q-img class="form-img" src="src/assets/calender.png"></q-img>
+      <q-img class="form-img" src="images/calender.png"></q-img>
     </div>
     <q-form class="col-md-8" @submit="handleSubmit()">
       <div class="row justify-center items-center q-gutter-md">
@@ -144,7 +144,7 @@
             <span>یاد آوری کن</span>
             <q-img
               class="submit-img q-mr-sm"
-              src="src/assets/leftArrow.png"
+              src="images/leftArrow.png"
             ></q-img>
           </q-btn>
         </div>

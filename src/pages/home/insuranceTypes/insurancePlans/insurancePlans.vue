@@ -1,6 +1,6 @@
 <template>
     <section v-if="insurancePlans.length" class="insurance-plans">
-      <div class="row justify-around items-center">
+      <div class="row justify-center items-center">
         <div
           v-for="(item, index) in insurancePlans"
           :key="index"
