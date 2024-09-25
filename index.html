@@ -19,4 +19,29 @@
   <body>
     <!-- quasar:entry-point -->
   </body>
+  <script>
+    var loadmap = function() {
+        globalLat = JSON.parse(window.sessionStorage.getItem("globalLat"))
+        globalLng = JSON.parse(window.sessionStorage.getItem("globalLng"))
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '',
+            osm = L.tileLayer(osmUrl, {
+                maxZoom: 18,
+                attribution: osmAttrib
+            });
+        var map = L.map('map').setView([globalLat, globalLng], 16).addLayer(osm);
+        var greenIcon = L.icon({
+            iconUrl: 'icons/leaflet-location.png',
+            shadowUrl: '',
+            iconSize: [50, 50],
+            shadowSize: [60, 60],
+            iconAnchor: [40, 50],
+            shadowAnchor: [30, 60],
+            popupAnchor: [-14, -35]
+        });
+        L.marker([globalLat, globalLng], {
+            icon: greenIcon
+        }).addTo(map)
+    }
+</script>
 </html>

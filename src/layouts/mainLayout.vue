@@ -40,13 +40,13 @@
 import { defineComponent, ref } from "vue";
 import ToolbarNavigation from "src/components/header/toolbarNavigation.vue";
 import FooterSection from "src/components/footer/footer.vue";
-
 export default defineComponent({
   name: "MainLayout",
   components: {
     ToolbarNavigation,
     FooterSection,
   },
+   
   data() {
       return {
          baseData:[],
@@ -60,6 +60,7 @@ export default defineComponent({
         if(a.isSpecial==true)
           this.summaryNotics.push(a)
       }
+      
   },
   methods: {
      openArticle(article)
@@ -73,6 +74,7 @@ export default defineComponent({
          window.open('./article/'+article.id)
        } 
      }
+
   },
   setup() {
     return {

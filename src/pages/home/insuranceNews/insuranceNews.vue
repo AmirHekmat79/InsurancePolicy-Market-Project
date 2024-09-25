@@ -67,15 +67,18 @@ export default defineComponent({
   components:{
     Flicking
   },
+  props: {
+    data:{}
+  },
   data() {
     return {
-      baseData:[],
+      baseData:{},
       summaryNotics: [],
       plugins: [new Arrow(),new Pagination({ type: 'bullet' })]
     };
   },
   mounted(){
-    this.baseData=JSON.parse(localStorage.getItem("baseData"));
+    this.baseData=this.data;
     for(let item of this.baseData.summaryNotics){
       if(!item.isSpecial){
         this.summaryNotics.push(item);

@@ -4,24 +4,32 @@
          <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-6">
         <path class="icon-color" stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
         </svg>
-        <div class="videoes-gallery-container">
-     <Flicking  :options="{ align: 'center',circular: true, }" :plugins="plugins">
-        <div @click="openDialog(item.metaMediaFileUrl , item.title)" class="q-pa-md relative-position" v-for="item in videoGalleries" :key="item.id">
-        <video   ref="videoPlayer"   class="video"   width="100%">
-         <source :src="item.metaMediaFileUrl" type="video/mp4" />
-         Your browser does not support the video tag.
-        </video>
-       <div  class="cursor-pointer"><q-img  width="60px" class="absolute-center" src="src/assets/play-button-round-icon.svg"></q-img></div>
-      </div>
-       <template #viewport>
-         <span class="flicking-arrow-prev"></span>
-         <span class="flicking-arrow-next"></span>
-         <div class="flicking-pagination"></div>
-       </template>
-     </Flicking>
-   </div>
-      
-       
+        <div class="row videoes-gallery-container">
+          <div v-if="!showMore" class="col-12 flex justify-center items-center">
+            <div @click="openDialog(item.metaMediaFileUrl , item.title)" class="q-pa-md relative-position" v-for="item in videoGalleries.slice(0,4)" :key="item.id">
+            <video   ref="videoPlayer"   class="video"   width="100%">
+            <source :src="item.metaMediaFileUrl" type="video/mp4" />
+           Your browser does not support the video tag.
+            </video>
+           <div  class="cursor-pointer"><q-img  width="60px" class="absolute-center" src="images/play-button-round-icon.svg"></q-img></div>
+           </div>
+          </div>
+          <div v-else class="col-12 flex justify-center items-center">
+            <div @click="openDialog(item.metaMediaFileUrl , item.title)" class="q-pa-md relative-position" v-for="item in videoGalleries" :key="item.id">
+            <video   ref="videoPlayer"   class="video"   width="100%">
+            <source :src="item.metaMediaFileUrl" type="video/mp4" />
+           Your browser does not support the video tag.
+            </video>
+           <div  class="cursor-pointer"><q-img  width="60px" class="absolute-center" src="images/play-button-round-icon.svg"></q-img></div>
+           </div>
+          </div>
+        </div>
+        <div v-if="videoGalleries.length > 4" class="col-12 show-more-button-container flex justify-center items-center">
+          <a class="show-more-button flex justify-center items-center" rounded @click="handleShowMore" >
+            <q-icon size="36px" v-if="!showMore"  name="expand_more" />
+            <q-icon size="36px"  v-else  name="expand_less" />
+          </a>
+       </div>
     </div>
  
  <q-dialog
@@ -46,16 +54,13 @@
 
 <script>
 import { defineComponent } from "vue";
-import Flicking from "@egjs/vue3-flicking";
-import "@egjs/vue3-flicking/dist/flicking.css";
-import { Arrow } from "@egjs/flicking-plugins";
-import "@egjs/flicking-plugins/dist/arrow.css";
-import { Pagination } from "@egjs/flicking-plugins";
-import "@egjs/flicking-plugins/dist/pagination.css";
 export default defineComponent({
   name: "VideoGallery",
   components:{
-    Flicking
+    
+  },
+  props: {
+    data:{}
   },
   data() {
     return {
@@ -63,13 +68,13 @@ export default defineComponent({
       showDialog: false,
       selectedVideoUrl : '' ,
       videoTitle : '',
-      plugins: [new Arrow(),new Pagination({ type: 'bullet' })]
+      showMore: false,
     };
   },
 
   mounted() {
-   this.baseData=JSON.parse(localStorage.getItem("baseData"));
-   this.videoGalleries=this.baseData.videoGalleries;
+     this.baseData=this.data;
+     this.videoGalleries=this.baseData.videoGalleries;
   },
 
   methods: {
@@ -78,6 +83,9 @@ export default defineComponent({
       this.selectedVideoUrl = videoUrl;
       this.videoTitle = videoTitle;
     },
+     handleShowMore(){
+      this.showMore=!this.showMore
+     }
  }
 
    
@@ -88,33 +96,38 @@ export default defineComponent({
 .videoes-gallery-section{
     width: 100%;
    .videoes-gallery-container{
-    width: 80% !important;
+    margin-top: 30px;
     .flicking-arrow-prev::before, .flicking-arrow-prev::after, .flicking-arrow-next::before, .flicking-arrow-next::after {
       width: 16px !important;
       height: 5px !important;
     }
-}
-}
-
-.icon-color{
-  fill: var(--q-Blue);
-}
-.popup-btn{
-  outline: none !important;
-  box-shadow: none !important;
-}
-.gallery-title {
-  font-size: 32px;
-  font: 32px "iransans";
-  margin-right: 13px !important;
-  color: #003975 !important;
-  text-align: right;
-}
-.video{
-  width: 200px;
-  border-radius: 16px !important;
-  max-height: 200px;
-  cursor: pointer;
+   }
+   .show-more-button{
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+     }
+   .icon-color{
+    fill: var(--q-Blue);
+   }
+   .popup-btn{
+     outline: none !important;
+     box-shadow: none !important;
+   }
+   .gallery-title {
+     font-size: 26px;
+     margin-right: 13px !important;
+     color: #003975 !important;
+     text-align: right;
+   }
+  .video{
+    width: 250px;
+    border-radius: 16px !important;
+    max-height: 250px;
+    cursor: pointer;
+  }
 }
 .lg-width {
   width: 70% !important;

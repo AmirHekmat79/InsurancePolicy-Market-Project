@@ -58,16 +58,12 @@ import { defineComponent, ref } from "vue";
 import services from "src/services/services";
 import MainMenu from "src/components/menu/menu.vue"
 import FastSignUp from "src/components/fastSignUp.vue"
-import { useCounterStore } from 'src/stores/example-store.js'
+
 export default defineComponent({
   name: "ToolbarNavigation",
   components:{
      MainMenu,
      FastSignUp
-  },
-   setup() {
-    const counterStore = useCounterStore()
-    return { counterStore }
   },
   data() {
       return {
@@ -81,26 +77,16 @@ export default defineComponent({
       };
     },
     mounted() {
-      this.getPortalLandingPage();
       this.getUserInformation();
       if(this.$q.screen < 992){
         this.isSmallDevice=true;
       }
+       
     },
      computed: {
       
      },
     methods: {
-      getPortalLandingPage() {
-        services
-          .getPortalLandingPage()
-          .then((response) => {
-            localStorage.setItem("baseData",JSON.stringify(response.data.message));
-          })
-          .catch((error) => {
-            console.error('Error fetching insurance centre info:', error);
-          });
-      },
       toggleMobileMenu(){
         this.showMobileMenu=!this.showMobileMenu;
       },
@@ -155,10 +141,7 @@ export default defineComponent({
          window.location.reload();
        }
      },
-     incrementAndPrint() {
-      this.counterStore.increment();
-      console.log('New Count:', this.counterStore.counter)
-    },
+     
     },
    
 });
