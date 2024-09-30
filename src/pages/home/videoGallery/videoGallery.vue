@@ -31,7 +31,7 @@
           </a>
        </div>
     </div>
- 
+
  <q-dialog
      class="Dialog"
       v-model="showDialog"
@@ -57,7 +57,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "VideoGallery",
   components:{
-    
+
   },
   props: {
     data:{}
@@ -88,13 +88,13 @@ export default defineComponent({
      }
  }
 
-   
+
 });
 </script>
 
 <style lang="scss">
 .videoes-gallery-section{
-    width: 100%;
+    // width: 100%;
    .videoes-gallery-container{
     margin-top: 30px;
     .flicking-arrow-prev::before, .flicking-arrow-prev::after, .flicking-arrow-next::before, .flicking-arrow-next::after {
@@ -121,6 +121,9 @@ export default defineComponent({
      margin-right: 13px !important;
      color: #003975 !important;
      text-align: right;
+     @media(max-width:480px){
+        font-size: 22px;
+     }
    }
   .video{
     width: 250px;

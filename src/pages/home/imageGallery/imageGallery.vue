@@ -127,6 +127,9 @@ export default defineComponent({
   font-weight: bolder;
   text-align: right;
   color: #003975 !important;
+  @media(max-width:480px){
+        font-size: 22px;
+  }
 }
 .images-gallery-container{
     margin-top: 20px;

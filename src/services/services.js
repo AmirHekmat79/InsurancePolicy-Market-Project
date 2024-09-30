@@ -1,8 +1,8 @@
 import axios from "axios";
 import baseServices from "./baseServices";
- 
+
 const services = {
-     
+
     getInsurancePlans(){
         let domain=baseServices.getDomain();
         return baseServices.get("/InsurancePolicyPlan/SpecialPlan",{subDomain:domain});
@@ -37,6 +37,18 @@ const services = {
         let domain=baseServices.getDomain();
         return baseServices.get("/Account/verifySmsToken",{nationalCode,mobile,token,aliasName,onlyOtp,insuranceCentreSubDomain:domain});
     },
+    getFaq(){
+        let domain=baseServices.getDomain();
+        return baseServices.get(`/Faq/InsuranceCentre/${domain}`,{});
+    },
+    getWeblog(){
+        let domain=baseServices.getDomain();
+        return baseServices.get(`/Article/Weblog/${domain}`,{});
+    },
+    getArticle(id){
+        let domain=baseServices.getDomain();
+        return baseServices.get(`/Article/Detail/${id}`,{});
+    },
     fastRegister(data){
         let domain=baseServices.getDomain();
         data.insuranceCentreDomain=domain;
@@ -55,6 +67,10 @@ const services = {
         var captchaUrl = "https://captcha.kn2.ir";
         return baseServices.getCaptch(`${captchaUrl}/captcha/get?rand=${Math.random()}`,{});
     },
+    trackingRequest(trackingCode,nationalCode){
+      let domain=baseServices.getDomain();
+      return baseServices.get(`/InsurancePolicy/Tracking`,{trackingCode,nationalCode});
+  },
 }
 
 export default services;

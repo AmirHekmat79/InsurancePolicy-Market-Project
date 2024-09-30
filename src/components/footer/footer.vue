@@ -99,6 +99,9 @@
 //import services from "src/services/services";
 export default {
   name: "FooterSection",
+  props: {
+    data:{}
+  },
   data() {
     return {
       baseData: [],
@@ -107,7 +110,7 @@ export default {
   },
   mounted() {
     
-    this.baseData=JSON.parse(localStorage.getItem("baseData"));
+    this.baseData=this.data;
     if (this.baseData.insuranceCentrePortal.bale) {
       this.socialNetworks.push({
         iconUrl: "icons/social-networks/bale.svg",
@@ -177,7 +180,7 @@ export default {
     setTimeout(()=>{
      this.setCertificatesStaticImage();
      this.initMap();
-    },2000)
+    },1000)
     
   },
   methods: {

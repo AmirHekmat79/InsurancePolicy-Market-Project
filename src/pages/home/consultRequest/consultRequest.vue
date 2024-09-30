@@ -2,7 +2,7 @@
   <div  
     class="consult-request-section row justify-center text-center items-center"
   >
-  <div class="col-md-4 col-sm-6 col-xs-8">
+  <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="row  justify-center items-center" >
         <h5 class="consult-title q-mx-sm">درخواست مشاوره</h5>
         <svg  width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
@@ -15,7 +15,7 @@
       ></q-img>
     </div>
 
-    <div class="col-md-6 col-sm-6 col-xs-8">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <q-form @submit="handleSubmit()" >
         <q-input
          :rules="[val => val !== null && val !== '' || 'الزامی می باشد']"
@@ -194,6 +194,9 @@ export default defineComponent({
   margin-top: 20px;
   direction: rtl;
   width: 100%;
+  @media (max-width: 1024px) {
+    padding: 15px;
+  }
   .q-form{
     padding-top: 50px;
   }

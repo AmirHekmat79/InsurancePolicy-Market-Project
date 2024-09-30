@@ -63,7 +63,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss">
 .card{
   width: 145px;
   height: 150px;
@@ -100,8 +100,10 @@ export default defineComponent({
 }
 .just-click-title {
   font-size: 1.5rem;
-  text-align: right;
-  
+  text-align: center;
+  @media(max-width:480px){
+    font-size: 20px;
+  }
 }
 
 

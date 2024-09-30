@@ -3,19 +3,19 @@
   <q-toolbar >
     <div hidden>{{counter}}</div>
     <div  v-if="isSmallDevice" class="row justify-between items-center" style="width: 98%;">
-      <q-btn @click="toggleMobileMenu" round size="12px" :icon="showMobileMenu?'close':'menu'"></q-btn>
+      <q-btn text-color="black" @click="toggleMobileMenu" round size="12px" :icon="showMobileMenu?'close':'menu'"></q-btn>
       <q-toolbar-title >
-        <div class="logo-sm-container q-ml-auto q-mr-md">
-          <q-img  src="/images/logo.png" width="115px"></q-img>
+        <div v-if="baseData && baseData.insuranceCentrePortal" class="logo-sm-container q-ml-auto q-mr-md">
+          <q-img  @click="goToHome()"  :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl" width="115px"></q-img>
         </div>
       </q-toolbar-title>
-      <!-- <MainMenu :currentUser="currentUser" :userIsLogin="userIsLogin" @closeMobileMenu="toggleMobileMenu" @onSignUp="showFastSignUpDialog=true" @onLogin="login()" @onLogout="logout()" v-if="showMobileMenu" />  -->
+      <MainMenu :currentUser="currentUser" :userIsLogin="userIsLogin" @closeMobileMenu="toggleMobileMenu" @onSignUp="showFastSignUpDialog=true" @onLogin="login()" @onLogout="logout()" v-if="showMobileMenu" /> 
     </div>
     
     <div v-else  class="row no-wrap justify-start text-center q-mx-auto items-center q-ml-auto">
         <div style="direction: rtl;" class="navLink-container row no-wrap justify-start items-center">
-          <div class="logo-container q-ml-auto flex justify-center items-center">
-            <img src="/images/logo.png" width="54%"/>
+          <div v-if="baseData && baseData.insuranceCentrePortal" class="logo-container q-ml-auto flex justify-center items-center">
+            <img class="cursur-pointer" @click="goToHome()"  :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl" width="54%"/>
           </div>
           <MainMenu />
         </div>
@@ -65,8 +65,12 @@ export default defineComponent({
      MainMenu,
      FastSignUp
   },
+  props: {
+    data:{}
+  },
   data() {
       return {
+        baseData: [],
         showMobileMenu:false,
         hostName:"",
         showFastSignUpDialog:false,
@@ -77,8 +81,9 @@ export default defineComponent({
       };
     },
     mounted() {
+      this.baseData=this.data;
       this.getUserInformation();
-      if(this.$q.screen < 992){
+      if(this.$q.screen.width < 992){
         this.isSmallDevice=true;
       }
        
@@ -141,7 +146,9 @@ export default defineComponent({
          window.location.reload();
        }
      },
-     
+     goToHome(){
+      window.location.href="/"
+     }
     },
    
 });
@@ -277,12 +284,6 @@ a{
 .fast-registration-dialog-content{
   padding: 15px !important;
   direction: rtl !important;
-}
-@media only screen and (max-width:1200px) {
-   .entrance-btn,.register-btn{
-     width:100px;
-     margin: 0px;
-   }
 }
 @media only screen and (max-width: 727px) {
   .title-container{

@@ -231,6 +231,9 @@ export default defineComponent({
   padding: 0px 10%;
   .form-img {
     width: 300px;
+    @media(max-width:480px){
+      width: 220px;
+    }
   }
   .icon-color{
    fill: var(--q-Blue);
@@ -243,6 +246,9 @@ export default defineComponent({
   font-size: 26px;
   color: #003975;
   text-align: center !important;
+  @media(max-width:480px){
+       font-size: 22px;
+  }
 }
 .submit-btn {
   cursor: pointer;

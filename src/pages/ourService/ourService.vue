@@ -1,32 +1,50 @@
 <template>
-    <div class="our-service-container" >
-      <h1   >خدمات ما
-      </h1>
-      <span  v-html="$sanitize(baseData.insuranceCentrePortal.ourService)
-      ">
+    <div class="our-service-container" v-if="baseData && baseData.insuranceCentrePortal"  >
+       <h5 class="title">خدمات ما
+      </h5>
+      <span  v-html="baseData.insuranceCentrePortal.ourService">
       </span>
     </div>
   </template>
   <script>
   import { defineComponent } from "vue";
-  
+  import services from "src/services/services";
   export default defineComponent({
-    name: "registerComplaint",
+    name: "OurService",
     data(){
         return{
-         
+          baseData:[],
         }
+    },
+    mounted(){
+      this.getPortalLandingPage();
+    },
+    methods:{
+      getPortalLandingPage() {
+        services
+          .getPortalLandingPage()
+          .then((response) => {
+             this.baseData=response.data.message;
+          })
+          .catch((error) => {
+            console.error('Error fetching insurance centre info:', error);
+          });
+      },
     }
   });
 
   </script>
-  <style lang="css">
+  <style lang="scss">
     .our-service-container{
+      .title{
+        margin: 0px 0px 10px 0px;
+        font-size: 22px;
+      }
       direction: rtl;
       padding-right: 10%;
       padding-left: 10%;
-      padding-top:40px;
+      padding-top:130px;
+      padding-bottom:50px;
     }
   </style>
-  
-  
+

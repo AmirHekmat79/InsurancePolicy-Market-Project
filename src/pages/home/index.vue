@@ -1,9 +1,10 @@
 <template>
-  <div class="flex flex-center">
+  <div class="flex column flex-center">
+      <Banner v-if="showItem" :data="data" />
       <InsuranceTypes  />
       <InsuranceFeatures  />
       <ConsultRequest  />
-      <InsuranceNews v-if="showItem" :data="data"  /> 
+      <InsuranceNews v-if="showItem" :data="data"  />
       <InsuranceForm  />
       <ImageGallery v-if="showItem" :data="data" />
       <VideoGallery v-if="showItem" :data="data" />
@@ -16,11 +17,12 @@ import InsuranceTypes from "./insuranceTypes/insuranceTypes.vue";
 import InsuranceFeatures from "./insuranceOptions/insuranceFeatures.vue";
 import ConsultRequest from "./consultRequest/consultRequest.vue";
 // import InsuranceCompanies from "../components/Co-Companies/insurance-companies.vue";
-import VideoGallery from "./videoGallery/videoGallery.vue"; 
+import VideoGallery from "./videoGallery/videoGallery.vue";
 import ImageGallery from "./imageGallery/imageGallery.vue";
 import InsuranceForm from "./insurancePolicyRenewalReminder/insurancePolicyRenewalReminder.vue";
 import InsuranceNews from "./insuranceNews/insuranceNews.vue";
 import { useBaseDataStore } from 'src/stores/baseDataStore.js';
+import Banner from 'src/components/header/banner.vue';
 import services from "src/services/services";
 export default defineComponent({
   name: "IndexPage",
@@ -32,6 +34,7 @@ export default defineComponent({
     ImageGallery,
     InsuranceForm,
      InsuranceNews,
+     Banner
   },
    setup() {
     const baseDataStore = useBaseDataStore();
@@ -44,7 +47,7 @@ export default defineComponent({
       };
     },
   mounted(){
-    // console.log("this is BaseDataStore",this.baseDataStore.baseData); 
+    // console.log("this is BaseDataStore",this.baseDataStore.baseData);
      this.getPortalLandingPage()
   },
   methods:{
@@ -52,13 +55,11 @@ export default defineComponent({
         services
           .getPortalLandingPage()
           .then((response) => {
-             localStorage.setItem("baseData",JSON.stringify(response.data.message));
              this.data=response.data.message;
              setTimeout(()=>{
              this.showItem=true;
-            },2000)
-             
-            // this.setBaseData(response.data.message);
+            },1000)
+            this.setBaseData(response.data.message);
           })
           .catch((error) => {
             console.error('Error fetching insurance centre info:', error);

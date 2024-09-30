@@ -1,38 +1,12 @@
 <template>
   <q-layout>
-    <div class="banner-section  relative-position">
+    <div class="header-section  relative-position">
       <q-header class="q-pa-md header absolute text-white">
-        <ToolbarNavigation />
+        <ToolbarNavigation :data="baseData" v-if="showItem" />
       </q-header>
-      <div class="row descriptions">
-        <div class="col-6">
-          <q-carousel
-            class="rounded-borders"
-            animated
-            v-model="slide"
-            navigation
-            infinite
-            :autoplay="autoplay"
-            arrows
-            transition-prev="slide-right"
-            transition-next="slide-left"
-            @mouseenter="autoplay = false"
-            @mouseleave="autoplay = true"
-          >
-            <q-carousel-slide @click="openArticle(item)" v-for="(item,index) in summaryNotics" :key="index"
-              :name="index"
-              :img-src="item.metaMediaFileUrl"
-            />
-          </q-carousel>
-        </div>
-        <div class="col-6 flex column justify-center items-center">
-          <h1 v-if="baseData.insuranceCentrePortal" class="main-banner-title">{{ baseData.insuranceCentrePortal.title }}</h1>
-          <h6 v-if="baseData.insuranceCentrePortal" class="text-subtitle-1 text-white">{{ baseData.insuranceCentrePortal.subTitle }}</h6>
-        </div>
-      </div>
     </div>
     <router-view />
-    <FooterSection />
+    <FooterSection :data="baseData" v-if="showItem" />
   </q-layout>
 </template>
 
@@ -40,29 +14,46 @@
 import { defineComponent, ref } from "vue";
 import ToolbarNavigation from "src/components/header/toolbarNavigation.vue";
 import FooterSection from "src/components/footer/footer.vue";
+import { useBaseDataStore } from 'src/stores/baseDataStore.js';
+import services from "src/services/services";
 export default defineComponent({
   name: "MainLayout",
   components: {
     ToolbarNavigation,
     FooterSection,
   },
-   
+   setup() {
+    const baseDataStore = useBaseDataStore();
+    return { baseDataStore }
+  },
   data() {
       return {
          baseData:[],
-         summaryNotics:[]
+         showItem:false
       };
     },
   mounted() {
-      this.baseData=JSON.parse(localStorage.getItem("baseData"));
-      for(var a of this.baseData.summaryNotics)
-      {
-        if(a.isSpecial==true)
-          this.summaryNotics.push(a)
-      }
-      
+      this.getPortalLandingPage();
   },
   methods: {
+    getPortalLandingPage() {
+        services
+          .getPortalLandingPage()
+          .then((response) => {
+            //  localStorage.setItem("baseData",JSON.stringify(response.data.message));
+             this.baseData=response.data.message;
+             setTimeout(()=>{
+             this.showItem=true;
+            },1000)
+            // this.setBaseData(response.data.message);
+          })
+          .catch((error) => {
+            console.error('Error fetching insurance centre info:', error);
+          });
+      },
+     setBaseData(data) {
+      this.baseDataStore.setBaseData(data,true);
+    },
      openArticle(article)
      {
        if(!article.disableLink){
@@ -72,40 +63,23 @@ export default defineComponent({
          }
          else
          window.open('./article/'+article.id)
-       } 
+       }
      }
 
-  },
-  setup() {
-    return {
-      slide: ref(1),
-      autoplay: ref(true),
-    };
   },
 });
 </script>
 
 <style lang="scss">
 
-.banner-section {
+.header-section {
   background: var(--q-Blue) !important;
   background-position: center;
   background-size: center;
   width: 100%;
-  min-height: 400px;
+  // min-height: 400px;
   opacity: 0/6;
   direction: rtl;
-  .descriptions{
-    padding:165px 150px 50px 150px;
-    .q-carousel{
-      height: 300px;
-      border-radius: 20px;
-      cursor: pointer;
-      .q-carousel__control{
-        transform: rotate(180deg) !important;
-      }
-    }
-  }
 }
 .main-banner-title {
   margin-bottom: 24px !important;
@@ -164,4 +138,3 @@ export default defineComponent({
   }
 }
 </style>
- 

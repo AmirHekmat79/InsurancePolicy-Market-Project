@@ -16,16 +16,16 @@ const routes = [
         component: () => import('src/pages/blogDetails/blogDetails.vue'),
         props: true
       } ,
-      // {
-      //   path: 'TrackingInsurance',
-      //   component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
-      // },
+      {
+        path: 'TrackingInsurance',
+        component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
+      },
       {
         path: 'HomeBlogDetails',
         component: () => import('src/pages/homeBlogDetails/homeBlogDetails.vue'),
       },
       {
-        path: 'TrackingDamage',
+        path: 'trackingDamage',
         component: () => import('src/pages/trackingDamage/trackingDamage.vue'),
       },
       {
@@ -37,7 +37,7 @@ const routes = [
         component: () => import('src/pages/marketerRegistration/marketerRegistration.vue'),
       },
       {
-        path: 'commonFaq',
+        path: 'faq',
         component: () => import('src/pages/faq/commonFaq.vue'),
       },
       {
@@ -60,19 +60,27 @@ const routes = [
         path: 'agentRegisteration',
         component: () => import('src/pages/agentRegisteration/agentRegisteration.vue'),
       },
+      {
+        path: 'blog',
+        component: () => import('src/pages/weblog/weblog.vue'),
+      },
+      {
+        path: 'article/:id',
+        component: () => import('src/pages/weblog/article.vue'),
+      },
     ]
   },
  {
-  
+
     path: '/LoginPage',
     component: () => import('src/pages/loginPage/loginPage.vue'),
-  
+
  },
  {
-  
+
     path: '/RegisterPage',
     component: () => import('src/pages/registerPage/registerPage.vue'),
-  
+
  }
   // Always leave this as last one,
   // but you can also remove it

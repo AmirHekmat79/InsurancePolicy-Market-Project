@@ -52,7 +52,7 @@
             </div>
             <div
               class="row justify-center text-right items-center q-px-sm Cards-scroll q-pb-md"
-             
+
             >
               <!-- <div class="col-md-3 col-xs-12"></div> -->
               <div class="col-md-12 text-right col-xs-12 change-blog-card-width" >
@@ -154,9 +154,9 @@ export default defineComponent({
         month: '2-digit',
         day: '2-digit'
       });
-        
 
-       
+
+
     },
 
     currentTime(){
@@ -266,19 +266,19 @@ h5 {
     font-size: 16px;
   }
 
-  
+
 }
 @media screen and (min-width: 801px) {
   .caption {
     font-size: 16px;
     padding-bottom: 8px !important;
   }
- 
+
 }
 
 @media screen and (max-width : 800px) {
   .filter-image{
-   
+
     width:100px !important;
     height:100px !important;
  }

@@ -33,9 +33,15 @@ export default defineComponent({
    .title{
       margin: 40px 0px 10px;
       font-size: 30px;
+      @media(max-width:480px){
+        font-size: 24px;
+      }
    }
    .sub-title{
     margin: 10px;
+    @media(max-width:480px){
+        font-size: 20px;
+      }
    }
  }
  

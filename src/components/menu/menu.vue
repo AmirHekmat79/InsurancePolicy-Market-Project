@@ -30,7 +30,7 @@
         </a> 
 
   </div>
-   <div v-if="isSmallDevice && showMenu" class="mobile-menu flex column justify-start items-start">
+   <div v-if="isSmallDevice" class="mobile-menu flex column justify-start items-start">
       <div class="action-bar">
         <div class="q-mb-md flex justify-start items-center ">
           <div v-if="userIsLogin" class="alias-name">
@@ -119,7 +119,7 @@ export default defineComponent({
   },
   mounted(){
     this.getMenueItems();
-    if(this.$q.screen < 992){
+    if(this.$q.screen.width < 992){
         this.isSmallDevice=true;
       }
   },
@@ -132,7 +132,7 @@ export default defineComponent({
             this.setMenuItems(this.mainItems);
             setTimeout(()=>{
              this.showMenu=true;
-            },2000)
+            },1000)
           })
           .catch((error) => {
             console.error('this is error', error);
@@ -361,6 +361,7 @@ export default defineComponent({
   }
 }
  .mobile-menu {
+    color: #000;
     .action-bar{
       width:100%;
       padding:20px 10px;

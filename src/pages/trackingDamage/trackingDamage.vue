@@ -1,193 +1,344 @@
 <template>
-    <q-page >  
-        <div class="row justify-center items-center">
-        <h4 class="tracking-title q-mx-md"> ثبت خسارت</h4>
-        <!-- <q-img width="36px" src="../icons/verify 1.svg"></q-img> -->
-     </div>
-     <q-form>
-      <div class="row justify-center items-center q-gutter-lg q-pa-lg">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-select rounded standout v-model="text" :options="options" >
-
-            <template v-slot:prepend>
-              <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-            </svg>
-
-            </template>
-            <template v-slot:append>
-                <label class="text-subtitle1">نوع بیمه نامه</label>
-            </template>
-        </q-select>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-input  class="Input" rounded outlined v-model="text" dir="rtl">
-            <template v-slot:prepend>
-              <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                  <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
-                </svg>
-
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm">  شرکت بیمه </label>
-            </template>
-          </q-input>
-        </div>
-       <div class="col-md-4 col-sm-6 col-xs-12">
-        <q-input  class="Input" rounded outlined v-model="text" dir="rtl">
-            <template v-slot:prepend>
-              <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
-            </svg>
-
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm">  شماره بیمه نامه</label>
-            </template>
-          </q-input>
-       </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-select rounded standout v-model="text" :options="options2">
-                <template v-slot:prepend>
-                  <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-            </svg>
-
-            </template>
-            <template v-slot:append>
-                <label class="text-subtitle1">نوع  خسارت</label>
-            </template>
-          </q-select>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-input  class="Input" rounded outlined v-model="text" dir="rtl">
-            <template v-slot:prepend>
-              <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
-            </svg>
-
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm">  تاریخ وقوع خسارت </label>
-            </template>
-          </q-input>
-        </div>
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-input class="Input" rounded outlined v-model="text">
-            <template v-slot:prepend>
-              <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-            </svg>
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm">نام </label>
-            </template>
-          </q-input>
-          </div>
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-input class="Input" rounded outlined v-model="text">
-            <template v-slot:prepend>
-              <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
-            </svg>
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm"
-                >کد ملی 
-              </label>
-            </template>
-          </q-input>
-          </div>
-         <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-input class="Input" rounded outlined v-model="text">
-            <template v-slot:prepend>
-             <q-icon class="img-phone-inner" name="phone"></q-icon>
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm"
-                >تلفن همراه
-              </label>
-            </template>
-          </q-input>
-         </div>
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <q-input class="Input" rounded outlined v-model="text">
-            <template v-slot:prepend>
-              <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-            </svg>
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm"
-                >مشخصات بیمه شده/مورد بیمه 
-              </label>
-            </template>
-          </q-input>
-          </div>
-       <div class="col-md-4 col-sm-6 col-xs-12">
-        <q-input class="Input" rounded outlined v-model="text">
-            <template v-slot:prepend>
-              <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-            </svg>
-
-
-
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm"
-                >توضیحات 
-              </label>
-            </template>
-          </q-input>
-       </div>
+    <q-card-section class="tracking-damage-container" style="max-width: 70rem; margin: auto; direction: rtl;">
+      <div v-if="loading">
+        <q-inner-loading
+          :showing="true"
+          style="background: rgba(255, 255, 255, 0.7); z-index: 2000;"
+        >
+          <q-spinner-gears size="50px" color="primary" />
+        </q-inner-loading>
       </div>
+      <q-card-section>
+        <div class="text-h6" style="direction: rtl;">پیگیری خسارت</div>
+      </q-card-section>
 
-     </q-form>
-     <div class="row justify-around items-center q-my-sm">
-         <q-btn class="tracking-btn text-white">ذخیره</q-btn>
-         <div class="column justify-center items-center">
-             <h6>بارگزاری مدارک </h6>
-             <q-btn  class="tracking-btn  text-white">بارگذاری</q-btn>
-         </div>
-    </div>
-    </q-page>
+      <q-card-section class="q-pt-none">
+        <q-form @submit="findTracking()" class="q-gutter-md">
+          <div class="row">
+            <div
+              v-if="showTrack"
+              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-margin"
+            >
+              <section class="row status-cont" v-if="trackingDamageModel.id">
+                <div
+                  :class="
+                    'status' + (trackingDamageStatus >= 0 ? 'active' : '')
+                  "
+                >
+                  <i class="material-icons">
+                    check
+                  </i>
+                  در حال بررسی
+                </div>
+                <div
+                  :class="
+                    'line rejected' +
+                    (trackingDamageStatus == 2 ? 'active' : '')
+                  "
+                  v-if="trackingDamageStatus == 2"
+                ></div>
+                <div
+                  :class="
+                    'status rejected' +
+                    (trackingDamageStatus == 2 ? 'active' : '')
+                  "
+                  v-if="trackingDamageStatus == 2"
+                >
+                  <i class="material-icons">
+                    close
+                  </i>
+                  رد شده
+                </div>
+                <div
+                  :class="'line' + (trackingDamageStatus >= 1 ? 'active' : '')"
+                  v-if="trackingDamageStatus != 2"
+                ></div>
+                <div
+                  :class="
+                    'status' + (trackingDamageStatus >= 1 ? 'active' : '')
+                  "
+                  v-if="trackingDamageStatus != 2"
+                >
+                  <i class="material-icons">
+                    check
+                  </i>
+                  تایید شده
+                </div>
+                <div
+                  :class="
+                    'line' +
+                    (trackingDamageStatus >= 1 && trackingDamageStatus != 2
+                      ? 'active'
+                      : '')
+                  "
+                ></div>
+                <div
+                  :class="
+                    'status' +
+                    (trackingDamageStatus >= 1 && trackingDamageStatus != 2
+                      ? 'active'
+                      : '')
+                  "
+                >
+                  <i class="material-icons">
+                    check
+                  </i>
+                  رسیدگی کارشناس
+                </div>
+                <div
+                  :class="
+                    'line rejected' +
+                    (trackingDamageStatus == 4 ? 'active' : '')
+                  "
+                  v-if="trackingDamageStatus == 4"
+                ></div>
+                <div
+                  :class="
+                    'status rejected' +
+                    (trackingDamageStatus == 4 ? 'active' : '')
+                  "
+                  v-if="trackingDamageStatus == 4"
+                >
+                  <i class="material-icons">
+                    close
+                  </i>
+                  رد شده
+                </div>
+                <div
+                  :class="'line' + (trackingDamageStatus >= 3 ? 'active' : '')"
+                  v-if="trackingDamageStatus != 4"
+                ></div>
+                <div
+                  :class="
+                    'status' + (trackingDamageStatus >= 3 ? 'active' : '')
+                  "
+                  v-if="trackingDamageStatus != 4"
+                >
+                  <i class="material-icons">
+                    check
+                  </i>
+                  تایید شده
+                </div>
+                <div
+                  :class="
+                    'line' +
+                    (trackingDamageStatus >= 3 && trackingDamageStatus != 4
+                      ? 'active'
+                      : '')
+                  "
+                ></div>
+                <div
+                  :class="
+                    'status' +
+                    (trackingDamageStatus >= 3 && trackingDamageStatus != 4
+                      ? 'active'
+                      : '')
+                  "
+                >
+                  <i class="material-icons">
+                    check
+                  </i>
+                  ارسال به مالی
+                </div>
+                <div
+                  :class="'line' + (trackingDamageStatus == 6 ? 'active' : '')"
+                ></div>
+                <div
+                  :class="
+                    'status' + (trackingDamageStatus == 6 ? 'active' : '')
+                  "
+                >
+                  <i class="material-icons">
+                    check
+                  </i>
+                  پرداخت شده
+                </div>
+              </section>
+              <section
+                class="row description"
+                v-if="
+                  activeTrackingDamageStatusIndex > -1 &&
+                  trackingDamageModel.trackingDamageStatus[
+                    activeTrackingDamageStatusIndex
+                  ].description &&
+                  trackingDamageModel.trackingDamageStatus[
+                    activeTrackingDamageStatusIndex
+                  ].description != ''
+                "
+              >
+                <header>توضیح کارشناس:</header>
+                <article>
+                  <p>
+                    {{
+                      trackingDamageModel.trackingDamageStatus[
+                        activeTrackingDamageStatusIndex
+                      ].description
+                    }}
+                  </p>
+                </article>
+              </section>
+            </div>
+
+            <div
+              v-if="!showTrack"
+              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-margin"
+            >
+              <q-input
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') || 'کد رهگیری الزامی است',
+                ]"
+                color="teal"
+                outlined
+                v-model="myTrackingCode"
+                label="کد رهگیری"
+                class="label-right"
+              >
+              </q-input>
+            </div>
+            <div
+              v-if="!showTrack"
+              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex justify-end"
+            >
+            <q-btn
+                  color="primary"
+                  label="پیگیری درخواست"
+                  type="submit"
+                />
+            </div>
+          </div>
+        </q-form>
+      </q-card-section>
+    </q-card-section>
   </template>
-  
+
   <script>
   import { defineComponent } from "vue";
   export default defineComponent({
     name: "TrackingDamage",
     data(){
       return{
-        model: null,
-        options: [
-            'بیمه ثالث خودرو', 'بیمه بدنه', 'بیمه مسئولیت  حرفه ای پزشکان و پیراپزشکان ', 'بیمه عمر و زندگی انفرادی'
-        ],
-        options2: [
-            'جانی', 'مالی', 'سایر', 'حوادث راننده'
-        ]
+        trackingDamageModel: [],
+        activeTrackingDamageStatusIndex:0,
+        trackingDamageStatus:-1,
+        showAcceptedForm:false,
+        myTrackingCode: "",
+        trackingIndex:0,
+        loading:false,
+        showTrack:false,
       }
     },
-   
-   
+    methods:{
+      async findTracking() {
+         this.loading = true;
+         try {
+           var a = await PortalService.findTracking(this.myTrackingCode);
+           this.trackingDamageModel = a.message[0];
+           this.activeTrackingDamageStatusIndex =
+             this.trackingDamageModel.trackingDamageStatus.length - 1;
+           if (
+             this.trackingDamageModel.id &&
+             this.activeTrackingDamageStatusIndex > -1
+           ) {
+             this.trackingDamageStatus = this.trackingDamageModel.trackingDamageStatus[
+               this.activeTrackingDamageStatusIndex
+             ].trackingDamageStatus;
+           }
+           this.showTrack = true;
+        } catch (err) {
+          if(err.data.message){
+            this.$q.notify({
+            color: "red",
+            textColor: "white",
+            icon: "cloud_done",
+            message: err.data.message,
+          });
+          }
+
+        }
+    this.loading = false;
+  }
+    }
+
+
   });
   </script>
-  
-<style scoped>
-.img-inner{
-  fill: var(--q-Blue);
+
+<style lang="scss">
+.tracking-damage-container{
+  padding-top: 150px;
 }
-.img-phone-inner{
-  color: var(--q-Blue);
+section.row {
+  display: flex;
+  @media (max-width: 910px) {
+    flex-direction: column;
+  }
+  &.status-cont {
+    margin: 32px 0;
+    align-items: center;
+    @media (max-width: 910px) {
+      align-items: start;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      color: #bdbdbd;
+      flex: none;
+      i {
+        background: #bdbdbd;
+        border-radius: 50%;
+        height: 20px;
+        line-height: 1.2;
+        font-size: 18px;
+        padding: 0 1px;
+        color: white;
+        margin-left: 2px;
+        @media (max-width: 910px) {
+          margin-left: 8px;
+        }
+      }
+      &.active {
+        color: #3b8bff;
+        i {
+          background: #3b8bff;
+        }
+        &.rejected {
+          color: #e5273a;
+          i {
+            background: #e5273a;
+          }
+        }
+      }
+    }
+    .line {
+      width: 64px;
+      height: 1px;
+      margin: 0 4px;
+      background: #bdbdbd;
+      @media (max-width: 910px) {
+        display: none;
+      }
+      &.active {
+        background: #3b8bff;
+        &.rejected {
+          background: #e5273a;
+        }
+      }
+    }
+  }
+  &.description {
+    display: block;
+    header {
+      color: #757575;
+    }
+    article {
+      margin-top: 6px;
+      padding: 16px;
+      background: #f5f7ff;
+      border-radius: 4px;
+      box-shadow: 1px 1px 3px rgba(6, 27, 72, 0.15);
+      color: #212121;
+    }
+  }
 }
- .tracking-btn{
-    background: var(--q-Blue);
-    color: #ffff;
-    padding: 10px 30px;
-    text-align: center !important;
-   
- }
 </style>
-  
