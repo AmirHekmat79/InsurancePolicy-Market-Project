@@ -63,7 +63,17 @@ export default defineComponent({
 
      },
     methods: {
-
+      openArticle(article)
+       {
+         if(!article.disableLink){
+           if(article.directUrl)
+           {
+             window.open(article.directUrl)
+           }
+           else
+           window.open('./article/'+article.id)
+         }
+       }
     },
 
 });

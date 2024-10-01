@@ -210,10 +210,11 @@
         </q-form>
       </q-card-section>
     </q-card-section>
-  </template>
+</template>
 
   <script>
-  import { defineComponent } from "vue";
+  import services from "src/services/services";
+import { defineComponent } from "vue";
   export default defineComponent({
     name: "TrackingDamage",
     data(){
@@ -232,8 +233,8 @@
       async findTracking() {
          this.loading = true;
          try {
-           var a = await PortalService.findTracking(this.myTrackingCode);
-           this.trackingDamageModel = a.message[0];
+           var a = await services.findTracking(this.myTrackingCode);
+           this.trackingDamageModel = a.data.message[0];
            this.activeTrackingDamageStatusIndex =
              this.trackingDamageModel.trackingDamageStatus.length - 1;
            if (

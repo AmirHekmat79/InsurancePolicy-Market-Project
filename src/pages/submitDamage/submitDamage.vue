@@ -1,107 +1,444 @@
 <template>
-    <q-page >  
-     <div class="row justify-center items-center">
-        <h4 class="tracking-title q-mx-md"> ثبت و پیگیری خسارت</h4>
-        <!-- <q-img width="36px" src="../icons/tracking 1.svg"></q-img> -->
-     </div>
-     <q-form class="q-my-lg">
-      <div class="row justify-center items-center q-gutter-xl">
-        <div class="col-md-6 col-sm-4 col-xs-8">
-          <q-input  class="Input" rounded outlined v-model="text" dir="rtl">
-            <template v-slot:prepend>
-              <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path class="img-inner" stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
-            </svg>
+   <div class="submit-damage-container">
+    <q-dialog v-model="showAcceptedForm">
+      <q-card style="width: 700px; max-width: 80vw; direction: rtl;">
+        <q-card-section>
+          <div class="text-h6">ثبت خسارت</div>
+        </q-card-section>
 
+        <q-card-section class="q-pt-none">
+          <div class="q-pa-md">
+            <div class="row">
+              <img
+                alt="register-success"
+                src="https://media.easybimeh.com/Easybimeh/FileManager.Front/portal/assets/images/register-success.svg"
+              />
 
-            </template>
-            <template v-slot:append>
-              <label class="text-subtitle1 label-font q-ml-sm"> کد رهگیری  </label>
-            </template>
-          </q-input>
-        </div>
-    
+              <div
+                class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-padding"
+                style="min-width: 100px;"
+              >
+                <h4 style="font-size: 25px;">
+                  درخواست ثبت خسارت با موفقیت ارسال شد!
+                </h4>
+              </div>
+
+              <div
+                class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-padding"
+                style="min-width: 100px;"
+              >
+                <span>
+                  با استفاده از کد رهگیری زیر در قسمت
+                  <span style="color: #3b8bff;">
+                    پیگیری خسارت
+                  </span>
+                  ، میتوانید وضعیت .درخواست را پیگیری نمایید
+                </span>
+              </div>
+
+              <div
+                class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-padding"
+                style="min-width: 100px;"
+              >
+                <p class="code">
+                  کد رهگیری:
+                  <span class="blue">
+                    {{ trackingCode }}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
+    <q-card-section style="max-width: 70rem; margin: auto; direction: rtl;">
+      <q-card-section>
+        <div class="text-h6">ثبت خسارت</div>
+      </q-card-section>
+      <div style="display: none;">
+        {{ model }}
       </div>
-      <q-btn class="tracking-btn">پیگیری درخواست</q-btn>
-    </q-form>
-   <q-card dir="rtl" class="row justify-center banner-bg items-center q-pa-md q-mt-lg rounded-borders ">
-    <div class="col-md-3">
-        <div class="column justify-center items-center">
-        <h6 class="text-white banner-title-font">بیمه،راهی مطمئن برای کسب و کار</h6>
-        <p class="text-justify sm-font-size text-white">با ما به راحتی و اطمینان کامل،کسب و کار و آینده خود را بیمه کنید.</p>
+      <q-card-section class="q-pt-none">
+        <q-form @submit="submit()" class="q-gutter-md">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 q-pa-xs">
+              <q-select
+                class="label-right"
+                hide-dropdown-icon
+                emit-value
+                map-options
+                :option-value="(opt) => opt.id"
+                :option-label="(opt) => opt.title"
+                :rules="[(val) => val || 'نوع بیمه نامه الزامی است']"
+                color="teal"
+                outlined
+                v-model="insuranceTypeId"
+                :options="insurancePolicyTypeOptions"
+                label="نوع بیمه نامه"
+              >
+                <template v-slot:append>
+                  <q-icon name="arrow_drop_down" />
+                </template>
+              </q-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 q-pa-xs">
+              <q-select
+                class="label-right"
+                hide-dropdown-icon
+                emit-value
+                map-options
+                :option-value="(opt) => opt.id"
+                :option-label="(opt) => opt.title"
+                :rules="[(val) => val || 'شرکت بیمه الزامی است']"
+                color="teal"
+                outlined
+                v-model="model['insuranceCompanyId']"
+                :options="insuranceCompanyOptions"
+                label="شرکت بیمه"
+              >
+                <template v-slot:append>
+                  <q-icon name="arrow_drop_down" />
+                </template>
+              </q-select>
+            </div>
 
-    </div>
-    </div>
-   <div class="col-md-4 text-center q-mr-xl" >
-    <!-- <img src="../assets/health-banner.png"/> -->
-   </div>
-    <div class="col-md-3">
-        <div class="column justify-center items-center q-mx-lg">
-        <h6 class="text-white banner-title-font">بیمه،راهی  برای پیشگیری از خسارات </h6>
-        <p class="text-justify sm-font-size text-white">اگه همین حالا خودتان را بیمه کنید، جلوی بسیاری از مشکلات غیرقابل پیش‌بینی را خواهید گرفت. به واسطه خدمات بیمه می‌توانید آرامش و آسایش به خود و خانواده‌تان هدیه کنید. </p>
-    </div>
-    </div>
-   </q-card>
-    </q-page>
-  </template>
-  
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 q-pa-xs">
+              <q-input
+                class="label-right"
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'شماره بیمه نامه الزامی است',
+                ]"
+                color="teal"
+                outlined
+                v-model="model['insurancePolicyNumber']"
+                label="شماره بیمه نامه"
+              >
+              </q-input>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-xs">
+              <q-select
+                class="label-right"
+                hide-dropdown-icon
+                emit-value
+                map-options
+                multiple
+                :option-value="(opt) => opt.id"
+                :option-label="(opt) => opt.id"
+                :rules="[(val) => val || 'نوع خسارت الزامی است']"
+                color="teal"
+                outlined
+                v-model="model['damageTypes']"
+                :options="damagetypes"
+                label="نوع خسارت"
+              >
+                <template v-slot:append>
+                  <q-icon name="arrow_drop_down" />
+                </template>
+              </q-select>
+            </div>
+            <div
+              class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs"
+              style="position: relative;"
+            >
+              <p
+                style="
+                  margin: 0;
+                  position: absolute;
+                  font-size: 12px;
+                  right: 30px;
+                  top: 2px;
+                "
+              >
+                تاریخ وقوع خسارت
+              </p>
+              <q-input
+                filled
+                class="item-with-margin label-right"
+                lable="تاریخ وقوع خسارت"
+                readonly
+                v-model="model.damagePersianDate"
+                mask="date"
+                input-style="text-align: left"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      ref="toDateElement"
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date
+                        calendar="persian"
+                        dir="rtl"
+                        mask="YYYY-MM-DD"
+                        @input="toDateChanged"
+                        v-model="model.damagePersianDate"
+                      />
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xs">
+              <div class="q-px-sm">
+                شخصیت بیمه گذار :
+              </div>
+              <div class="q-gutter-sm">
+                <q-radio
+                  v-model="model.personalityType"
+                  :val="0"
+                  label="حقیقی"
+                />
+                <q-radio
+                  v-model="model.personalityType"
+                  :val="1"
+                  label="حقوقی"
+                />
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 q-pa-xs">
+              <q-input
+                class="label-right"
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    (model.personalityType == 1
+                      ? 'نام شرکت'
+                      : 'نام و نام خانوادگی' + ' الزامی است'),
+                ]"
+                color="teal"
+                outlined
+                v-model="model['name']"
+                :label="
+                  model.personalityType == 1 ? 'نام شرکت' : 'نام و نام خانوادگی'
+                "
+              >
+              </q-input>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 q-pa-xs">
+              <q-input
+                class="label-right"
+                v-if="model.personalityType == 1"
+                @keypress="controlLength($event, 11)"
+                :rules="[
+                  (val) =>
+                    (val !== null &&
+                      val !== undefined &&
+                      val !== '' &&
+                      val.length == 11) ||
+                    'شناسه ملی الزامی و شامل 11 رقم می باشد',
+                ]"
+                color="teal"
+                outlined
+                v-model="model['nationalCode']"
+                type="number"
+                :label="'شناسه ملی'"
+              >
+              </q-input>
+              <q-input
+                class="label-right"
+                v-else
+                @keypress="controlLength($event, 10)"
+                color="teal"
+                outlined
+                v-model="model['nationalCode']"
+                type="number"
+                :label="'کد ملی'"
+              >
+              </q-input>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 q-pa-xs">
+              <q-input
+                class="label-right"
+                @keypress="controlLength($event, 11)"
+                :rules="[
+                  (val) =>
+                    (val !== null &&
+                      val !== undefined &&
+                      val !== '' &&
+                      val.length == 11) ||
+                    'الزامی و شامل 11 رقم می باشد' ||
+                    (model.personalityType == 1
+                      ? 'تلفن همراه نماینده'
+                      : 'تلفن همراه' + ' الزامی است'),
+                ]"
+                color="teal"
+                outlined
+                v-model="model['mobile']"
+                type="number"
+                :label="
+                  model.personalityType == 1
+                    ? 'تلفن همراه نماینده'
+                    : 'تلفن همراه'
+                "
+              >
+              </q-input>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xs">
+              <q-input
+                class="label-right"
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'مشخصات بیمه شده/مورد بیمه الزامی است',
+                ]"
+                color="teal"
+                outlined
+                v-model="model['insuredProfile']"
+                label="مشخصات بیمه شده/مورد بیمه"
+              >
+              </q-input>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xs">
+              <q-input
+                class="label-right"
+                color="teal"
+                outlined
+                v-model="model['description']"
+                label="توضیحات"
+                type="textarea"
+              >
+              </q-input>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xs">
+              <MultiUploader
+                v-model="model.trackingDamageFile"
+                style="padding-top: 20px;"
+                title="بارگذاری مدارک و مستندات"
+              />
+            </div>
+            <div
+              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xs flex justify-end"
+            >
+              <q-btn
+                  color="primary"
+                  label="ذخیره"
+                  type="submit"
+                  :loading="saveDataLoading"
+                />
+            </div>
+          </div>
+        </q-form>
+      </q-card-section>
+    </q-card-section>
+  </div>
+</template>
+
   <script>
+  import services from "src/services/services";
   import { defineComponent } from "vue";
+  import optionServices from "src/services/optionServices.js";
+  import MultiUploader from "src/components/uploader/multiUploader.vue";
   export default defineComponent({
-    name: "TrackingInsurance",
+    name: "TrackingDamage",
+    components:{
+      MultiUploader
+    },
     data(){
       return{
-      
+         trackingDamageModel:[],
+         activeTrackingDamageStatusIndex:0,
+         trackingDamageStatus: -1,
+         showAcceptedForm: false,
+         trackingCode: "",
+         trackingIndex: 0,
+         self:this,
+         loading: false,
+         damagetypes: [
+           { id: "جانی" },
+           { id: "مالی" },
+           { id: "سایر" },
+           { id: "حوادث راننده" },
+         ],
+         insuranceTypeId:"",
+         model:{
+           trackingDamageFile: [],
+           damageType: "",
+           damageTypes: [],
+           description: "",
+           insuranceCompanyId: "",
+           insurancePolicyNumber: "",
+           insuranceTypeId: "",
+           insuredProfile: "",
+           mobile: "",
+           name: "",
+           nationalCode: "",
+           personalityType: "",
+           trackingDamageStatus: [],
+           damagePersianDate: "",
+         },
+        insuranceCompanyOptions:[],
+        saveDataLoading: false,
+        insurancePolicyTypeOptions:[],
       }
     },
-   
-   
+    watch: {
+         insuranceTypeId() {
+          this.model.insuranceTypeId=this.insuranceTypeId;
+          this.onTypeChanged(this.insuranceTypeId);
+         }
+       },
+    mounted() {
+      this.init();
+    },
+    methods:{
+      async init(){
+       this.insurancePolicyTypeOptions=await (await optionServices.getInsuranceTypeDamageForm()).data.message;
+      },
+        async submit() {
+        this.model.damageType = "";
+        for (var a of this.model.damageTypes) this.model.damageType += a + ",";
+        this.model.trackingDamageStatus = [
+          {
+            description: this.model.description,
+            trackingDamageFile: this.model.trackingDamageFile,
+          },
+        ];
+        this.saveDataLoading = true;
+        var response= await services.trackingDamage(this.model);
+        if (response.data.isSuccess) {
+          this.trackingCode = response.data.message;
+          this.showAcceptedForm = true;
+        }
+        this.saveDataLoading = false;
+      },
+      async onTypeChanged(data) {
+         this.insuranceCompanyOptions = (
+           await optionServices.getInsuranceCompanies(data)
+         ).data.message;
+      },
+      controlLength(event, maxlength) {
+        var targetLength = event.target.value.length;
+        if (event.which < 0x20) {
+          // e.which < 0x20, then it's not a printable character
+          // e.which === 0 - Not a character
+          return; // Do nothing
+        }
+        if (targetLength == maxlength) {
+          event.preventDefault();
+        } else if (targetLength > maxlength) {
+          // Maximum exceeded
+          event.target.value = event.target.value.substring(0, maxlength);
+        }
+      }
+    }
+
   });
   </script>
-  
-<style scoped>
-.img-inner{
-  fill: var(--q-Blue);
-}
-p{
-    font-size: 16px;
-}
 
-.banner-bg {
-  background: var(--q-Blue);
-    height: auto;
-    margin: 10px;
-}
- .tracking-title{
-    font-size: 36px !important;
- }
- .tracking-btn{
-  background: var(--q-Blue);
-    color: #ffff;
-    margin: 40px auto !important;
-    text-align: center !important;
-    display: flex;
-    justify-content: center;
- }
- img{
-    width: 100% !important;
-    margin: auto !important;
-    text-align: center !important;
- }
-
- @media screen and (max-width : 500px) {
-    .sm-font-size{
-      font-size : 14px;
-    }
-    .banner-title-font{
-        font-size:16px;
-        font-weight:bolder;
-    }
-
-    h6{
-       line-height: 1rem;
-    }
+<style lang="scss">
+ .submit-damage-container{
+   padding: 100px 5% 10px;
  }
 </style>
-  
+

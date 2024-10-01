@@ -5,31 +5,31 @@ const routes = [
     component: () => import('src/layouts/mainLayout.vue'),
     children: [
       { path: '', component: () => import('src/pages/home/index.vue') },
-      { path: '/AboutUs', component: () => import('src/pages/aboutUs/aboutUs.vue') },
-      { path: '/ContactUs', component: () => import('src/pages/contactUs/contactUs.vue') },
-      {
-        path: 'InsuranceMagazine',
-        component: () => import('src/pages/insuranceMagazine/insuranceMagazine.vue'),
-      },
-      {
-        path: 'InsuranceMagazine/blog/:blogId',
-        component: () => import('src/pages/blogDetails/blogDetails.vue'),
-        props: true
-      } ,
-      {
-        path: 'TrackingInsurance',
-        component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
-      },
-      {
-        path: 'HomeBlogDetails',
-        component: () => import('src/pages/homeBlogDetails/homeBlogDetails.vue'),
-      },
+      { path: 'about', component: () => import('src/pages/aboutUs/aboutUs.vue') },
+      { path: 'contactUs', component: () => import('src/pages/contactUs/contactUs.vue') },
+      // {
+      //   path: 'InsuranceMagazine',
+      //   component: () => import('src/pages/insuranceMagazine/insuranceMagazine.vue'),
+      // },
+      // {
+      //   path: 'InsuranceMagazine/blog/:blogId',
+      //   component: () => import('src/pages/blogDetails/blogDetails.vue'),
+      //   props: true
+      // } ,
+      // {
+      //   path: 'TrackingInsurance',
+      //   component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
+      // },
+      // {
+      //   path: 'HomeBlogDetails',
+      //   component: () => import('src/pages/homeBlogDetails/homeBlogDetails.vue'),
+      // },
       {
         path: 'trackingDamage',
         component: () => import('src/pages/trackingDamage/trackingDamage.vue'),
       },
       {
-        path: 'SubmitDamage',
+        path: 'submitDamage',
         component: () => import('src/pages/submitDamage/submitDamage.vue'),
       },
       {

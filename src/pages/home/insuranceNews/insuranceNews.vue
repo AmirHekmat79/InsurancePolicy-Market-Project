@@ -6,9 +6,9 @@
    <div class="text-right q-ma-lg">
     <q-img class="shape2-img3" src="images/triangle.svg" width="20px"></q-img>
    </div>
-  
+
     <div class="row justify-center items-center">
-      
+
       <h6 class="section-title text-center q-mx-sm">اخبار و اطلاعیه ها</h6>
       <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" >
       <path class="icon-color" stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
@@ -21,21 +21,19 @@
         <q-img class="card-img" :src="item.metaMediaFileUrl">
           <div class="title absolute-bottom text-h6">{{ item.title }}</div>
         </q-img>
-      
+
         <q-card-section class="summary" dir="rtl">
           {{ item.summary }}
         </q-card-section>
         <q-separator light />
-        <q-btn class="details-btn text-center q-my-sm rounded-borders" @click="this.$router.push('/HomeBlogDetails')"
-          >جزئیات بیشتر</q-btn
-        >
+        <q-btn @click="openArticle(item)" class="details-btn text-center q-my-sm rounded-borders">جزئیات بیشتر</q-btn>
        </q-card>
        <template #viewport>
          <span class="flicking-arrow-prev"></span>
          <span class="flicking-arrow-next"></span>
          <div class="flicking-pagination"></div>
        </template>
-         
+
      </Flicking>
      </div>
     </div>
@@ -84,9 +82,12 @@ export default defineComponent({
         this.summaryNotics.push(item);
       }
     }
-    // setTimeout(()=>{
-    //   this.showCarousel=true;
-    //  },1000)
+  },
+  methods:{
+    openArticle(article)
+    {
+      window.open('./article/'+article.id)
+    },
   }
 });
 </script>

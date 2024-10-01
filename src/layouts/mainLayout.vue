@@ -54,18 +54,6 @@ export default defineComponent({
      setBaseData(data) {
       this.baseDataStore.setBaseData(data,true);
     },
-     openArticle(article)
-     {
-       if(!article.disableLink){
-         if(article.directUrl)
-         {
-           window.open(article.directUrl)
-         }
-         else
-         window.open('./article/'+article.id)
-       }
-     }
-
   },
 });
 </script>

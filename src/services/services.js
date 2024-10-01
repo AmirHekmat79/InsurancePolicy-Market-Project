@@ -59,6 +59,11 @@ const services = {
         data.subDomainName=domain;
         return baseServices.post("/RequestDemo/InsertRequestDemo",data);
     },
+    trackingDamage(data){
+        let domain=baseServices.getDomain();
+        data.subDomainName=domain;
+        return baseServices.post("/TrackingDamage",data);
+    },
     logout(headers){
         let data={};
         return baseServices.post("/Account/logout",data,headers);
@@ -71,6 +76,37 @@ const services = {
       let domain=baseServices.getDomain();
       return baseServices.get(`/InsurancePolicy/Tracking`,{trackingCode,nationalCode});
   },
+  upload(title, file) {
+    let domain=baseServices.getDomain();
+    return baseServices.postForm(
+      "/FileManager/Upload?subDomain=" + domain + "&title=" + title,
+      { domain, title },
+      file
+    );
+  },
+  findTracking(id)
+  {
+    return baseServices.get("/TrackingDamage/TrackingCode/"+id,{});
+  },
+  suggestionsCritic(data) {
+    let domain=baseServices.getDomain();
+    data["subDomain"] = domain;
+    return baseServices.post("/SuggestionsCritic",data);
+  },
+  postMarketerInformations(data) {
+    let domain=baseServices.getDomain();
+    data["insuranceCentreDomain"] = domain;
+    return baseServices.post("/Account/MarketerRegistration", data, {});
+  },
+   suggestionsCritic(data) {
+    var domain = baseServices.getDomain();
+    data["subDomain"] = domain;
+    return baseServices.post("/SuggestionsCritic", data, {});
+  },
+  getContractContent() {
+    let domain=baseServices.getDomain();
+    return baseServices.get(`/InsuranceCenterSetting/GetContractContent?SubDomainName=${domain}`);
+  }
 }
 
 export default services;

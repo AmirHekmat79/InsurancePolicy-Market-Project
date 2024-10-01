@@ -21,6 +21,26 @@ const baseURL = "https://server.easybimeh.com/api";
     })
     return response;
     },
+   async postForm(
+      endpoint,
+      params=null,
+      image = null,
+      headers= null
+    ){
+      var bodyFormData = new FormData();
+      for (var a in params) {
+        bodyFormData.set(a, params[a]);
+      }
+      if (image) {
+        bodyFormData.append("file", image);
+      }
+      if (!headers) headers = {};
+      headers["Content-Type"] = "multipart/form-data";
+      let response=await axios.post(baseURL + endpoint,bodyFormData, {
+        headers: headers,
+      })
+      return response;
+    },
     getDomain() {
       return "sabz"
     //   var domain = window.location.host.split(".")[0];
