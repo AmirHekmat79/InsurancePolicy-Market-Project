@@ -57,6 +57,12 @@ export default defineComponent({
 <style lang="scss">
 .insurance-plans{
   margin-top:20px;
+  padding-left: 8%;
+  padding-right: 8%;
+  @media(max-width:768px){
+    padding-left: 15px;
+    padding-right: 15px;
+  }
    .cards {
    width: 145px;
    height: 150px;
@@ -78,6 +84,6 @@ export default defineComponent({
     margin-top: 20px;
    }
 }
- 
+
 
 </style>

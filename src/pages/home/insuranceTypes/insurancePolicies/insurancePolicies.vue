@@ -58,6 +58,12 @@ export default defineComponent({
 <style lang='scss'>
 .insurance-policies{
   margin-top:20px;
+  padding-left: 8%;
+  padding-right: 8%;
+  @media(max-width:768px){
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .cards {
   background: none;
   width: 145px;

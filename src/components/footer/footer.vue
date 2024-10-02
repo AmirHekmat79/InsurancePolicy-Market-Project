@@ -29,35 +29,24 @@
     <div class="col-auto site-feature-container">
       <h2 class="title">امکانات سایت</h2>
       <ul class="site-features">
-        <li class="row  items-center"><a @click="this.$router.push('/AboutUs')"> درباره ما </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/ourService')"> خدمات ما </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/ContactUs')"> تماس با ما </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/about')"> درباره ما </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/ourservice')"> خدمات ما </a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/contactUs')"> تماس با ما </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/registerComplaint')"> پیشنهادات ، انتقادات و شکایات </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/commonFaq')"> پرسش های متداول</a></li>
+        <li class="row  items-center"><a @click="this.$router.push('/faq')"> پرسش های متداول</a></li>
         <li class="row  items-center"><a @click="this.$router.push('/trackingInsurance')">  پیگیری بیمه نامه </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/marketerRegistration')">    سامانه بازاریابان </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/agentRegisteration')">   همکاری با نمایندگان بیمه  </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/otherJobsRegisteration')">   همکاری با  ما  </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/rulesAndObligations')">    قوانین و مقررات   </a></li>
+        <li class="row  items-center"><a @click="this.roles=true;">    قوانین و مقررات   </a></li>
       </ul>
     </div>
-    <!-- <div class="col-auto common-link-container">
-      <h2 class="title">لینک های پر کاربرد</h2>
-      <ul class="contactus">
-        <li class="row   q-my-sm">آدرس بیمه مرکزی</li>
 
-        <li class="row  q-my-sm">آدرس سنهاب</li>
-
-        <li class="row   q-my-sm">پیگیری درخواست</li>
-        <li class="row   q-my-sm">دانلود نسخه موبایل</li>
-        <li class="row   q-my-sm">قوانین و مقررات</li>
-      </ul>
-    </div> -->
     <div class="col-auto">
       <!-- <div id="footer-map" style="height: 200px; width: 340px"></div> -->
        <div style="height: 200px; width: 340px" id="mapview"></div>
     </div>
-    
+
   </section>
 
   <section class="row justify-center items-center text-center shadow-1 middle-footer" >
@@ -87,8 +76,21 @@
        class="enamad" id="samandehi"
        v-html="baseData.insuranceCentrePortal.digitalMediaOrganizerSymbol"
      ></div>
-     
+
    </div>
+   <q-dialog v-model="roles">
+      <q-card
+        style="width: 700px; max-width: 80vw; direction: rtl"
+      >
+        <q-card-section>
+          <h5 style="margin:10px 0px">قوانین و مقررات</h5>
+        </q-card-section>
+        <div
+          v-html="baseData.insuranceCentrePortal.termsConditions"
+          style="padding: 29px"
+        ></div>
+      </q-card>
+    </q-dialog>
   </section>
   <footer v-if="baseData && baseData.footerContent" class="Footer text-center" >
     {{ baseData.footerContent }}
@@ -106,10 +108,11 @@ export default {
     return {
       baseData: [],
       socialNetworks: [],
+      roles:false
     };
   },
   mounted() {
-    
+
     this.baseData=this.data;
     if (this.baseData.insuranceCentrePortal.bale) {
       this.socialNetworks.push({
@@ -181,7 +184,7 @@ export default {
      this.setCertificatesStaticImage();
      this.initMap();
     },1000)
-    
+
   },
   methods: {
     initMap() {
@@ -222,7 +225,7 @@ export default {
     var samandehiImg=document.querySelector("#samandehi img");
     samandehiImg.src="https://media.easybimeh.com//Easybimeh/FileManager/EasyBimeh/samandehi.png";
   }
-     
+
   },
 };
 </script>
@@ -237,9 +240,9 @@ export default {
   a{
     text-decoration: none;
   }
-   
+
 }
- 
+
 .img-inner{
   color: var(--q-Blue);
 }
@@ -251,14 +254,14 @@ export default {
   padding: 11px;
   background: var(--q-Blue);
   color: #fff !important;
-  
+
 }
 .middle-footer {
   text-align: center;
   padding: 35px;
   background: #eee;
   .dynamic-certificate-item{
-  
+
     img{
       width: 100px;
     }

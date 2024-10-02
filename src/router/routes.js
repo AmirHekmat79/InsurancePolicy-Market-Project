@@ -16,10 +16,10 @@ const routes = [
       //   component: () => import('src/pages/blogDetails/blogDetails.vue'),
       //   props: true
       // } ,
-      // {
-      //   path: 'TrackingInsurance',
-      //   component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
-      // },
+      {
+        path: 'trackingInsurance',
+        component: () => import('src/pages/trackingInsurance/trackingInsurance.vue'),
+      },
       // {
       //   path: 'HomeBlogDetails',
       //   component: () => import('src/pages/homeBlogDetails/homeBlogDetails.vue'),
@@ -39,10 +39,6 @@ const routes = [
       {
         path: 'faq',
         component: () => import('src/pages/faq/commonFaq.vue'),
-      },
-      {
-        path: 'rulesAndObligations',
-        component: () => import('src/pages/rule/rulesAndObligations.vue'),
       },
       {
         path: 'ourService',

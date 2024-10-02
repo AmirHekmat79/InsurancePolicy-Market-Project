@@ -111,7 +111,7 @@
       </q-dialog>
       </q-form>
     </q-card-section>
-  </template>
+</template>
 
   <script>
   import { defineComponent } from "vue";
@@ -162,7 +162,7 @@
 
 <style lang="scss">
 .tracking-insurance-container{
-  padding-top: 100px;
+  padding-top: 120px;
 }
  .trcking-result{
   .title{

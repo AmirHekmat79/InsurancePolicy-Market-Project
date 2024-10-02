@@ -220,15 +220,15 @@
                 </q-input>
             </div>
              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-item">
-               <Uploader @uploaderError="uploaderError" label="بارگذاری عکس کارت ملی*" @successUpload="successNationalCardImagelUpload" v-model="nationalCardImageUrl"  :getUrl="true"/>
+               <Uploader @uploaderError="uploaderError" :isRequire="true"  label="بارگذاری عکس کارت ملی*" @successUpload="successNationalCardImagelUpload" v-model="nationalCardImageUrl"  :getUrl="true"/>
                <p v-if="nationalCardUploadImageError" style="color:red;font-size:12px">بارگذاری عکس کارت ملی الزامی است</p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-item">
-               <Uploader @uploaderError="uploaderError" label="بارگذاری عکس آخرین مدرک تحصیلی*" @successUpload="successLastEducationalCertificateImageUpload" v-model="lastEducationalCertificateImageUrl"  :getUrl="true"/>
+               <Uploader @uploaderError="uploaderError" :isRequire="true"  label="بارگذاری عکس آخرین مدرک تحصیلی*" @successUpload="successLastEducationalCertificateImageUpload" v-model="lastEducationalCertificateImageUrl"  :getUrl="true"/>
                <p v-if="lastEducationalCertificateUploadImageError" style="color:red;font-size:12px">بارگذاری عکس آخرین مدرک تحصیلی الزامی است</p>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-item">
-               <Uploader @uploaderError="uploaderError" label="بارگذاری سایر موارد*" @successUpload="successUserImageUpload" v-model="userImageUrl"  :getUrl="true"/>
+               <Uploader @uploaderError="uploaderError" :isRequire="true"  label="بارگذاری سایر موارد*" @successUpload="successUserImageUpload" v-model="userImageUrl"  :getUrl="true"/>
                <p v-if="userUploadImageError" style="color:red;font-size:12px">بارگذاری سایر موارد الزامی است</p>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-item flex justify-end items-center ">
@@ -236,8 +236,7 @@
             </div>
        </q-form>
      </div>
-     <OtpDialog  :needOnlyOtp="true" v-if="showOtpDialog" :model="model"   @onLogin="sendAgentRegistration()" />
-     <!-- <PopupLogin :needOnlyOtp="true" v-if="showLogin" :model="model"  v-model="showLogin" @onLogin="sendAgentRegistration()" /> -->
+     <OtpDialog @close="showOtpDialog=false" :needOnlyOtp="true" v-if="showOtpDialog" :model="model"   @onLogin="sendAgentRegistration()" />
   </div>
 </template>
 <script>
@@ -354,15 +353,16 @@
                 this.loading=false;
                   //  window.location.href="/successfulRegistration";
             } catch (exp) {
-              var error=exp;
-              console.log("this is error",error.data.message);
-              this.$q.notify({
-               color:'red',
-               textColor: 'white',
-               icon: 'error',
-               message: error.data.message
-              })
               this.loading=false;
+              if(error.response.data.message){
+                 this.$q.notify({
+                  color:'red',
+                  textColor: 'white',
+                  icon: 'error',
+                  message: error.response.data.message
+                })
+              }
+              console.log("this is error",error);
             }
          },
         controlLength(event, maxlength) {

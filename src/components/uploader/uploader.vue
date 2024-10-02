@@ -3,7 +3,12 @@
   <div style="display:none">
   {{counter}}
   </div>
-      <q-file class="custom-uploader label-right" :loading="loading" standout v-model="model" :label="label" :accept="accept">
+  <q-field
+    :rules="isRequire?[(val) => checkValidate(val)   ||   ' الزامی است' ]:''"
+    v-model="model"
+    borderless no-error-icon
+  >
+      <q-file style="width:100%" class="custom-uploader label-right" :loading="loading" standout v-model="model" :label="label" :accept="accept">
         <template v-slot:prepend>
           <q-avatar>
              <!-- <img v-if="isImageFile" :src=" image?image:defaultImage">
@@ -13,7 +18,8 @@
           </q-avatar>
         </template>
       </q-file>
-      <span class="uploader-error">{{uploaderError}}</span>
+    </q-field>
+      <!-- <span class="uploader-error">{{uploaderError}}</span> -->
   </div>
 </template>
  <script>
@@ -38,6 +44,10 @@
         },
         props: {
            getUrl: {
+              type: Boolean,
+              default: false
+            },
+           isRequire: {
               type: Boolean,
               default: false
             },
@@ -94,35 +104,40 @@
               }
            this.loading=false;
            },
-       checkFileType(data){
-        if(data.indexOf(".pdf") > -1){
-          this.isPdfFile=true;
-          this.isDocumentFile=false;
-          this.isImageFile=false;
-          this.isVedioFile=false;
-          this.counter++;
-        }else if(data.indexOf(".docx")>-1||data.indexOf(".doc")>-1||data.indexOf(".xlsx")>-1||data.indexOf(".xls")>-1||data.indexOf(".zip")>-1){
-          this.isPdfFile=false;
-          this.isDocumentFile=true;
-          this.isImageFile=false;
-          this.isVedioFile=false;
-          this.counter++;
-        }else if(data.indexOf(".jpg")>-1||data.indexOf(".jpeg")>-1||data.indexOf(".png")>-1||data.indexOf(".gif")>-1){
-          this.isPdfFile=false;
-          this.isDocumentFile=false;
-          this.isImageFile=true;
-          this.isVedioFile=false;
-          this.counter++;
-        }
-        else if(data.indexOf(".mp4")>-1||data.indexOf(".avi")>-1){
-          this.isPdfFile=false;
-          this.isDocumentFile=false;
-          this.isImageFile=false;
-          this.isVedioFile=true;
-          this.counter++;
-         }
+           checkValidate(value){
+             if(value.__key){
+               return true;
+             }
+           },
+           checkFileType(data){
+            if(data.indexOf(".pdf") > -1){
+              this.isPdfFile=true;
+              this.isDocumentFile=false;
+              this.isImageFile=false;
+              this.isVedioFile=false;
+              this.counter++;
+            }else if(data.indexOf(".docx")>-1||data.indexOf(".doc")>-1||data.indexOf(".xlsx")>-1||data.indexOf(".xls")>-1||data.indexOf(".zip")>-1){
+              this.isPdfFile=false;
+              this.isDocumentFile=true;
+              this.isImageFile=false;
+              this.isVedioFile=false;
+              this.counter++;
+            }else if(data.indexOf(".jpg")>-1||data.indexOf(".jpeg")>-1||data.indexOf(".png")>-1||data.indexOf(".gif")>-1){
+              this.isPdfFile=false;
+              this.isDocumentFile=false;
+              this.isImageFile=true;
+              this.isVedioFile=false;
+              this.counter++;
+            }
+            else if(data.indexOf(".mp4")>-1||data.indexOf(".avi")>-1){
+             this.isPdfFile=false;
+             this.isDocumentFile=false;
+             this.isImageFile=false;
+             this.isVedioFile=true;
+             this.counter++;
+            }
 
-       }
+          }
         }
     });
   </script>

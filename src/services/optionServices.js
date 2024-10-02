@@ -1,6 +1,6 @@
 import axios from "axios";
 import baseServices from "./baseServices";
-const BASE_URL = 'https://server.easybimeh.com/api';
+const BASE_URL = 'https://server.notifaano.ir/api';
 const optionServices = {
     getProvince(){
         return baseServices.get("/ComboData/Province",{});
@@ -41,6 +41,13 @@ const optionServices = {
     },
     getEndTimes() {
       return baseServices.get("/ComboData/EndTimes",{});
+    },
+    getAdvertisements() {
+      return baseServices.get("/ComboData/Advertisements",{});
+    },
+    getAdvertismentsList() {
+      var domain = baseServices.getDomain();
+      return baseServices.get(`/Article/Advertisement/${domain}`,{});
     }
 }
 

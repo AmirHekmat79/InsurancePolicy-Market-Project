@@ -108,6 +108,11 @@ const services = {
     data["subDomain"] = domain;
     return baseServices.post("/SuggestionsCritic", data, {});
   },
+  postOtherJubsRegistration(data) {
+    let domain=baseServices.getDomain();
+    data["insuranceCentreDomain"] = domain;
+    return baseServices.post("/Account/OtherRegistration", data, {});
+  },
   getContractContent() {
     let domain=baseServices.getDomain();
     return baseServices.get(`/InsuranceCenterSetting/GetContractContent?SubDomainName=${domain}`);
