@@ -29,6 +29,18 @@ const optionServices = {
     },
     suggestionsCritic() {
       return baseServices.get("/SuggestionsCritic/0",{});
+    },
+    getAllInsuranceCompanies() {
+      return baseServices.get("/ComboData/InsuranceCompany",{});
+    },
+     getPersonalityTypes() {
+      return baseServices.get("/ComboData/PersonalityTypes",{});
+    },
+    getStartTimes() {
+      return baseServices.get("/ComboData/StartTimes",{});
+    },
+    getEndTimes() {
+      return baseServices.get("/ComboData/EndTimes",{});
     }
 }
 

@@ -98,6 +98,11 @@ const services = {
     data["insuranceCentreDomain"] = domain;
     return baseServices.post("/Account/MarketerRegistration", data, {});
   },
+  postAgentRegistrationInformations(data) {
+    let domain=baseServices.getDomain();
+    data["insuranceCentreDomain"] = domain;
+    return baseServices.post("/Account/AgentRegistration", data, {});
+  },
    suggestionsCritic(data) {
     var domain = baseServices.getDomain();
     data["subDomain"] = domain;

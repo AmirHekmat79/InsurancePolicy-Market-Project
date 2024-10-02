@@ -19,6 +19,7 @@
     "@egjs/vue3-flicking": "^4.11.4",
     "@quasar/extras": "^1.16.4",
     "axios": "^1.2.1",
+    "moment-jalaali": "^0.10.1",
     "pinia": "^2.0.11",
     "quasar": "^2.16.0",
     "shamsi-date-converter": "^1.0.5",

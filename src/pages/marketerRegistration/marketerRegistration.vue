@@ -286,7 +286,7 @@
     import OtpDialog from "src/components/otpDialog.vue";
     import * as shamsi from 'shamsi-date-converter';
   export default defineComponent({
-    name: "marketerRegistration",
+    name: "MarketerRegistration",
     data(){
         return{
           baseData:[],
