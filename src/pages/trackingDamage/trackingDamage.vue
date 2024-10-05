@@ -201,7 +201,7 @@
               class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex justify-end"
             >
             <q-btn
-                  color="primary"
+                  class="submit-button"
                   label="پیگیری درخواست"
                   type="submit"
                 />
@@ -268,6 +268,10 @@ import { defineComponent } from "vue";
 <style lang="scss">
 .tracking-damage-container{
   padding-top: 150px;
+  .submit-button{
+    background-color: var(--q-themeColor);
+    color:#fff;
+  }
 }
 section.row {
   display: flex;

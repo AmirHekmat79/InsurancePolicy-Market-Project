@@ -176,8 +176,8 @@ export default defineComponent({
 .entrance-btn {
   /* padding: 8px 50px !important; */
   background: #eee;
-  color: #2980b9;
-  border: 2px solid #2980b9;
+  color:var(--q-themeColor);
+  border: 2px solid var(--q-themeColor);
   border-radius: 16px;
   text-align: center;
   cursor: pointer;
@@ -193,7 +193,7 @@ export default defineComponent({
   /* width: 160px; */
   height: 40px;
   margin: 0px 10px;
-  background: var(--q-Blue);
+  background: var(--q-themeColor);
   color: #ffffff;
   font-size: 17px;
   border-radius: 16px;

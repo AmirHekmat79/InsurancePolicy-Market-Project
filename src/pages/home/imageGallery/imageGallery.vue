@@ -135,7 +135,7 @@ export default defineComponent({
     margin-top: 20px;
     padding: 0px 8%;
     .icon-color{
-      fill : var(--q-Blue);
+      fill : var(--q-themeColor);
     }
     .img-item {
       height: 200px;

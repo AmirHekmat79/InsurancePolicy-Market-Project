@@ -48,7 +48,7 @@ export default defineComponent({
     }else{
       slug="";
     }
-    let url='/vuejs/#/whitelabel/answerSheet/'+item.questionnaireId+'/-1'+slug+'?insurancePolicyType='+item.policyType;
+    let url='/vuejs/#/whitelabel/answerSheet/'+item.questionnaireId+'/-1'+slug+'?insurancePolicyType='+item.policyType+'&isNewDesign=true';
     window.open(url);
   }
   },
@@ -68,7 +68,7 @@ export default defineComponent({
    height: 150px;
    margin: 10px;
    border-radius: 35px;
-   border: 2px solid #48bdd5;
+   border: 2px solid var(--q-themeColor);
    cursor: pointer;
    transition: 500ms;
    .item-title{

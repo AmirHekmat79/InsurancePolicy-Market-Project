@@ -49,7 +49,7 @@ export default defineComponent({
     }else{
       slug="";
     }
-    let url='/vuejs/#/insurancepolicy/answerSheet/'+item.questionnaireId+'/-1'+slug+'?insurancePolicyType='+item.policyType;
+    let url='/vuejs/#/insurancepolicy/answerSheet/'+item.questionnaireId+'/-1'+slug+'?insurancePolicyType='+item.policyType+'&isNewDesign=true';
     window.open(url);
   }
   },

@@ -87,7 +87,7 @@ export default defineComponent({
 
 .number-value{
   font-size: 17px !important;
-  background-color: var(--q-Blue);
+  background-color: var(--q-themeColor);
 }
 
 .just-click-title-container {

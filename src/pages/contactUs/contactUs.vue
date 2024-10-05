@@ -260,7 +260,8 @@
   background-color: #e5e5e5;
   .title {
     padding-right: 10px;
-    color: #1f2b7e;
+    color: #000;
+    font-size: 24px;
   }
   .input-container {
     padding: 5px 10px;
@@ -299,7 +300,7 @@
     cursor: pointer;
     font-size: 18px;
     border-radius: 8px;
-    background-color:var(--q-Blue);
+    background-color:var(--q-themeColor);
     color: #fff;
   }
 

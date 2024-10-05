@@ -1,6 +1,6 @@
 <template>
   <div class="insurance-policy-renewal-reminder-section row justify-center  items-center q-my-xl">
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12  image-container">
       <div class="row justify-start items-center">
         <h2 class="form-title q-mx-sm">یادآور تمدید بیمه نامه</h2>
         <svg width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-6">
@@ -10,9 +10,9 @@
       </div>
       <q-img class="form-img" src="images/calender.png"></q-img>
     </div>
-    <q-form class="col-md-8" @submit="handleSubmit()">
-      <div class="row justify-center items-center q-gutter-md">
-        <div class="col-md-4 col-sm-6 col-xs-12">
+    <q-form class="row col-lg-8 col-md-8 col-sm-12 col-xs-12" @submit="handleSubmit()">
+       
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-xs">
           <q-input :rules="[val => val !== null && val !== '' || 'الزامی می باشد']" class="Input" rounded outlined v-model="model.firstName">
             <template v-slot:append>
               <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -25,7 +25,7 @@
             </template>
           </q-input>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-xs">
           <q-input :rules="[val => val !== null && val !== '' || 'الزامی می باشد']" class="Input" rounded outlined v-model="model.lastName">
             <template v-slot:append>
               <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -39,7 +39,7 @@
             </template>
           </q-input>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
           <q-input :rules="[val => val !== null && val !== '' || 'الزامی می باشد']" class="Input" rounded outlined v-model="model.mobile">
             <template v-slot:append>
               <q-icon class="img-inner" name="phone" ></q-icon>
@@ -51,7 +51,7 @@
             </template>
           </q-input>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
           <q-select 
           :rules="[ val => val   || 'الزامی می باشد']" 
           class="Input" rounded standout 
@@ -69,7 +69,7 @@
             </template>
           </q-select>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
           <q-input :rules="[val => val !== null && val !== '' || 'الزامی می باشد']" class="Input" rounded outlined v-model="model.email">
             <template v-slot:append>
               <q-icon class="img-inner" name="email" ></q-icon>
@@ -80,7 +80,7 @@
           </q-input>
         </div>
         
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
             <q-select 
              :rules="[ val => val   || 'الزامی می باشد']" 
               class="Input" rounded standout
@@ -98,7 +98,7 @@
             </template>
           </q-select>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
             <q-select 
             :rules="[ val => val   || 'الزامی می باشد']" 
             class="Input" rounded standout 
@@ -115,7 +115,7 @@
             </template>
           </q-select>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
           <q-input :rules="[val => val !== null && val !== '' || 'الزامی می باشد']" class="Input" rounded outlined v-model="model.day">
             <template v-slot:append>
               <svg width="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -129,7 +129,7 @@
           </q-input>
         </div>
         
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
           <q-select :rules="[ val => val   || 'الزامی می باشد']" class="Input" rounded standout v-model="model.cityId" :options="cityOptions">
             <template v-slot:append>
               <q-icon class="img-inner" name="place"></q-icon>
@@ -139,7 +139,7 @@
             </template>
           </q-select>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
           <q-btn type="submit" class="submit-btn">
             <span>یاد آوری کن</span>
             <q-img
@@ -148,7 +148,7 @@
             ></q-img>
           </q-btn>
         </div>
-      </div>
+      
     </q-form>
     
   </div>
@@ -229,6 +229,14 @@ export default defineComponent({
 .insurance-policy-renewal-reminder-section{
   direction: rtl;
   padding: 0px 10%;
+  .image-container{
+     @media(max-width:1024px){
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+  }
   .form-img {
     width: 300px;
     @media(max-width:480px){
@@ -236,7 +244,7 @@ export default defineComponent({
     }
   }
   .icon-color{
-   fill: var(--q-Blue);
+   fill: var(--q-themeColor);
   }
 
 .submit-img {
@@ -252,14 +260,14 @@ export default defineComponent({
 }
 .submit-btn {
   cursor: pointer;
-  background: var(--q-Blue);
+  background: var(--q-themeColor);
   color: #fff;
   padding: 8px 24px;
 }
 .img-inner {
   width: 24px;
   height: 24px;
-  color:var(--q-Blue);
+  color:var(--q-themeColor);
 }
 .Input {
   text-align: right;

@@ -1,6 +1,6 @@
 <template>
-  <section dir="rtl" class="row footer-section justify-around  items-center top-footer">
-    <div class="col-auto">
+  <section dir="rtl" class="row top-footer">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 contact-us">
       <q-btn class="logo-btn q-my-md"
         ><q-img src="images/footerLogo.png" width="140px"></q-img
       ></q-btn>
@@ -9,13 +9,13 @@
             <q-img   width="24px" :src="item.iconUrl"/>
         </a>
       </div>
-      <a v-if="baseData && baseData.insuranceCentre" :href="'tel:'+baseData.insuranceCentre.phone" class="row justify-start items-center q-mt-sm cursor-pointer">
-        <q-icon  class="img-inner q-ml-xs" name="call" width="24px"></q-icon>
-        <p  class="text-subtitle call-number">{{ baseData.insuranceCentre.phone }}</p>
+      <a v-if="baseData && baseData.insuranceCentre" :href="'tel:'+baseData.insuranceCentre.phone" class="row call-number justify-start items-center q-mt-sm cursor-pointer">
+        <q-icon  class=" q-ml-xs" name="call" width="24px"></q-icon>
+        <p  class="text-subtitle ">{{ baseData.insuranceCentre.phone }}</p>
       </a>
-      <a v-if="baseData && baseData.insuranceCentre" :href="'mailto:'+baseData.insuranceCentre.email" class="row justify-start items-center q-mt-sm cursor-pointer">
-        <q-icon class="img-inner q-ml-xs"  name="email" width="24px"></q-icon>
-        <p  class="text-subtitle call-number">{{ baseData.insuranceCentre.email }}</p>
+      <a v-if="baseData && baseData.insuranceCentre" :href="'mailto:'+baseData.insuranceCentre.email" class="row email justify-start items-center q-mt-sm cursor-pointer">
+        <q-icon class=" q-ml-xs"  name="email" width="24px"></q-icon>
+        <p  class="text-subtitle ">{{ baseData.insuranceCentre.email }}</p>
       </a>
       <div class="row justify-start items-center  q-mt-sm">
         <div>
@@ -26,25 +26,29 @@
       </div>
     </div>
 
-    <div class="col-auto site-feature-container">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 site-feature-container">
       <h2 class="title">امکانات سایت</h2>
-      <ul class="site-features">
+      <div class="flex">
+        <ul class="site-features">
         <li class="row  items-center"><a @click="this.$router.push('/about')"> درباره ما </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/ourservice')"> خدمات ما </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/contactUs')"> تماس با ما </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/registerComplaint')"> پیشنهادات ، انتقادات و شکایات </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/faq')"> پرسش های متداول</a></li>
+      </ul>
+      <ul class="site-features section-2">
         <li class="row  items-center"><a @click="this.$router.push('/trackingInsurance')">  پیگیری بیمه نامه </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/marketerRegistration')">    سامانه بازاریابان </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/agentRegisteration')">   همکاری با نمایندگان بیمه  </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/otherJobsRegisteration')">   همکاری با  ما  </a></li>
         <li class="row  items-center"><a @click="this.roles=true;">    قوانین و مقررات   </a></li>
       </ul>
+      </div>
     </div>
 
-    <div class="col-auto">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 map-container ">
       <!-- <div id="footer-map" style="height: 200px; width: 340px"></div> -->
-       <div style="height: 200px; width: 340px" id="mapview"></div>
+       <div class="map-view" style="height: 200px;" id="mapview"></div>
     </div>
 
   </section>
@@ -55,7 +59,7 @@
         v-if="baseData.insuranceCentrePortal && baseData.insuranceCentrePortal.eTrustSymbol"
       >
         <div
-          class="enamad" id="eNamad"
+            id="eNamad"
           v-html="baseData.insuranceCentrePortal.eTrustSymbol"
         ></div>
 
@@ -73,7 +77,7 @@
      v-if="baseData.insuranceCentrePortal && baseData.insuranceCentrePortal.digitalMediaOrganizerSymbol"
    >
      <div
-       class="enamad" id="samandehi"
+       id="samandehi"
        v-html="baseData.insuranceCentrePortal.digitalMediaOrganizerSymbol"
      ></div>
 
@@ -92,7 +96,7 @@
       </q-card>
     </q-dialog>
   </section>
-  <footer v-if="baseData && baseData.footerContent" class="Footer text-center" >
+  <footer v-if="baseData && baseData.footerContent" class="bottom-footer text-center" >
     {{ baseData.footerContent }}
   </footer>
 </template>
@@ -231,7 +235,49 @@ export default {
 </script>
 
 <style lang="scss">
-.footer-section{
+.top-footer{
+  padding: 30px 30px;
+  margin: auto;
+  background: var(--q-themeColor);
+  .call-number,.email{
+    color: #fff;
+    &:hover{
+        color:#ddd;
+        .q-icon{
+          color:#ddd;
+        }
+    }
+  }
+  .top-footer-location-text {
+    white-space: wrap;
+    line-height: 30px;
+    width: 300px;
+    height: 112px;
+    margin-top: 10px;
+    color: #fff;
+    font-weight: bolder;
+  }
+  .title{
+    color: #fff;
+    font-size:22px;
+  }
+  @media(max-width:768px){
+    padding:15px;
+  }
+  .contact-us{
+    padding:10px;
+    .q-icon{
+      color:#fff;
+      font-size: 18px;
+    }
+    @media(max-width:768px){
+    padding:0px;
+   }
+  }
+  .site-feature-container{
+    padding:10px;
+    
+  }
   .social-ntworks{
     a{
       margin: 2px !important;
@@ -240,110 +286,52 @@ export default {
   a{
     text-decoration: none;
   }
-
-}
-
-.img-inner{
-  color: var(--q-Blue);
-}
-.title {
-  font-size: 20px;
-  font-weight: 500;
-}
-.Footer {
-  padding: 11px;
-  background: var(--q-Blue);
-  color: #fff !important;
-
+    
+  .site-feature-container{
+    ul{
+      padding:0px 10px;
+      margin:0px;
+      li{
+      list-style: none;
+      margin-top:15px;
+      color:#fff;
+      cursor: pointer;
+      &:hover{
+        color:#ddd;
+      }
+    }
+    }
+  }
+  .map-container{
+    padding-top:50px;
+    .map-view{
+    width:340px;
+    @media(max-width:760px){
+      width:280px
+    }
+  }
+  }
+  
 }
 .middle-footer {
   text-align: center;
   padding: 35px;
-  background: #eee;
+  background: var(--q-themeColor);
+  opacity: 0.95;
   .dynamic-certificate-item{
-
     img{
       width: 100px;
     }
   }
-}
-.top-footer {
-  padding: 30px 30px;
-  margin: auto;
-  /* text-align: center; */
-  background: #eee;
-}
-#footer-map {
-  width: 100%;
-  height: 100%;
-}
-.site-features,
-.contactus {
-  list-style-type: none;
-  font: 14px "iransans";
-  padding: 0px;
-}
-.site-features li {
-  margin-top: 16px;
-  cursor: pointer;
-}
-.site-features li:hover {
-  color: #007bff;
-}
-.contactus li {
-  margin-top: 16px;
-  cursor: pointer;
-}
-.contactus li:hover {
-  color: #007bff;
-}
-
-li::marker {
-  color: #003975 !important;
-}
-/* .common-link-container,
-.site-feature-container {
-  width: 288px;
-  height: 342px;
-  direction: rtl;
-} */
-
-.logo-btn {
-  background: #003975;
-  border-radius: 20px;
-}
-.top-footer-location-text {
-  white-space: wrap;
-  line-height: 30px;
-  width: 300px;
-  height: 112px;
-  margin-top: 10px;
-  color: #003975;
-  font-weight: bolder;
-}
-.call-number {
-  color: #003975;
-}
-
-@media screen and (max-width : 700px){
-  .top-footer-location-text {
-  white-space: wrap;
-  line-height: 30px;
-  width: 200px;
-  height: 112px;
-  margin-top: 10px;
-  color: #003975;
-  font-weight: bolder;
-  font-size: 13px;
-}
-
-.title {
-  font-size: 16px;
-  font-weight: bolder;
-}
-.site-feature-container{
-  width : 55% !important;
-  margin : 10px auto;
-}
-}
+  .site-features.section-2 {
+    margin-right: 20px;
+    @media(max-width:650px){
+     margin-right: 0px;
+     margin:0px;
+   }
+  }
+ }
+ .bottom-footer{
+   padding: 10px;
+ }
 </style>

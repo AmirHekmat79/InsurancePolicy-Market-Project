@@ -87,7 +87,7 @@
             style="min-width: 100px;"
           >
             <q-btn
-                color="primary"
+                class="submit-button"
                 label="ارسال"
                 type="submit"
               />
@@ -166,6 +166,10 @@ import { defineComponent } from "vue";
     @media (max-width: 425px) {
       margin-left: 5px;
       margin-right: 5px;
+    }
+    .submit-button{
+      background-color: var(--q-themeColor);
+      color:#fff;
     }
   }
   </style>

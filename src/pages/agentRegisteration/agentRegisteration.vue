@@ -232,7 +232,7 @@
                <p v-if="userUploadImageError" style="color:red;font-size:12px">بارگذاری سایر موارد الزامی است</p>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-item flex justify-end items-center ">
-                <q-btn class="q-mt-md" color="primary" :loading="loading" type="submit" style="width:120px"  label="ارسال اطلاعات" />
+                <q-btn class="q-mt-md submit-button" :loading="loading" type="submit" style="width:120px"  label="ارسال اطلاعات" />
             </div>
        </q-form>
      </div>
@@ -442,6 +442,10 @@
                 direction: ltr;
               }
             }
+          }
+          .submit-button{
+             background-color: var(--q-themeColor);
+             color:#fff;
           }
         }
       }

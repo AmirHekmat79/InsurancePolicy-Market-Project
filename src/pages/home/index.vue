@@ -21,7 +21,7 @@ import VideoGallery from "./videoGallery/videoGallery.vue";
 import ImageGallery from "./imageGallery/imageGallery.vue";
 import InsuranceForm from "./insurancePolicyRenewalReminder/insurancePolicyRenewalReminder.vue";
 import InsuranceNews from "./insuranceNews/insuranceNews.vue";
-import { useBaseDataStore } from 'src/stores/baseDataStore.js';
+//import { useBaseDataStore } from 'src/stores/baseDataStore.js';
 import Banner from 'src/components/header/banner.vue';
 import services from "src/services/services";
 export default defineComponent({
@@ -36,10 +36,10 @@ export default defineComponent({
      InsuranceNews,
      Banner
   },
-   setup() {
-    const baseDataStore = useBaseDataStore();
-    return { baseDataStore }
-  },
+  //  setup() {
+  //   const baseDataStore = useBaseDataStore();
+  //   return { baseDataStore }
+  // },
    data() {
       return {
         data:{},
@@ -58,16 +58,17 @@ export default defineComponent({
              this.data=response.data.message;
              setTimeout(()=>{
              this.showItem=true;
-            },1000)
-            this.setBaseData(response.data.message);
+            },1000);
+            document.title= this.data.insuranceCentre.centerName;
+            // this.setBaseData(response.data.message);
           })
           .catch((error) => {
             console.error('Error fetching insurance centre info:', error);
           });
       },
-     setBaseData(data) {
-      this.baseDataStore.setBaseData(data,true);
-    },
+    //  setBaseData(data) {
+    //   this.baseDataStore.setBaseData(data,true);
+    // },
   }
 });
 </script>

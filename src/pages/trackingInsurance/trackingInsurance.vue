@@ -40,9 +40,9 @@
           <div
              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex justify-end q-pl-sm">
             <q-btn
-                color="primary"
                 label="پیگیری"
                 type="submit"
+                class="submit-button"
               />
           </div>
         </div>
@@ -163,6 +163,10 @@
 <style lang="scss">
 .tracking-insurance-container{
   padding-top: 120px;
+  .submit-button{
+    background-color: var(--q-themeColor);
+    color:#fff;
+  }
 }
  .trcking-result{
   .title{

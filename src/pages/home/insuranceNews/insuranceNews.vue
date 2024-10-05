@@ -124,7 +124,7 @@ export default defineComponent({
       }
     }
     .icon-color{
-      fill: var(--q-Blue);
+      fill: var(--q-themeColor);
     }
   .flicking-arrow-prev::before, .flicking-arrow-prev::after, .flicking-arrow-next::before, .flicking-arrow-next::after {
     content: "";
@@ -191,7 +191,7 @@ export default defineComponent({
   cursor: pointer;
 }
 .details-btn {
-  background: var(--q-Blue);
+  background: var(--q-themeColor);
   color : #ffff;
 }
 .panel{

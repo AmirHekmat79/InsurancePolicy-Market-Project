@@ -110,7 +110,7 @@ export default defineComponent({
       border: 1px solid #ccc;
      }
    .icon-color{
-    fill: var(--q-Blue);
+    fill: var(--q-themeColor);
    }
    .popup-btn{
      outline: none !important;

@@ -14,7 +14,7 @@
 import { defineComponent, ref } from "vue";
 import ToolbarNavigation from "src/components/header/toolbarNavigation.vue";
 import FooterSection from "src/components/footer/footer.vue";
-import { useBaseDataStore } from 'src/stores/baseDataStore.js';
+// import { useBaseDataStore } from 'src/stores/baseDataStore.js';
 import services from "src/services/services";
 export default defineComponent({
   name: "MainLayout",
@@ -22,10 +22,10 @@ export default defineComponent({
     ToolbarNavigation,
     FooterSection,
   },
-   setup() {
-    const baseDataStore = useBaseDataStore();
-    return { baseDataStore }
-  },
+  //  setup() {
+  //   const baseDataStore = useBaseDataStore();
+  //   return { baseDataStore }
+  // },
   data() {
       return {
          baseData:[],
@@ -51,9 +51,9 @@ export default defineComponent({
             console.error('Error fetching insurance centre info:', error);
           });
       },
-     setBaseData(data) {
-      this.baseDataStore.setBaseData(data,true);
-    },
+    //  setBaseData(data) {
+    //   this.baseDataStore.setBaseData(data,true);
+    // },
   },
 });
 </script>
@@ -61,7 +61,7 @@ export default defineComponent({
 <style lang="scss">
 
 .header-section {
-  background: var(--q-Blue) !important;
+  background: var(--q-themeColor) !important;
   background-position: center;
   background-size: center;
   width: 100%;

@@ -2,7 +2,7 @@
   <div  
     class="consult-request-section row justify-center text-center items-center"
   >
-  <div class="col-md-4 col-sm-6 col-xs-12">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="row  justify-center items-center" >
         <h5 class="consult-title q-mx-sm">درخواست مشاوره</h5>
         <svg  width="32px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
@@ -15,7 +15,7 @@
       ></q-img>
     </div>
 
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <q-form @submit="handleSubmit()" >
         <q-input
          :rules="[val => val !== null && val !== '' || 'الزامی می باشد']"
@@ -96,8 +96,8 @@
             
           </template>
         </q-input>
-        <div class="flex  justify-end items-center">
-          <q-btn type="submit" :loading="loading" color="primary" class=" q-my-md">
+        <div class="flex justify-end items-center">
+          <q-btn type="submit" class="submit-button q-my-md" :loading="loading" >
           <q-img
             class="q-mx-sm"
             src="/images/requestSubmit.png"
@@ -194,28 +194,36 @@ export default defineComponent({
   margin-top: 20px;
   direction: rtl;
   width: 100%;
-  @media (max-width: 1024px) {
+  padding:0px 8%;
+  @media (max-width: 768px) {
     padding: 15px;
   }
   .q-form{
     padding-top: 50px;
+    padding-right: 65px;
+    @media (max-width: 1024px) {
+      padding-right:0px;
+    }
   }
 .consult-img {
   width:450px;
  }
 .consult-title {
-  font-size: 20px;
+  font-size: 23px;
   font-weight: bolder;
 }
 .img-inner {
   width: 24px;
   height: 24px;
-  color:var(--q-Blue);
+  color:var(--q-themeColor);
 }
 .icon-color{
-  fill : var(--q-Blue);
+  fill : var(--q-themeColor);
 }
- 
+ .submit-button{
+   background-color: var(--q-themeColor);
+   color:#fff;
+ }
 }
 
 @media screen and (min-width: 381px) and (max-width: 768px) {

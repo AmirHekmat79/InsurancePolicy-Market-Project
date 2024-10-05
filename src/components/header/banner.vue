@@ -82,7 +82,7 @@ export default defineComponent({
  .banner-section{
     width: 100%;
     padding:165px 150px 50px 150px;
-    background: var(--q-Blue) !important;
+    background: var(--q-themeColor) !important;
     @media(max-width:768px){
       padding: 120px 15px 15px 15px;
     }

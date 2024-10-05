@@ -95,15 +95,16 @@ module.exports = configure(function (/* ctx */) {
     framework: {
       config: {
         brand: {
-          secondary: '#26c6da',
-          accent: '#9c27b0',
-          positive: '#21ba45',
-          negative: '#c10015',
-          info: '#31ccec',
-          warning: '#f7dc6f',
-          red: '#d90429', 
-          Blue : '#2980b9',
-          iconColorHover: '#666',
+          // secondary: '#26c6da',
+          // accent: '#9c27b0',
+          // positive: '#21ba45',
+          // negative: '#c10015',
+          // info: '#31ccec',
+          // warning: '#f7dc6f',
+          // red: '#d90429', 
+          // Blue : '#2980b9',
+          // iconColorHover: '#666',
+          themeColor:"#b2208b"
         },
       },
       lang: 'fa-ir',

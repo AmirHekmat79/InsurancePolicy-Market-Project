@@ -66,14 +66,14 @@ export default defineComponent({
 
 <style scoped>
 .form-background {
-  background: var(--q-Blue);
+  background: var(--q-themeColor);
   height: 100vh;
   padding: 40px;
   
 }
 .icon-size {
   font-size: 24px;
-  color: var(--q-Blue);
+  color: var(--q-themeColor);
 }
 
 .login-form-bg {
@@ -81,7 +81,7 @@ export default defineComponent({
 
 }
 .login-btn {
-  background: var(--q-Blue);
+  background: var(--q-themeColor);
   width: 100%;
   padding: 8px 20px;
   margin: 30px auto;

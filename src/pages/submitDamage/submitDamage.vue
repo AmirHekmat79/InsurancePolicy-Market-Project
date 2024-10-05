@@ -321,7 +321,7 @@
               class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xs flex justify-end"
             >
               <q-btn
-                  color="primary"
+                  class="submit-button"
                   label="ذخیره"
                   type="submit"
                   :loading="saveDataLoading"
@@ -439,6 +439,10 @@
 <style lang="scss">
  .submit-damage-container{
    padding: 100px 5% 10px;
+   .submit-button{
+    background-color: var(--q-themeColor);
+    color:#fff;
+  }
  }
 </style>
 

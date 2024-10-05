@@ -84,14 +84,14 @@
   
   <style scoped>
   .form-background {
-    background: var(--q-Blue);
+    background: var(--q-themeColor);
     height: 100vh;
     padding: 45px;
     
   }
   .icon-size {
     font-size: 24px;
-    color:var(--q-Blue);
+    color:var(--q-themeColor);
   }
   .bgGray {
     background-color: gray;

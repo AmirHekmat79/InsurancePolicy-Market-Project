@@ -252,7 +252,7 @@
                <Uploader :title="'سایر موارد'" @uploaderError="uploaderError" label="بارگذاری سایر موارد" @successUpload="successUserImageUpload" v-model="userImageUrl"  :getUrl="true"/>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-item flex justify-end items-center">
-                <q-btn color="primary"  type="submit" style="width:120px"  label="بعدی" />
+                <q-btn class="next-button"  type="submit" style="width:120px"  label="بعدی" />
             </div>
 
             </q-form>
@@ -268,7 +268,7 @@
                  </div>
                  <div class="col-12 flex justify-between items-center q-pa-md">
                       <q-btn color="blue-grey-5" @click="goToMarketerRegistrationForm" style="width:120px"  label="قبلی" />
-                      <q-btn color="primary" :loading="loading" type="submit" style="width:120px"  label="ذخیره" />
+                      <q-btn class="submit-button" :loading="loading" type="submit" style="width:120px"  label="ذخیره" />
                    </div>
               </div>
             </q-form>
@@ -717,6 +717,10 @@
     min-width: 10px;
     background-color: transparent;
   }
+  .submit-button,.next-button{
+      background-color: var(--q-themeColor);
+      color:#fff;
+    }
 }
 
   .q-virtual-scroll__content .q-item{

@@ -100,7 +100,7 @@
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-item flex justify-end items-center">
-                <q-btn color="primary" :loading="loading" type="submit" style="width:120px;margin-top:15px"  label="ذخیره" />
+                <q-btn class="submit-button" :loading="loading" type="submit" style="width:120px;margin-top:15px"  label="ذخیره" />
             </div>
             </q-form>
     </div>
@@ -342,6 +342,10 @@
               }
             }
           }
+          .submit-button{
+             background-color: var(--q-themeColor);
+             color:#fff;
+          }         
         }
 
     }

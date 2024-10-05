@@ -47,7 +47,7 @@ export default defineComponent({
     }else{
       slug="";
     }
-    let url='/vuejs/#/insurancepolicy/answerSheet/'+item.questionnaireId+'/-1'+slug+'?insurancePolicyType='+item.policyType+"&isSuggestionForm=true";
+    let url='/vuejs/#/insurancepolicy/answerSheet/'+item.questionnaireId+'/-1'+slug+'?insurancePolicyType='+item.policyType+"&isSuggestionForm=true&isNewDesign=true";
     window.open(url);
   }
   },
