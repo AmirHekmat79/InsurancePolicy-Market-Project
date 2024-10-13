@@ -1,6 +1,4 @@
-import axios from "axios";
 import baseServices from "./baseServices";
-const BASE_URL = 'https://server.notifaano.ir/api';
 const optionServices = {
     getProvince(){
         return baseServices.get("/ComboData/Province",{});

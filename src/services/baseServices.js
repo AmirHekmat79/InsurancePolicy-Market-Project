@@ -1,7 +1,9 @@
 import axios from 'axios';
-const baseURL = "https://server.notifaano.ir/api";
+import Config from '../../public/js/config';
+const baseURL = Config.getConfig().Server+"api";
  let BaseServices={
    async get(endpoint,params,headers){
+    
         let response= await axios.get(baseURL + endpoint, {
             params: params,
             headers: headers
@@ -42,12 +44,12 @@ const baseURL = "https://server.notifaano.ir/api";
       return response;
     },
     getDomain() {
-      return "sabz"
-    //   var domain = window.location.host.split(".")[0];
-    //   if (domain == "www") {
-    //     domain = window.location.host.split(".")[1];
-    //   }
-    //   return domain;
+      // return "sabz"
+      var domain = window.location.host.split(".")[0];
+      if (domain == "www") {
+        domain = window.location.host.split(".")[1];
+      }
+      return domain;
     }
 }
 export default BaseServices;

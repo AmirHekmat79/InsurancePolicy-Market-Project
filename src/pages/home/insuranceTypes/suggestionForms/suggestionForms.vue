@@ -58,6 +58,7 @@ export default defineComponent({
   margin-top:20px;
   padding-left: 8%;
   padding-right: 8%;
+  direction: rtl;
   @media(max-width:768px){
     padding-left: 15px;
     padding-right: 15px;

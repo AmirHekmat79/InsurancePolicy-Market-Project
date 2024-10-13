@@ -2,7 +2,7 @@
   <section dir="rtl" class="row top-footer">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 contact-us">
       <q-btn class="logo-btn q-my-md"
-        ><q-img src="images/footerLogo.png" width="140px"></q-img
+        ><q-img src="/images/footerLogo.png" width="140px"></q-img
       ></q-btn>
       <div class="row justify-start items-center q-my-lg q-gutter-md social-ntworks">
         <a @click="openNewPage(item.url)" v-for="(item,index) in socialNetworks" :key="index" class="cursor-pointer"  >
@@ -68,7 +68,7 @@
       <q-img
         @click="openNewPage(baseData.insuranceCentre.metaMediaActivityLicenceUrl)"
         class="kargozar-sign"
-        src="images/kargozar.png"
+        src="/images/kargozar.png"
         width="120px"
       ></q-img>
     </div>
@@ -120,67 +120,67 @@ export default {
     this.baseData=this.data;
     if (this.baseData.insuranceCentrePortal.bale) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/bale.svg",
+        iconUrl: "/icons/social-networks/bale.svg",
         url: this.baseData.insuranceCentrePortal.bale,
       });
     }
     if (this.baseData.insuranceCentrePortal.eitaa) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/eitaa.svg",
+        iconUrl: "/icons/social-networks/eitaa.svg",
         url: this.baseData.insuranceCentrePortal.eitaa,
       });
     }
     if (this.baseData.insuranceCentrePortal.faceBook) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/facebook.svg",
+        iconUrl: "/icons/social-networks/facebook.svg",
         url: this.baseData.insuranceCentrePortal.faceBook,
       });
     }
     if (this.baseData.insuranceCentrePortal.igap) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/igap.svg",
+        iconUrl: "/icons/social-networks/igap.svg",
         url: this.baseData.insuranceCentrePortal.igap,
       });
     }
     if (this.baseData.insuranceCentrePortal.instagram) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/instagram.svg",
+        iconUrl: "/icons/social-networks/instagram.svg",
         url: this.baseData.insuranceCentrePortal.instagram,
       });
     }
     if (this.baseData.insuranceCentrePortal.linkedin) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/linkedin.svg",
+        iconUrl: "/icons/social-networks/linkedin.svg",
         url: this.baseData.insuranceCentrePortal.linkedin,
       });
     }
     if (this.baseData.insuranceCentrePortal.robika) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/robika.svg",
+        iconUrl: "/icons/social-networks/robika.svg",
         url: this.baseData.insuranceCentrePortal.robika,
       });
     }
     if (this.baseData.insuranceCentrePortal.soroush) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/soroush.svg",
+        iconUrl: "/icons/social-networks/soroush.svg",
         url: this.baseData.insuranceCentrePortal.soroush,
       });
     }
     if (this.baseData.insuranceCentrePortal.telegram) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/telegram.svg",
+        iconUrl: "/icons/social-networks/telegram.svg",
         url: this.baseData.insuranceCentrePortal.telegram,
       });
     }
     if (this.baseData.insuranceCentrePortal.twitter) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/twitter-x.svg",
+        iconUrl: "/icons/social-networks/twitter-x.svg",
         url: this.baseData.insuranceCentrePortal.twitter,
       });
     }
     if (this.baseData.insuranceCentrePortal.whatsapp) {
       this.socialNetworks.push({
-        iconUrl: "icons/social-networks/whatsapp.svg",
+        iconUrl: "/icons/social-networks/whatsapp.svg",
         url: this.baseData.insuranceCentrePortal.whatsapp,
       });
     }
@@ -195,7 +195,7 @@ export default {
       var element = document.getElementById("mapview");
     if (element) {
       element.innerHTML = `
-      <link href="css/leaflet.css" rel="stylesheet">
+      <link href="/css/leaflet.css" rel="stylesheet">
         <div id="map" class="map map-home leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="width: 100%; height: 200px; border: 1px solid rgb(239, 239, 239) !important; position: relative; outline: none;" tabindex="0"><div style="text-align: center;height: 350px;" "="">
         <img  style="width: 20%; margin: auto;"> </div><table style="height: 100%; margin: auto;"> <tbody><tr>  </tr> </tbody></table><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 3px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);">
 
