@@ -2,13 +2,12 @@
   <section class="row justify-around items-center feature-banner q-pa-md q-gutter-sm q-mt-lg">
         <div class="row justify-center items-center q-my-sm">
           
-          <!-- <div>
-            <LottieAnimation
-            :animationData="lottieData"
-            :loop="true"
-            :autoplay="true"
-            />
-          </div> -->
+        
+            <q-img
+        class="consult-img q-my-sm"
+        src="icons/undraw_job_hunt_re_q203.svg"
+      ></q-img>
+          
         
           <div class="column justify-around items-center">
             <div class="just-click-title-container">
@@ -18,7 +17,7 @@
              <div class="row  reverse justify-center items-center q-my-lg ">
               <div class="text-center card  cursor-pointer " v-for="(item , index) in insuranceFeatures" :key="item.id">
               <div class="feature-img-container q-my-sm">
-                      <q-img src="/images/life-insurance.svg" style="width: 40px"></q-img>
+                      <!-- <q-img src="/images/life-insurance.svg" style="width: 40px"></q-img> -->
                        <q-badge rounded  class="number-value q-pa-sm" :label="(index + 1).toLocaleString('fa-IR')" />
                     </div>
                   <div class="row justify-center items-center">
@@ -39,12 +38,11 @@
 
 <script>
 import { defineComponent } from "vue";
-// import LottieAnimation from 'src/components/lottieAnimation.vue';
-// import lottieData from 'src/custom-lottie-animation.json';
+
 export default defineComponent({
   name: "InsuranceFeatures",
   components:{
-    // LottieAnimation
+   
   },
   data() {
     return {
@@ -55,7 +53,7 @@ export default defineComponent({
         { id: 4, title: "تایید  درخواست",  },
         { id: 5, title: "دریافت بیمه نامه ", },
       ],
-      // lottieData: lottieData
+     
     };
   },
 
@@ -63,7 +61,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .card{
   width: 145px;
   height: 150px;
@@ -87,7 +85,7 @@ export default defineComponent({
 
 .number-value{
   font-size: 17px !important;
-  background-color: var(--q-themeColor);
+  background-color:var(--q-themeColor);
 }
 
 .just-click-title-container {
@@ -95,6 +93,9 @@ export default defineComponent({
   text-align: right;
   direction: rtl;
 }
+.consult-img {
+  width:300px;
+ }
 .side-title{
   color: #011e3c;
 }
@@ -125,6 +126,7 @@ export default defineComponent({
   padding:20px;
 }
 
+
 .feature-title {
   font-weight: bolder;
   font-size: 16px;
@@ -136,5 +138,9 @@ export default defineComponent({
     align-items: center;
   }
 }
-
+// @media screen and (max-width : 600px) {
+//   .consult-img {
+//   width: 100% !important;
+  
+// }}
 </style>

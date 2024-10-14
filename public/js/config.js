@@ -43,6 +43,42 @@ let Config={
                 captcha: "https://captcha.kn2.ir/",
                 cdn: "https://cdn.kn2.ir/",
               };
+        }else if(license=="novin"){
+            return {
+                title:'نوین',
+                domain:"enovinplus.com",
+                Server: 'https://server.enovinplus.com/',
+                SiteKey: '6Lf6f4cUAAAAAG3P63j4vTkkH2zJ9INY8KCFopqH',
+                ApiKey: '4b1c37bd-0b75-42dd-81fc-41a74d4cf727',
+                AppId: "4b1c37bd-0b75-42dd-81fc-41a74d4cf727",
+                activeOnlinePayment: true,
+                license: false,
+                directLicense: false,
+                className: "enovinplus",
+                InsuranceTypes:"https://media.enovinplus.com/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png" ,
+                akaGeneralApiUrl:"https://akageneralapi.enovinplus.com/" ,
+                captcha:"https://captcha.kn2.ir/",
+                cdn:"https://cdn.kn2.ir/",
+                isPwa:false
+              };
+        }else if(license=="novin_pwa"){
+            return {
+                title:'نوین',
+                domain:"enovinplus.com",
+                Server: 'https://server.enovinplus.com/',
+                SiteKey: '6Lf6f4cUAAAAAG3P63j4vTkkH2zJ9INY8KCFopqH',
+                ApiKey: '4b1c37bd-0b75-42dd-81fc-41a74d4cf727',
+                AppId: "4b1c37bd-0b75-42dd-81fc-41a74d4cf727",
+                activeOnlinePayment: true,
+                license: false,
+                directLicense: false,
+                className: "enovinplus",
+                InsuranceTypes:"https://media.enovinplus.com/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png" ,
+                akaGeneralApiUrl:"https://akageneralapi.enovinplus.com/" ,
+                captcha:"https://captcha.kn2.ir/",
+                cdn:"https://cdn.kn2.ir/",
+                isPwa:true
+              };
         }
           
     } ,

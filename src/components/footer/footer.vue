@@ -1,9 +1,10 @@
 <template>
   <section dir="rtl" class="row top-footer">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 contact-us">
-      <q-btn class="logo-btn q-my-md"
+      <!-- <q-btn class="logo-btn q-my-md"
         ><q-img src="/images/footerLogo.png" width="140px"></q-img
-      ></q-btn>
+      ></q-btn> -->
+      <h2 class="title">ارتباط با ما</h2>
       <div class="row justify-start items-center q-my-lg q-gutter-md social-ntworks">
         <a @click="openNewPage(item.url)" v-for="(item,index) in socialNetworks" :key="index" class="cursor-pointer"  >
             <q-img   width="24px" :src="item.iconUrl"/>
@@ -36,11 +37,11 @@
         <li class="row  items-center"><a @click="this.$router.push('/registerComplaint')"> پیشنهادات ، انتقادات و شکایات </a></li>
         <li class="row  items-center"><a @click="this.$router.push('/faq')"> پرسش های متداول</a></li>
       </ul>
-      <ul class="site-features section-2">
+      <ul class="site-features section-2" v-if="baseData && baseData.insuranceCentreSetting">
         <li class="row  items-center"><a @click="this.$router.push('/trackingInsurance')">  پیگیری بیمه نامه </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/marketerRegistration')">    سامانه بازاریابان </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/agentRegisteration')">   همکاری با نمایندگان بیمه  </a></li>
-        <li class="row  items-center"><a @click="this.$router.push('/otherJobsRegisteration')">   همکاری با  ما  </a></li>
+        <li v-if="baseData.insuranceCentreSetting.enableBazaryaban" class="row  items-center"><a @click="this.$router.push('/marketerRegistration')">    سامانه بازاریابان </a></li>
+        <li v-if="baseData.insuranceCentreSetting.enableBazaryaban" class="row  items-center"><a @click="this.$router.push('/agentRegisteration')">   همکاری با نمایندگان بیمه  </a></li>
+        <li v-if="baseData.insuranceCentreSetting.enableBazaryaban" class="row  items-center"><a @click="this.$router.push('/otherJobsRegisteration')">   همکاری با  ما  </a></li>
         <li class="row  items-center"><a @click="this.roles=true;">    قوانین و مقررات   </a></li>
       </ul>
       </div>

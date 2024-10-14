@@ -208,6 +208,36 @@
             </div>
           </div>
         </q-form>
+        <q-card
+    dir="rtl"
+    class="row justify-center banner-bg items-center q-pa-md q-mt-lg rounded-borders"
+  >
+    <div class="col-md-4">
+      <div class="column justify-end items-center">
+        <h6 class="banner-title">
+          بیمه،راهی مطمئن برای کسب و کار
+        </h6>
+        <p class="text-justify sm-font-size text-dark">
+          با ما به راحتی و اطمینان کامل،کسب و کار و آینده خود را بیمه کنید.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-2 text-center q-mr-xl">
+      <img class="predict-img"  src="icons/undraw_predictive_analytics_re_wxt8.svg" />
+    </div>
+    <div class="col-md-5">
+      <div class="column justify-end items-center q-mx-lg">
+        <h6 class="banner-title-font banner-title">
+          بیمه،راهی برای پیشگیری از خسارت
+        </h6>
+        <p class="text-justify sm-font-size text-dark">
+          اگه همین حالا خودتان را بیمه کنید، جلوی بسیاری از مشکلات غیرقابل
+          پیش‌بینی را خواهید گرفت. به واسطه خدمات بیمه می‌توانید آرامش و آسایش
+          به خود و خانواده‌تان هدیه کنید.
+        </p>
+      </div>
+    </div>
+  </q-card>
       </q-card-section>
     </q-card-section>
 </template>
@@ -266,6 +296,9 @@ import { defineComponent } from "vue";
   </script>
 
 <style lang="scss">
+.predict-img{
+  width: 100px;
+}
 .tracking-damage-container{
   padding-top: 150px;
   .submit-button{

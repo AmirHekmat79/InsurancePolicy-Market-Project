@@ -77,6 +77,13 @@ const routes = [
     path: '/RegisterPage',
     component: () => import('src/pages/registerPage/registerPage.vue'),
 
+ } ,
+ ,
+ {
+
+    path: '/forgetPassword',
+    component: () => import('src/pages/forgetPasswordPage/forgetPasswordPage.vue'),
+
  }
   // Always leave this as last one,
   // but you can also remove it

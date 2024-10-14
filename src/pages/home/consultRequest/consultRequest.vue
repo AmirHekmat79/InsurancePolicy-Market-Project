@@ -11,7 +11,7 @@
       </div>
       <q-img
         class="consult-img q-my-sm"
-        src="/images/consultRequest.png"
+        src="icons/undraw_designer_re_5v95.svg"
       ></q-img>
     </div>
 

@@ -28,7 +28,7 @@
         </q-icon>
         <span v-if="currentUser && currentUser.aliasName" class="q-ml-md">{{currentUser.aliasName}}</span>
          </div>
-        
+        <!-- this.$router.push('/RegisterPage') -->
         <q-btn v-if="!userIsLogin" class="register-btn"  @click="showFastSignUpDialog=true">
           <a>ثبت نام</a>
         </q-btn>
@@ -104,6 +104,7 @@ export default defineComponent({
           location.href = 'https://server.mbime.ir/api/ApplicationBime/Rsintialize';
           }else{
             window.location.href="/vuejs/#/auth";
+            //  window.location.href="/loginPage";
           }
         }
       
