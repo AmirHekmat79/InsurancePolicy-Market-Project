@@ -2,6 +2,8 @@
  let licensesName={
     notifaano:"notifaano",
     notifaano_pwa:"notifaano_pwa",
+    novin:"novin",
+    novin_pwa:"novin_pwa",
  }
 let Config={
     setConfig(license){
