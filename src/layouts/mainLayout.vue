@@ -1,6 +1,6 @@
 <template>
   <q-layout>
-    <div class="header-section  relative-position">
+    <div class="header-section relative-position">
       <q-header class="q-pa-md header absolute text-white">
         <ToolbarNavigation :data="baseData" v-if="showItem" />
       </q-header>
@@ -27,30 +27,30 @@ export default defineComponent({
   //   return { baseDataStore }
   // },
   data() {
-      return {
-         baseData:[],
-         showItem:false
-      };
-    },
+    return {
+      baseData: [],
+      showItem: false,
+    };
+  },
   mounted() {
-      this.getPortalLandingPage();
+    this.getPortalLandingPage();
   },
   methods: {
     getPortalLandingPage() {
-        services
-          .getPortalLandingPage()
-          .then((response) => {
-            //  localStorage.setItem("baseData",JSON.stringify(response.data.message));
-             this.baseData=response.data.message;
-             setTimeout(()=>{
-             this.showItem=true;
-            },1000)
-            // this.setBaseData(response.data.message);
-          })
-          .catch((error) => {
-            console.error('Error fetching insurance centre info:', error);
-          });
-      },
+      services
+        .getPortalLandingPage()
+        .then((response) => {
+          //  localStorage.setItem("baseData",JSON.stringify(response.data.message));
+          this.baseData = response.data.message;
+          setTimeout(() => {
+            this.showItem = true;
+          }, 1000);
+          // this.setBaseData(response.data.message);
+        })
+        .catch((error) => {
+          console.error("Error fetching insurance centre info:", error);
+        });
+    },
     //  setBaseData(data) {
     //   this.baseDataStore.setBaseData(data,true);
     // },
@@ -59,7 +59,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-
 .header-section {
   background: var(--q-themeColor) !important;
   background-position: center;
@@ -70,9 +69,9 @@ export default defineComponent({
   direction: rtl;
 }
 .main-banner-title {
-  margin-bottom: 24px !important;
+  // margin-bottom: 24px !important;
   font-size: 30px !important;
-  color:#fff;
+  color: #fff;
   font-weight: 600;
 }
 .banner-title {
@@ -100,20 +99,20 @@ export default defineComponent({
     padding: 10px;
   }
 }
-@media screen and (max-width:990px) {
+@media screen and (max-width: 990px) {
   .banner-title {
     font-weight: 900;
     font-size: 20px !important;
     margin-top: 20px;
   }
- .header{
-  margin-top: 0px;
- }
+  .header {
+    margin-top: 0px;
+  }
   .main-banner-title {
-  margin-bottom: -34px !important;
-  font-size:20px !important;
-  font-weight: bolder;
-}
+    margin-bottom: -34px !important;
+    font-size: 20px !important;
+    font-weight: bolder;
+  }
 }
 @media screen and (min-width: 600px) and (max-width: 800px) {
   .sm-device-carousel {
