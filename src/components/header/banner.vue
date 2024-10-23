@@ -93,13 +93,8 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss" scoped>
-.sub-text {
-  margin: 11px !important;
-}
-.logo-img {
-  width: 80% !important;
-}
+<style lang="scss">
+
 .banner-section {
   width: 100%;
   padding: 165px 150px 50px 150px;
@@ -115,6 +110,12 @@ export default defineComponent({
   }
   @media (max-width: 1200px) {
     padding: 120px 50px 65px 50px;
+  }
+  .sub-text {
+    margin: 11px !important;
+  }
+  .logo-img {
+    width: 80% !important;
   }
   .q-carousel {
     height: 300px;

@@ -1,6 +1,6 @@
 <template>
    
-    <section class="insurance-types-section flex column jutify-center items-center">
+    <section  class="insurance-types-section flex column jutify-center items-center">
       <h4 class="title" >بازار آنلاین خرید بهترین بیمه</h4>
       <h5 class="sub-title">نوع بیمه خود را انتخاب کنید</h5>
      <InsurancePolicies />
@@ -30,6 +30,7 @@ export default defineComponent({
 </script>
 <style lang="scss" >
  .insurance-types-section{
+    width:100%;
    .title{
       margin: 40px 0px 10px;
       font-size: 30px;
