@@ -58,7 +58,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-xs">
         <q-input
-          :rules="[(val) => (val !== null && val !== '') || 'الزامی می باشد']"
+          :rules="[(val) => (val !== null && val !=='') || 'الزامی می باشد']"
           class="Input"
           rounded
           outlined
@@ -89,11 +89,13 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
         <q-input
-          :rules="[(val) => (val !== null && val !== '') || 'الزامی می باشد']"
+          :rules="[(val) => (val !== null && val !== '') && val.length == 11 || 'الزامی می باشد']"
           class="Input"
           rounded
           outlined
           v-model="model['mobile']"
+          @keypress="controlLength($event,11)"
+          type="number"
         >
           <template v-slot:prepend>
             <q-icon class="img-inner" name="phone"></q-icon>
@@ -109,7 +111,7 @@
           class="Input"
           rounded
           standout
-          v-model="model['month']"
+          v-model="monthModel"
           :option-value="(opt) => opt.id"
           :option-label="(opt) => opt.title"
           :options="month"
@@ -285,11 +287,11 @@ export default defineComponent({
         month: 0,
         day: 0,
         firstName: "",
-        lastname: "",
+        lastName: "",
         provinceId: 0,
         email: "",
         cityId: 0,
-        mobile: 0,
+        mobile: "",
       },
       insuranceTypeOptions: [],
       month: [
@@ -311,8 +313,9 @@ export default defineComponent({
       city: [],
       isLoading: false,
       count: 0,
-      provinceModel: {},
-      cityModel: {},
+      provinceModel: "",
+      cityModel: "",
+      monthModel:""
     };
   },
   mounted() {
@@ -379,22 +382,34 @@ export default defineComponent({
     async handleSubmit(event) {
       event.preventDefault();
       this.isLoading = true;
-      this.model.month = this.model.month.id;
+      this.model.month = this.monthModel.id;
       try {
-        console.log(370, "submitting");
         var a = await services.reminder(this.model);
-        console.log(a);
+        this.isLoading = false;
         this.$q.notify({
-          color: a.isSuccess ? "green-4" : "red",
+          color: a.data.isSuccess ? "green" : "red",
           textColor: "white",
           icon: "cloud_done",
-          message: a.message,
+          message: a.data.message,
         });
-      } catch (exp) {
-        console.log(379, exp);
+        
+      } catch (error) {
+        consoel.log("this is error",error);
+         this.isLoading = false;
       }
-      this.isLoading = false;
+      
     },
+    controlLength(event, maxlength) {
+       var targetLength = event.target.value.length;
+       if (event.which < 0x20) {
+         return;  
+       }
+       if (targetLength == maxlength) {
+         event.preventDefault();
+       } else if (targetLength > maxlength) {
+         event.target.value = event.target.value.substring(0, maxlength);
+       }
+     },
   },
 });
 </script>

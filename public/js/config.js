@@ -1,9 +1,9 @@
  
  let licensesName={
-    notifaano:"notifaano",
-    notifaano_pwa:"notifaano_pwa",
-    novin:"novin",
-    novin_pwa:"novin_pwa",
+    Notifaano:"notifaano",
+    Notifaano_pwa:"notifaano_pwa",
+    Novin:"novin",
+    Novin_pwa:"novin_pwa",
  }
 let Config={
     setConfig(license){
@@ -77,15 +77,15 @@ let Config={
                 className: "enovinplus",
                 InsuranceTypes:"https://media.enovinplus.com/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png" ,
                 akaGeneralApiUrl:"https://akageneralapi.enovinplus.com/" ,
-                captcha:"https://captcha.kn2.ir/",
-                cdn:"https://cdn.kn2.ir/",
+                captcha:"https://captcha.enovinplus.com/",
+                cdn:"https://cdn.enovinplus.com/",
                 isPwa:true
               };
         }
           
     } ,
     getConfig(){
-        let config=this.setConfig(licensesName.notifaano);
+        let config=this.setConfig(licensesName.Notifaano);
         return config;
     }
 }

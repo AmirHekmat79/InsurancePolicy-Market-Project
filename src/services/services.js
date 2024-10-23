@@ -29,8 +29,9 @@ const services = {
     });
   },
   getMenuesItem() {
+    let domain = baseServices.getDomain();
     return baseServices.get("/ComboData/InsuranceCentrePortalMenues", {
-      subDomain: "sabz",
+      subDomain:domain,
     });
   },
   sendSms(nationalCode, mobile) {
