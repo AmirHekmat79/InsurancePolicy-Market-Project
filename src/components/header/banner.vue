@@ -9,6 +9,7 @@
         infinite
         :autoplay="autoplay"
         arrows
+        :height="$q.screen.lt.md ? '' : '410px'"
         transition-prev="slide-right"
         transition-next="slide-left"
         @mouseenter="autoplay = false"
@@ -17,11 +18,12 @@
         <q-carousel-slide
           @click="openArticle(item)"
           v-for="(item, index) in summaryNotics"
+          class="q-carousel-slide"
           :key="index"
           :name="index"
           :img-src="item.metaMediaFileUrl"
         >
-          <div class="absolute-bottom custom-caption" v-if="item.title">
+          <div class="absolute-center custom-caption" v-if="item.title">
             <div class="text-h5 text-center">{{ item.title }}</div>
           </div>
         </q-carousel-slide>
@@ -60,7 +62,7 @@ export default defineComponent({
   components: {},
   setup() {
     return {
-      slide: ref(1),
+      slide: ref(0),
       autoplay: ref(true),
     };
   },
