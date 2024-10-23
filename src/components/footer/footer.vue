@@ -129,6 +129,15 @@
         v-html="baseData.insuranceCentrePortal.eTrustSymbol"
       ></div>
     </div>
+
+    <div v-if="baseData && baseData.insuranceCentrePortal">
+      <img
+        class="cursur-pointer logo-img"
+        @click="goToHome()"
+        :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl"
+        width="120px"
+      />
+    </div>
     <div
       v-if="
         baseData &&
@@ -194,6 +203,7 @@ export default {
   },
   mounted() {
     this.baseData = this.data;
+
     if (this.baseData.insuranceCentrePortal.bale) {
       this.socialNetworks.push({
         iconUrl: "/icons/social-networks/bale.svg",
@@ -309,7 +319,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+// .logo-img {
+//   max-width: 30% !important;
+// }
 .top-footer {
   padding: 30px 30px;
   margin: auto;
@@ -353,6 +366,7 @@ export default {
   .site-feature-container {
     padding: 10px;
   }
+
   .social-ntworks {
     a {
       margin: 2px !important;
