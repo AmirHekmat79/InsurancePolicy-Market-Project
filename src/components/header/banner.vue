@@ -10,8 +10,8 @@
         :autoplay="autoplay"
         arrows
         :height="$q.screen.lt.md ? '' : '410px'"
-        transition-prev="slide-right"
-        transition-next="slide-left"
+        transition-prev="slide-left"
+        transition-next="slide-right"
         @mouseenter="autoplay = false"
         @mouseleave="autoplay = true"
       >
