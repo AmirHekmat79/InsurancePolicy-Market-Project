@@ -13,10 +13,10 @@
         size="12px"
         :icon="showMobileMenu ? 'close' : 'menu'"
       ></q-btn>
-      <q-toolbar-title>
+      <q-toolbar-title class="q-ml-auto">
         <div
           v-if="baseData && baseData.insuranceCentrePortal"
-          class="logo-sm-container q-ml-auto q-mr-md"
+          class="logo-sm-container"
         >
           <q-img
             @click="goToHome()"
@@ -37,17 +37,14 @@
       />
     </div>
 
-    <div
-      v-else
-      class="row no-wrap justify-start text-center q-mx-auto items-center q-ml-auto"
-    >
+    <div v-else class="row no-wrap justify-between items-center">
       <div
         style="direction: rtl;"
-        class="navLink-container row no-wrap justify-start items-center"
+        class="navLink-container row no-wrap justify-center items-center"
       >
         <div
           v-if="baseData && baseData.insuranceCentrePortal"
-          class="logo-container q-ml-auto flex justify-center items-center"
+          class="logo-container q-ml-auto flex justify-start items-center"
         >
           <img
             class="cursur-pointer logo-img"
@@ -57,7 +54,7 @@
         </div>
         <MainMenu />
       </div>
-      <div class="login-btn-group flex justify-center items-center">
+      <div class="login-btn-group q-mr-xl flex items-center">
         <div v-if="userIsLogin" class="alias-name">
           <q-icon name="person" size="20px"> </q-icon>
           <span v-if="currentUser && currentUser.aliasName" class="q-ml-md">{{
@@ -204,7 +201,6 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-
 .logo-img {
   max-width: 18% !important;
 }
