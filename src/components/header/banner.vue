@@ -23,7 +23,10 @@
           :name="index"
           :img-src="item.metaMediaFileUrl"
         >
-          <div class="absolute-center custom-caption" v-if="item.title">
+          <div
+            class="absolute-center carousel-element-inner-title custom-caption"
+            v-if="item.title"
+          >
             <div class="text-h5 text-center">{{ item.title }}</div>
           </div>
         </q-carousel-slide>
@@ -94,6 +97,22 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+.custom-caption {
+  font-weight: bolder;
+  color: #fff;
+  font-size: 40px;
+}
+.carousel-element-inner-title {
+  background: rgba(9, 9, 9, 0.469);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  // border: 1px solid rgba(31, 30, 30, 0.3);
+  width: 100% !important;
+  // border-radius: 8px;
+  height: auto;
+  padding: 8px;
+}
 .banner-section {
   width: 100%;
   padding: 165px 150px 50px 150px;
@@ -128,6 +147,11 @@ export default defineComponent({
     // .q-carousel__control{
     //   transform: rotate(180deg) !important;
     // }
+    .q-carousel__navigation-icon {
+      background-color: #ffff;
+      color: #eeee;
+      outline: none;
+    }
     .q-carousel__next-arrow--horizontal {
       right: unset !important;
       left: 16px !important;
