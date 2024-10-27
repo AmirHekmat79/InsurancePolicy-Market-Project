@@ -122,9 +122,9 @@ export default defineComponent({
 .card-img {
   border-radius: 5px;
   width: 100%;
+  max-height:10vw;
   background-position: center;
   background-size: cover;
-
   height: auto;
   border-style: none;
 }
@@ -145,6 +145,7 @@ export default defineComponent({
   background-color: #fff;
   border-radius: 5px;
   cursor: pointer;
+  overflow: hidden;
   border-radius: 15px;
   text-align: center;
   direction: rtl;
