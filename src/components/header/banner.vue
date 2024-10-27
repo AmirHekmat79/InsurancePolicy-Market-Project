@@ -2,14 +2,14 @@
   <div class="row banner-section" v-if="baseData">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <q-carousel
-        class="rounded-borders"
+        class="rounded-borders carousel-element"
         animated
         v-model="slide"
         navigation
         infinite
         :autoplay="autoplay"
         arrows
-        :height="$q.screen.lt.md ? '' : '410px'"
+        :height="$q.screen.gt.xs ? '410px' : ''"
         transition-prev="slide-right"
         transition-next="slide-left"
         @mouseenter="autoplay = false"
@@ -94,13 +94,17 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-
 .banner-section {
   width: 100%;
   padding: 165px 150px 50px 150px;
   background: var(--q-themeColor) !important;
   @media (max-width: 768px) {
     padding: 120px 15px 15px 15px;
+  }
+  @media screen and (min-width: 700px) and (max-width: 1023px) {
+    .carousel-element {
+      margin: 30px;
+    }
   }
   @media only screen and (max-width: 780px) {
     .logo-img {
