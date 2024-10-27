@@ -80,7 +80,7 @@ export default defineComponent({
   padding: 10px;
 }
 .header {
-  padding: 20px;
+  padding:20px 65px;
   width: 1280px;
   margin: auto;
   border-radius: 1000px;

@@ -3,9 +3,9 @@
     <Banner v-if="showItem" :data="data" />
     <InsuranceTypes />
     <InsuranceFeatures />
-    <InsuranceNews v-if="showItem" :data="data" />
+    <InsuranceNews />
     <ConsultRequest />
-    <PolicyIntroduction />
+    <PolicyIntroduction v-if="showItem" :data="data" />
     <InsuranceForm />
     <ImageGallery v-if="showItem" :data="data" />
     <VideoGallery v-if="showItem" :data="data" />

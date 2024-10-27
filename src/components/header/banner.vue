@@ -42,7 +42,7 @@
         <img
           class="cursur-pointer logo-img"
           @click="goToHome()"
-          :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl"
+          :src="baseData.insuranceCentrePortal.metaMediaFileHeaderUrl"
         />
       </div>
       <h1 v-if="baseData.insuranceCentrePortal" class="main-banner-title">
@@ -127,7 +127,7 @@ export default defineComponent({
   }
   @media only screen and (max-width: 780px) {
     .logo-img {
-      max-width: 31% !important;
+      max-width: 80px !important;
       margin-top: 10px !important;
     }
   }
@@ -138,7 +138,7 @@ export default defineComponent({
     margin: 11px !important;
   }
   .logo-img {
-    width: 80% !important;
+    width: 120px !important;
   }
   .q-carousel {
     height: 300px;

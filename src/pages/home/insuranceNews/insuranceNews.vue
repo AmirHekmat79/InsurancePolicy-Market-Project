@@ -1,5 +1,5 @@
 <template>
-  <div v-if="summaryNotics && summaryNotics.length" class="news-section  q-py-sm ">
+  <div v-if="news && news.length" class="news-section  q-py-sm ">
    <div class="text-right q-ma-lg">
     <q-img class="shape1-img3" src="images/shape1.svg" width="20px"></q-img>
    </div>
@@ -16,14 +16,14 @@
     </div>
     <div class="row justify-center  items-center text-center q-mt-md q-pb-md">
       <div class="carousel-container">
-     <Flicking  :options="{ align: 'center',circular: true, }" :plugins="plugins">
-      <q-card v-for="item in summaryNotics" :key="item.id" class="my-card flex column shadow-1">
+     <Flicking  :options="{ align: 'prev'}" :plugins="plugins">
+      <q-card v-for="item in news" :key="item.id" class="my-card flex column shadow-1">
         <q-img class="card-img" :src="item.metaMediaFileUrl">
           <div class="title absolute-bottom text-h6">{{ item.title }}</div>
         </q-img>
 
         <q-card-section class="summary" dir="rtl">
-          {{ item.summary }}
+          <p v-html="item.body"></p>
         </q-card-section>
         <q-separator light />
         <q-btn @click="openArticle(item)" class="details-btn text-center q-my-sm rounded-borders">جزئیات بیشتر</q-btn>
@@ -54,6 +54,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import services from "src/services/services";
 import Flicking from "@egjs/vue3-flicking";
 import "@egjs/vue3-flicking/dist/flicking.css";
 import { Arrow } from "@egjs/flicking-plugins";
@@ -70,20 +71,38 @@ export default defineComponent({
   },
   data() {
     return {
-      baseData:{},
-      summaryNotics: [],
+      news: [],
       plugins: [new Arrow(),new Pagination({ type: 'bullet' })]
     };
   },
   mounted(){
-    this.baseData=this.data;
-    for(let item of this.baseData.summaryNotics){
-      if(!item.isSpecial){
-        this.summaryNotics.push(item);
-      }
-    }
+    this.getNews();
+    // this.baseData=this.data;
+    // for(let item of this.baseData.summaryNotics){
+    //   if(!item.isSpecial){
+    //     this.summaryNotics.push(item);
+    //   }
+    // }
+
   },
   methods:{
+  async  getNews() {
+      services
+        .getNews()
+        .then((response) => {
+          for(let item of response.data.message){
+            if(!item.isSpecial){
+              this.news.push(item);
+            }
+          }
+          // setTimeout(() => {
+          //   this.showItem = true;
+          // }, 1000);
+        })
+        .catch((error) => {
+          console.error("Error fetching insurance centre info:", error);
+        });
+    },
     openArticle(article)
     {
       window.open('./article/'+article.id)
@@ -120,7 +139,11 @@ export default defineComponent({
       }
      }
      .summary{
-        flex-grow:1
+        flex-grow:1;
+        width: 100%;
+        overflow: hidden;
+        max-height: 130px;
+
       }
     }
     .icon-color{
