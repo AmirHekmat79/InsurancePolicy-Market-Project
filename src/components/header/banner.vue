@@ -24,7 +24,7 @@
           :img-src="item.metaMediaFileUrl"
         >
           <div
-            class="absolute-center carousel-element-inner-title custom-caption"
+            class="absolute-bottom carousel-element-inner-title custom-caption"
             v-if="item.title"
           >
             <div class="text-h5 text-center">{{ item.title }}</div>
@@ -151,6 +151,7 @@ export default defineComponent({
       background-color: #ffff;
       color: #eeee;
       outline: none;
+      display: none;
     }
     .q-carousel__next-arrow--horizontal {
       right: unset !important;

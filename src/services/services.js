@@ -8,6 +8,7 @@ const services = {
       subDomain: domain,
     });
   },
+
   getSuggestionForms() {
     let domain = baseServices.getDomain();
     return baseServices.get("/InsurancePolicyPlan/SuggestionForm_Plans", {
@@ -31,7 +32,7 @@ const services = {
   getMenuesItem() {
     let domain = baseServices.getDomain();
     return baseServices.get("/ComboData/InsuranceCentrePortalMenues", {
-      subDomain:domain,
+      subDomain: domain,
     });
   },
   sendSms(nationalCode, mobile) {
