@@ -121,8 +121,7 @@ export default defineComponent({
 
 .card-img {
   border-radius: 5px;
-  width: 372px;
-  height: 209px;
+  width: 100%;
   background-position: center;
   background-size: cover;
 
