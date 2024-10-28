@@ -64,6 +64,10 @@ const routes = [
         path: 'article/:id',
         component: () => import('src/pages/weblog/article.vue'),
       },
+      {
+        path: "Click",
+        component: () => import("src/pages/representativeCodeManager/representativeCodeManager.vue"),
+      },
     ]
   },
  {

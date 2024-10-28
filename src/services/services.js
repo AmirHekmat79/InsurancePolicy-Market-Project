@@ -38,6 +38,12 @@ const services = {
       subDomain: domain,
     });
   },
+  affiliationManager(id) {
+    let domain = baseServices.getDomain();
+    return baseServices.get("/affiliationManager/click", {
+      redirectId:id
+    });
+  },
   sendSms(nationalCode, mobile) {
     let domain = baseServices.getDomain();
     return baseServices.get("/Account/SendSmsToken", {
