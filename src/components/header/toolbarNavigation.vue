@@ -44,18 +44,18 @@
 
       </div> -->
       <div
-          v-if="baseData && baseData.insuranceCentrePortal"
-          class="logo-container q-ml-auto flex justify-start items-center"
-        >
-          <img
-            class="cursur-pointer logo-img"
-            @click="goToHome()"
-            :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl"
-          />
-        </div>
+        v-if="baseData && baseData.insuranceCentrePortal"
+        class="logo-container q-ml-auto flex justify-start items-center"
+      >
+        <img
+          class="cursur-pointer logo-img"
+          @click="goToHome()"
+          :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl"
+        />
+      </div>
       <div class="menu-container flex justify-center items-center">
-          <MainMenu />
-        </div>
+        <MainMenu />
+      </div>
       <div class="login-btn-group flex items-center">
         <div v-if="userIsLogin" class="alias-name">
           <q-icon name="person" size="20px"> </q-icon>
@@ -337,10 +337,10 @@ a {
   direction: rtl !important;
 }
 /* استایل ها داخل این بخش قرار داده شوند */
-.web-toolbar{
+.web-toolbar {
   width: 100%;
-  .menu-container{
-  flex-grow: 1;
+  .menu-container {
+    flex-grow: 1;
   }
 }
 

@@ -99,10 +99,10 @@ const routes = [
   },
   // Always leave this as last one,
   // but you can also remove it
-  {
-    path: "/:catchAll(.*)*",
-    component: () => import("src/pages/errorNotFound/ErrorNotFound.vue"),
-  },
+  // {
+  //   path: "/:catchAll(.*)*",
+  //   component: () => import("src/pages/errorNotFound/ErrorNotFound.vue"),
+  // },
 ];
 
 export default routes;
