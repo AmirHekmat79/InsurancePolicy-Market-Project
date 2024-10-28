@@ -21,7 +21,10 @@ const services = {
       id: domain,
     });
   },
-
+  getNews() {
+    let domain = baseServices.getDomain();
+    return baseServices.get(`/Article/NewsNotics/${domain}`);
+  },
   getInsurancePolicies() {
     let domain = baseServices.getDomain();
     return baseServices.get("/ComboData/InsuranceCentrePolicyTypes", {

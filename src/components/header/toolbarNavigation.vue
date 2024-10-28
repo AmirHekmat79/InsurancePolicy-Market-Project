@@ -22,7 +22,6 @@
             @click="goToHome()"
             :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl"
             class="logo-img"
-            width="54%"
           ></q-img>
         </div>
       </q-toolbar-title>
@@ -37,12 +36,14 @@
       />
     </div>
 
-    <div v-else class="row no-wrap justify-between items-center">
-      <div
+    <div v-else class="web-toolbar row no-wrap justify-center items-center">
+      <!-- <div
         style="direction: rtl;"
         class="navLink-container row no-wrap justify-center items-center"
       >
-        <div
+
+      </div> -->
+      <div
           v-if="baseData && baseData.insuranceCentrePortal"
           class="logo-container q-ml-auto flex justify-start items-center"
         >
@@ -52,9 +53,10 @@
             :src="baseData.insuranceCentrePortal.metaMediaFileLogoUrl"
           />
         </div>
-        <MainMenu />
-      </div>
-      <div class="login-btn-group q-mr-xl flex items-center">
+      <div class="menu-container flex justify-center items-center">
+          <MainMenu />
+        </div>
+      <div class="login-btn-group flex items-center">
         <div v-if="userIsLogin" class="alias-name">
           <q-icon name="person" size="20px"> </q-icon>
           <span v-if="currentUser && currentUser.aliasName" class="q-ml-md">{{
@@ -200,9 +202,9 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .logo-img {
-  max-width: 18% !important;
+  width: 120px;
 }
 .q-toolbar {
   min-height: unset;
@@ -334,6 +336,14 @@ a {
   padding: 15px !important;
   direction: rtl !important;
 }
+/* استایل ها داخل این بخش قرار داده شوند */
+.web-toolbar{
+  width: 100%;
+  .menu-container{
+  flex-grow: 1;
+  }
+}
+
 @media only screen and (max-width: 727px) {
   .title-container {
     margin-left: 200px !important;

@@ -404,7 +404,7 @@ export default {
 .middle-footer {
   text-align: center;
   padding: 35px;
-  background: var(--q-themeColor);
+  // background: var(--q-themeColor);
   opacity: 0.95;
   .dynamic-certificate-item {
     img {
