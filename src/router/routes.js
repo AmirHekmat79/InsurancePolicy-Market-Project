@@ -76,9 +76,12 @@ const routes = [
       },
       {
         path: "Click",
-        component: () => import("src/pages/representativeCodeManager/representativeCodeManager.vue"),
+        component: () =>
+          import(
+            "src/pages/representativeCodeManager/representativeCodeManager.vue"
+          ),
       },
-    ]
+    ],
   },
   {
     path: "/LoginPage",
