@@ -85,7 +85,7 @@ let Config = {
     }
   },
   getConfig() {
-    let config = this.setConfig(licensesName.Notifaano);
+    let config = this.setConfig(licensesName.Novin);
     return config;
   },
 };
