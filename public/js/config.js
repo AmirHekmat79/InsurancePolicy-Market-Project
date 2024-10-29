@@ -87,8 +87,8 @@ let Config = {
     }else if(license == "movasa"){
       return {
         title: "مواسا",
-        domain: "movasa.com",
-        Server: "https://server.movasa.com/",
+        domain: "movasa.ir",
+        Server: "https://server.movasa.ir/",
         SiteKey: "6Lf6f4cUAAAAAG3P63j4vTkkH2zJ9INY8KCFopqH",
         ApiKey: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
         AppId: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
@@ -97,7 +97,7 @@ let Config = {
         directLicense: false,
         className: "movasa",
         InsuranceTypes:
-          "https://media.movasa.com/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png",
+          "https://media.movasa.ir/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png",
         akaGeneralApiUrl: "https://akageneralapi.kn2.ir/",
         captcha: "https://captcha.kn2.ir/",
         cdn: "https://cdn.kn2.ir/",
@@ -106,8 +106,8 @@ let Config = {
     }else if(license == "movasa_pwa"){
       return {
         title: "مواسا",
-        domain: "movasa.com",
-        Server: "https://server.movasa.com/",
+        domain: "movasa.ir",
+        Server: "https://server.movasa.ir/",
         SiteKey: "6Lf6f4cUAAAAAG3P63j4vTkkH2zJ9INY8KCFopqH",
         ApiKey: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
         AppId: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
@@ -116,7 +116,7 @@ let Config = {
         directLicense: false,
         className: "movasa",
         InsuranceTypes:
-          "https://media.movasa.com/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png",
+          "https://media.movasa.ir/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png",
         akaGeneralApiUrl: "https://akageneralapi.kn2.ir/",
         captcha: "https://captcha.kn2.ir/",
         cdn: "https://cdn.kn2.ir/",
