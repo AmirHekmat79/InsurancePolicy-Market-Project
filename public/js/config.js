@@ -3,6 +3,8 @@ let licensesName = {
   Notifaano_pwa: "notifaano_pwa",
   Novin: "novin",
   Novin_pwa: "novin_pwa",
+  Movasa: "movasa",
+  Movasa_pwa: "movasa_pwa",
 };
 let Config = {
   setConfig(license) {
@@ -82,10 +84,48 @@ let Config = {
         cdn: "https://cdn.enovinplus.com/",
         isPwa: true,
       };
+    }else if(license == "movasa"){
+      return {
+        title: "مواسا",
+        domain: "movasa.com",
+        Server: "https://server.movasa.com/",
+        SiteKey: "6Lf6f4cUAAAAAG3P63j4vTkkH2zJ9INY8KCFopqH",
+        ApiKey: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
+        AppId: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
+        activeOnlinePayment: true,
+        license: false,
+        directLicense: false,
+        className: "movasa",
+        InsuranceTypes:
+          "https://media.movasa.com/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png",
+        akaGeneralApiUrl: "https://akageneralapi.kn2.ir/",
+        captcha: "https://captcha.kn2.ir/",
+        cdn: "https://cdn.kn2.ir/",
+        isPwa: false,
+      };
+    }else if(license == "movasa_pwa"){
+      return {
+        title: "مواسا",
+        domain: "movasa.com",
+        Server: "https://server.movasa.com/",
+        SiteKey: "6Lf6f4cUAAAAAG3P63j4vTkkH2zJ9INY8KCFopqH",
+        ApiKey: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
+        AppId: "2c39b0f9-d1e7-45e6-ae76-d7051d982846",
+        activeOnlinePayment: true,
+        license: false,
+        directLicense: false,
+        className: "movasa",
+        InsuranceTypes:
+          "https://media.movasa.com/Easybimeh/FileManager.Front/insurancepolicy/assets/images/insurance-types.png",
+        akaGeneralApiUrl: "https://akageneralapi.kn2.ir/",
+        captcha: "https://captcha.kn2.ir/",
+        cdn: "https://cdn.kn2.ir/",
+        isPwa: true,
+      };
     }
   },
   getConfig() {
-    let config = this.setConfig(licensesName.Notifaano);
+    let config = this.setConfig(licensesName.Novin);
     return config;
   },
 };
