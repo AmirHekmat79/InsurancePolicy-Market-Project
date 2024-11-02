@@ -58,7 +58,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-xs">
         <q-input
-          :rules="[(val) => (val !== null && val !=='') || 'الزامی می باشد']"
+          :rules="[(val) => (val !== null && val !== '') || 'الزامی می باشد']"
           class="Input"
           rounded
           outlined
@@ -89,12 +89,16 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
         <q-input
-          :rules="[(val) => (val !== null && val !== '') && val.length == 11 || 'الزامی می باشد']"
+          :rules="[
+            (val) =>
+              (val !== null && val !== '' && val.length == 11) ||
+              'الزامی می باشد',
+          ]"
           class="Input"
           rounded
           outlined
           v-model="model['mobile']"
-          @keypress="controlLength($event,11)"
+          @keypress="controlLength($event, 11)"
           type="number"
         >
           <template v-slot:prepend>
@@ -102,6 +106,21 @@
             <label class="text-subtitle2 label-font q-ml-sm">
               شماره همراه</label
             >
+          </template>
+        </q-input>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
+        <q-input
+          :rules="[(val) => (val !== null && val !== '') || 'الزامی می باشد']"
+          class="Input"
+          rounded
+          outlined
+          v-model="model['email']"
+        >
+          <template v-slot:prepend>
+            <q-icon class="img-inner" name="email"></q-icon>
+            <label class="text-subtitle2 label-font q-ml-sm"> ایمیل</label>
           </template>
         </q-input>
       </div>
@@ -137,77 +156,6 @@
           </template>
         </q-select>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
-        <q-input
-          :rules="[(val) => (val !== null && val !== '') || 'الزامی می باشد']"
-          class="Input"
-          rounded
-          outlined
-          v-model="model['email']"
-        >
-          <template v-slot:prepend>
-            <q-icon class="img-inner" name="email"></q-icon>
-            <label class="text-subtitle2 label-font q-ml-sm"> ایمیل</label>
-          </template>
-        </q-input>
-      </div>
-
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
-        <q-select
-          :rules="[(val) => val || 'الزامی می باشد']"
-          class="Input"
-          rounded
-          standout
-          emit-value
-          map-options
-          :option-value="(opt) => opt.id"
-          :option-label="(opt) => opt.title"
-          v-model="model['insuranceTypeId']"
-          :options="insuranceTypeOptions"
-        >
-          <template v-slot:prepend>
-            <svg
-              width="24px"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                class="icon-color"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75"
-              />
-            </svg>
-            <label class="text-subtitle2 label-font q-ml-sm"
-              >نوع بیمه نامه
-            </label>
-          </template>
-        </q-select>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
-        <q-select
-          :rules="[(val) => val !== '' || 'الزامی است']"
-          class="Input"
-          rounded
-          standout
-          emit-value
-          map-options
-          v-model="provinceModel"
-          :option-value="(opt) => opt.id"
-          :option-label="(opt) => opt.title"
-          :options="province"
-        >
-          <template v-slot:prepend>
-            <q-icon class="img-inner" name="place"></q-icon>
-            <label class="text-subtitle2 label-font q-ml-sm">استان </label>
-          </template>
-        </q-select>
-      </div>
-
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
         <q-select
           class="Input"
@@ -250,6 +198,26 @@
           standout
           emit-value
           map-options
+          v-model="provinceModel"
+          :option-value="(opt) => opt.id"
+          :option-label="(opt) => opt.title"
+          :options="province"
+        >
+          <template v-slot:prepend>
+            <q-icon class="img-inner" name="place"></q-icon>
+            <label class="text-subtitle2 label-font q-ml-sm">استان </label>
+          </template>
+        </q-select>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
+        <q-select
+          :rules="[(val) => val !== '' || 'الزامی است']"
+          class="Input"
+          rounded
+          standout
+          emit-value
+          map-options
           v-model="cityModel"
           :option-value="(opt) => opt.id"
           :option-label="(opt) => opt.title"
@@ -258,6 +226,42 @@
           <template v-slot:prepend>
             <q-icon class="img-inner" name="place"></q-icon>
             <label class="text-subtitle2 label-font q-ml-sm">شهر </label>
+          </template>
+        </q-select>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 q-pa-xs">
+        <q-select
+          :rules="[(val) => val || 'الزامی می باشد']"
+          class="Input"
+          rounded
+          standout
+          emit-value
+          map-options
+          :option-value="(opt) => opt.id"
+          :option-label="(opt) => opt.title"
+          v-model="model['insuranceTypeId']"
+          :options="insuranceTypeOptions"
+        >
+          <template v-slot:prepend>
+            <svg
+              width="24px"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                class="icon-color"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75"
+              />
+            </svg>
+            <label class="text-subtitle2 label-font q-ml-sm"
+              >نوع بیمه نامه
+            </label>
           </template>
         </q-select>
       </div>
@@ -315,7 +319,7 @@ export default defineComponent({
       count: 0,
       provinceModel: "",
       cityModel: "",
-      monthModel:""
+      monthModel: "",
     };
   },
   mounted() {
@@ -392,24 +396,22 @@ export default defineComponent({
           icon: "cloud_done",
           message: a.data.message,
         });
-        
       } catch (error) {
-        consoel.log("this is error",error);
-         this.isLoading = false;
+        consoel.log("this is error", error);
+        this.isLoading = false;
       }
-      
     },
     controlLength(event, maxlength) {
-       var targetLength = event.target.value.length;
-       if (event.which < 0x20) {
-         return;  
-       }
-       if (targetLength == maxlength) {
-         event.preventDefault();
-       } else if (targetLength > maxlength) {
-         event.target.value = event.target.value.substring(0, maxlength);
-       }
-     },
+      var targetLength = event.target.value.length;
+      if (event.which < 0x20) {
+        return;
+      }
+      if (targetLength == maxlength) {
+        event.preventDefault();
+      } else if (targetLength > maxlength) {
+        event.target.value = event.target.value.substring(0, maxlength);
+      }
+    },
   },
 });
 </script>

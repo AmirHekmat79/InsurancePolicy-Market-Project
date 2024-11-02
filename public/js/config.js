@@ -84,7 +84,7 @@ let Config = {
         cdn: "https://cdn.enovinplus.com/",
         isPwa: true,
       };
-    }else if(license == "movasa"){
+    } else if (license == "movasa") {
       return {
         title: "مواسا",
         domain: "movasa.ir",
@@ -103,7 +103,7 @@ let Config = {
         cdn: "https://cdn.kn2.ir/",
         isPwa: false,
       };
-    }else if(license == "movasa_pwa"){
+    } else if (license == "movasa_pwa") {
       return {
         title: "مواسا",
         domain: "movasa.ir",
