@@ -5,6 +5,8 @@ let licensesName = {
   Novin_pwa: "novin_pwa",
   Movasa: "movasa",
   Movasa_pwa: "movasa_pwa",
+  Fardaap: "fardaap",
+  Fardaap_pwa: "fardaap_pwa",
 };
 let Config = {
   setConfig(license) {
@@ -121,6 +123,44 @@ let Config = {
         captcha: "https://captcha.kn2.ir/",
         cdn: "https://cdn.kn2.ir/",
         isPwa: true,
+      };
+    }else if(license == "fardaap"){
+      return {
+        title: "فرداپ",
+        Server: "https://server.fardaap.com/",
+        media: "https://media.mbime.ir/",
+        domain: "fardaap.com",
+        SiteKey: "6LdS4IQUAAAAAOpA8djOw5NGJJiX1kfmJ_IS6qyM",
+        ApiKey: "d6a7a906-7542-4f21-94c5-8d8190e9e9a0",
+        AppId: "d6a7a906-7542-4f21-94c5-8d8190e9e9a0",
+        activeOnlinePayment: true,
+        license: true,
+        directLicense: false,
+        className: "fardaap",
+        licenseText: "کلیه حقوق متعلق است به فرداپ @2024",
+        template: "default",
+        isPwa: false,
+        captcha: "https://captcha.mbime.ir/",
+        cdn: "https://cdn.mbime.ir/",
+      };
+    }else if(license == "fardaap_pwa"){
+      return {
+        title: "فرداپ",
+        Server: "https://server.fardaap.com/",
+        media: "https://media.mbime.ir/",
+        domain: "fardaap.com",
+        SiteKey: "6LdS4IQUAAAAAOpA8djOw5NGJJiX1kfmJ_IS6qyM",
+        ApiKey: "d6a7a906-7542-4f21-94c5-8d8190e9e9a0",
+        AppId: "d6a7a906-7542-4f21-94c5-8d8190e9e9a0",
+        activeOnlinePayment: true,
+        license: true,
+        directLicense: false,
+        className: "fardaap",
+        licenseText: "کلیه حقوق متعلق است به فرداپ @2024",
+        template: "default",
+        isPwa: true,
+        captcha: "https://captcha.mbime.ir/",
+        cdn: "https://cdn.mbime.ir/",
       };
     }
   },
