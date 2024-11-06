@@ -271,8 +271,8 @@ export default {
       });
     }
     setTimeout(() => {
-      this.setCertificatesStaticImage();
       this.initMap();
+      this.setCertificatesStaticImage();
     }, 1000);
   },
   methods: {
