@@ -1,5 +1,5 @@
 <template>
-   <div class="submit-damage-container">
+  <div class="submit-damage-container">
     <q-dialog v-model="showAcceptedForm">
       <q-card style="width: 700px; max-width: 80vw; direction: rtl;">
         <q-card-section>
@@ -321,11 +321,11 @@
               class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xs flex justify-end"
             >
               <q-btn
-                  class="submit-button"
-                  label="ذخیره"
-                  type="submit"
-                  :loading="saveDataLoading"
-                />
+                class="submit-button"
+                label="ذخیره"
+                type="submit"
+                :loading="saveDataLoading"
+              />
             </div>
           </div>
         </q-form>
@@ -334,115 +334,115 @@
   </div>
 </template>
 
-  <script>
-  import services from "src/services/services";
-  import { defineComponent } from "vue";
-  import optionServices from "src/services/optionServices.js";
-  import MultiUploader from "src/components/uploader/multiUploader.vue";
-  export default defineComponent({
-    name: "TrackingDamage",
-    components:{
-      MultiUploader
+<script>
+import services from "src/services/services";
+import { defineComponent } from "vue";
+import optionServices from "src/services/optionServices.js";
+import MultiUploader from "src/components/uploader/multiUploader.vue";
+export default defineComponent({
+  name: "TrackingDamage",
+  components: {
+    MultiUploader,
+  },
+  data() {
+    return {
+      trackingDamageModel: [],
+      activeTrackingDamageStatusIndex: 0,
+      trackingDamageStatus: -1,
+      showAcceptedForm: false,
+      trackingCode: "",
+      trackingIndex: 0,
+      self: this,
+      loading: false,
+      damagetypes: [
+        { id: "جانی" },
+        { id: "مالی" },
+        { id: "سایر" },
+        { id: "حوادث راننده" },
+      ],
+      insuranceTypeId: "",
+      model: {
+        trackingDamageFile: [],
+        damageType: "",
+        damageTypes: [],
+        description: "",
+        insuranceCompanyId: "",
+        insurancePolicyNumber: "",
+        insuranceTypeId: "",
+        insuredProfile: "",
+        mobile: "",
+        name: "",
+        nationalCode: "",
+        personalityType: "",
+        trackingDamageStatus: [],
+        damagePersianDate: "",
+      },
+      insuranceCompanyOptions: [],
+      saveDataLoading: false,
+      insurancePolicyTypeOptions: [],
+    };
+  },
+  watch: {
+    insuranceTypeId() {
+      this.model.insuranceTypeId = this.insuranceTypeId;
+      this.onTypeChanged(this.insuranceTypeId);
     },
-    data(){
-      return{
-         trackingDamageModel:[],
-         activeTrackingDamageStatusIndex:0,
-         trackingDamageStatus: -1,
-         showAcceptedForm: false,
-         trackingCode: "",
-         trackingIndex: 0,
-         self:this,
-         loading: false,
-         damagetypes: [
-           { id: "جانی" },
-           { id: "مالی" },
-           { id: "سایر" },
-           { id: "حوادث راننده" },
-         ],
-         insuranceTypeId:"",
-         model:{
-           trackingDamageFile: [],
-           damageType: "",
-           damageTypes: [],
-           description: "",
-           insuranceCompanyId: "",
-           insurancePolicyNumber: "",
-           insuranceTypeId: "",
-           insuredProfile: "",
-           mobile: "",
-           name: "",
-           nationalCode: "",
-           personalityType: "",
-           trackingDamageStatus: [],
-           damagePersianDate: "",
-         },
-        insuranceCompanyOptions:[],
-        saveDataLoading: false,
-        insurancePolicyTypeOptions:[],
+  },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    async init() {
+      this.insurancePolicyTypeOptions = await (
+        await optionServices.getInsuranceTypeDamageForm()
+      ).data.message;
+    },
+    async submit() {
+      this.model.damageType = "";
+      for (var a of this.model.damageTypes) this.model.damageType += a + ",";
+      this.model.trackingDamageStatus = [
+        {
+          description: this.model.description,
+          trackingDamageFile: this.model.trackingDamageFile,
+        },
+      ];
+      this.saveDataLoading = true;
+      var response = await services.trackingDamage(this.model);
+      if (response.data.isSuccess) {
+        this.trackingCode = response.data.message;
+        this.showAcceptedForm = true;
+      }
+      this.saveDataLoading = false;
+    },
+    async onTypeChanged(data) {
+      this.insuranceCompanyOptions = (
+        await optionServices.getInsuranceCompanies(data)
+      ).data.message;
+    },
+    controlLength(event, maxlength) {
+      var targetLength = event.target.value.length;
+      if (event.which < 0x20) {
+        // e.which < 0x20, then it's not a printable character
+        // e.which === 0 - Not a character
+        return; // Do nothing
+      }
+      if (targetLength == maxlength) {
+        event.preventDefault();
+      } else if (targetLength > maxlength) {
+        // Maximum exceeded
+        event.target.value = event.target.value.substring(0, maxlength);
       }
     },
-    watch: {
-         insuranceTypeId() {
-          this.model.insuranceTypeId=this.insuranceTypeId;
-          this.onTypeChanged(this.insuranceTypeId);
-         }
-       },
-    mounted() {
-      this.init();
-    },
-    methods:{
-      async init(){
-       this.insurancePolicyTypeOptions=await (await optionServices.getInsuranceTypeDamageForm()).data.message;
-      },
-        async submit() {
-        this.model.damageType = "";
-        for (var a of this.model.damageTypes) this.model.damageType += a + ",";
-        this.model.trackingDamageStatus = [
-          {
-            description: this.model.description,
-            trackingDamageFile: this.model.trackingDamageFile,
-          },
-        ];
-        this.saveDataLoading = true;
-        var response= await services.trackingDamage(this.model);
-        if (response.data.isSuccess) {
-          this.trackingCode = response.data.message;
-          this.showAcceptedForm = true;
-        }
-        this.saveDataLoading = false;
-      },
-      async onTypeChanged(data) {
-         this.insuranceCompanyOptions = (
-           await optionServices.getInsuranceCompanies(data)
-         ).data.message;
-      },
-      controlLength(event, maxlength) {
-        var targetLength = event.target.value.length;
-        if (event.which < 0x20) {
-          // e.which < 0x20, then it's not a printable character
-          // e.which === 0 - Not a character
-          return; // Do nothing
-        }
-        if (targetLength == maxlength) {
-          event.preventDefault();
-        } else if (targetLength > maxlength) {
-          // Maximum exceeded
-          event.target.value = event.target.value.substring(0, maxlength);
-        }
-      }
-    }
-
-  });
-  </script>
+  },
+});
+</script>
 
 <style lang="scss">
- .submit-damage-container{
-   padding: 100px 5% 10px;
-   .submit-button{
+.submit-damage-container {
+  padding: 100px 5% 10px;
+  .submit-button {
     background-color: var(--q-themeColor);
-    color:#fff;
+    color: #fff;
   }
- }
+}
 </style>
-

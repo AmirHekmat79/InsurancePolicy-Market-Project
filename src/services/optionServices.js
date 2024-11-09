@@ -14,9 +14,9 @@ const optionServices = {
     });
   },
 
-  getInsuranceTypeDamageForm() {
-    return baseServices.get("/ComboData/Province", {});
-  },
+  // getInsuranceTypeDamageForm() {
+  //   return baseServices.get("/ComboData/Province", {});
+  // },
   getCityByProvinceId(provinceId) {
     return baseServices.get("/ComboData/City", { provinceId });
   },

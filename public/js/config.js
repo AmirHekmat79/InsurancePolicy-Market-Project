@@ -124,7 +124,7 @@ let Config = {
         cdn: "https://cdn.kn2.ir/",
         isPwa: true,
       };
-    }else if(license == "fardaap"){
+    } else if (license == "fardaap") {
       return {
         title: "فرداپ",
         Server: "https://server.fardaap.com/",
@@ -143,7 +143,7 @@ let Config = {
         captcha: "https://captcha.mbime.ir/",
         cdn: "https://cdn.mbime.ir/",
       };
-    }else if(license == "fardaap_pwa"){
+    } else if (license == "fardaap_pwa") {
       return {
         title: "فرداپ",
         Server: "https://server.fardaap.com/",
@@ -165,7 +165,7 @@ let Config = {
     }
   },
   getConfig() {
-    let config = this.setConfig(licensesName.Notifaano);
+    let config = this.setConfig(licensesName.Novin);
     return config;
   },
 };
