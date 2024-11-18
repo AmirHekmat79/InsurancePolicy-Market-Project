@@ -1,5 +1,6 @@
 <template>
   <div
+    id="reminder"
     class="insurance-policy-renewal-reminder-section row justify-center items-center q-my-xl"
   >
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 image-container">
@@ -10,7 +11,7 @@
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1"
-          stroke="#b2208b"
+          stroke="#4B59C5"
           class="size-6"
         >
           <path

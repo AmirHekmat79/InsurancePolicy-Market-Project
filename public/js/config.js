@@ -165,7 +165,7 @@ let Config = {
     }
   },
   getConfig() {
-    let config = this.setConfig(licensesName.Novin);
+    let config = this.setConfig(licensesName.Notifaano_pwa);
     return config;
   },
 };

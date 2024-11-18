@@ -11,7 +11,7 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1"
-        stroke="#b2208b"
+        stroke="#4B59C5"
       >
         <path
           class="icon-color"
@@ -98,6 +98,7 @@ export default defineComponent({
   background: #eeeeee;
   background-size: cover;
   background-position: center;
+  border-radius: 100px;
   position: relative;
   margin-top: 20px;
   padding-top: 40px;
@@ -112,6 +113,7 @@ export default defineComponent({
     .my-card {
       width: 300px;
       text-align: center;
+      border-radius: 35px;
       margin: 5px;
       height: 450px;
       .card-img {

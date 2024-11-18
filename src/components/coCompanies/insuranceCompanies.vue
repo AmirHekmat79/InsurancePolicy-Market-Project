@@ -1,10 +1,8 @@
 <template>
-  <q-page style="min-height: 400px">
-    <section class="q-py-lg">
+  <q-page style="min-height: 400px;">
+    <section id="insuranceCompanies" class="q-py-lg">
       <div class="container q-mx-auto q-mb-md">
-        <div
-          class="row justify-center text-center items-center   q-py-md "
-        >
+        <div class="row justify-center text-center items-center q-py-md">
           <q-img src="../../assets/protect-icon.svg" width="32px"></q-img>
           <h5 class="text-weight-bold company-title q-mx-sm">شرکت بیمه</h5>
         </div>
@@ -26,7 +24,7 @@
             </q-card>
           </div>
           <div
-            style="z-index: 1"
+            style="z-index: 1;"
             class="col-md-2"
             v-for="item in InsuranceCompanies.filter((item) => item.id == 32)"
             :key="item.id"

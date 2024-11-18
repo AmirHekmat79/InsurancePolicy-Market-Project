@@ -5,6 +5,97 @@
         <ToolbarNavigation :data="baseData" v-if="showItem" />
       </q-header>
     </div>
+    <div class="side-nav">
+      <div
+        class="column justify-between q-my-auto q-px-sm q-gutter-lg items-center"
+      >
+        <q-btn
+          :class="{ 'active-color': activeBtn === '' }"
+          @click="scrollTo('')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/User.svg"></q-img>
+        </q-btn>
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'servicee' }"
+          @click="scrollTo('servicee')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/vector.svg"></q-img>
+        </q-btn>
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'consulting' }"
+          @click="scrollTo('consulting')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/consulting.svg"></q-img>
+          <p class="text-dark">
+            {{ this.activeBtn === "consulting" ? "درخواست مشاوره" : "" }}
+          </p></q-btn
+        >
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'service' }"
+          @click="scrollTo('service')"
+          class="insurance-service-btn simple-rounded-border"
+        >
+          <q-img width="42px" src="icons/insurance (3).svg"></q-img>
+          <p class="text-dark">
+            {{ this.activeBtn === "service" ? "خدمات بیمه ای" : "" }}
+          </p></q-btn
+        >
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'reminder' }"
+          @click="scrollTo('reminder')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/reminder 1.svg"></q-img>
+          <p class="text-dark">
+            {{ this.activeBtn === "reminder" ? " تمدید بیمه نامه" : "" }}
+          </p></q-btn
+        >
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'news' }"
+          @click="scrollTo('news')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/speaker.svg"></q-img>
+          <p class="text-dark">
+            {{ this.activeBtn === "news" ? " اخبار" : "" }}
+          </p></q-btn
+        >
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'feature' }"
+          @click="scrollTo('feature')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/gallery.svg"></q-img>
+          <p class="text-dark">
+            {{ this.activeBtn === "feature" ? "مراحل" : "" }}
+          </p></q-btn
+        >
+
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'videoGallery' }"
+          @click="scrollTo('videoGallery')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/video-files.svg"></q-img>
+          <p class="text-dark">
+            {{ this.activeBtn === "videoGallery" ? "گالری ویدئوها" : "" }}
+          </p></q-btn
+        >
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'insuranceCompanies' }"
+          @click="scrollTo('insuranceCompanies')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img width="32px" src="icons/contact.svg"></q-img>
+          <p class="text-dark">
+            {{ this.activeBtn === "insuranceCompanies" ? "شرکت های بیمه" : "" }}
+          </p></q-btn
+        >
+      </div>
+    </div>
     <router-view />
     <FooterSection :data="baseData" v-if="showItem" />
   </q-layout>
@@ -54,11 +145,84 @@ export default defineComponent({
     //  setBaseData(data) {
     //   this.baseDataStore.setBaseData(data,true);
     // },
+
+    async scrollTo(section) {
+      this.activeBtn = section;
+      if (this.$route.path === "/") {
+        const serviceSection = document.querySelector(`#${section}`);
+
+        if (serviceSection) {
+          const { top } = serviceSection.getBoundingClientRect();
+          window.scrollBy({
+            top: top - 50,
+            left: 0,
+            behavior: "smooth",
+          });
+        } else {
+          console.warn(`Element with ID "${section}" not found.`);
+        }
+      } else {
+        await this.$router.push("/");
+        // Wait for the route to render
+        await this.$nextTick();
+        await this.gotoPlans(section);
+      }
+    },
+    async gotoPlans(section) {
+      this.activeBtn = section;
+      // Wait for the next tick to ensure the component is rendered
+      await this.$nextTick();
+
+      const serviceSection = document.querySelector(`#${section}`);
+
+      if (serviceSection) {
+        const { top } = serviceSection.getBoundingClientRect();
+        window.scrollBy({
+          top: top - 30,
+          left: 0,
+          behavior: "smooth",
+        });
+      } else {
+        console.warn(`Element with ID "${section}" not found in gotoPlans.`);
+      }
+    },
   },
 });
 </script>
 
 <style lang="scss">
+.side-nav {
+  width: 100px;
+  height: 700px;
+  background: #223a7a;
+  border-radius: 100px;
+  position: fixed;
+  top: 15%;
+  left: 0.5%;
+  z-index: 6000;
+}
+.insurance-service-btn {
+  border-radius: 100px;
+
+  // width: 76px;
+  // height: 122px;
+}
+.simple-rounded-border {
+  border: 1px solid #eee;
+  border-radius: 16px;
+  // width: 150px;
+  height: auto;
+  font-size: 13px;
+  font-weight: bolder;
+}
+.active-color {
+  background: #c9c9c9 !important;
+  .insurance-service-btn {
+    border-radius: 100px;
+    width: 75px;
+    height: 122px;
+  }
+}
 .header-section {
   background: var(--q-themeColor) !important;
   background-position: center;
@@ -80,7 +244,7 @@ export default defineComponent({
   padding: 10px;
 }
 .header {
-  padding:20px 65px;
+  padding: 20px 65px;
   width: 1280px;
   margin: auto;
   border-radius: 1000px;
@@ -118,10 +282,16 @@ export default defineComponent({
   .sm-device-carousel {
     width: 80% !important;
   }
+  .side-nav {
+    display: none;
+  }
 }
 @media screen and (max-width: 600px) {
   .sm-device-carousel {
     width: 100% !important;
+  }
+  .side-nav {
+    display: none;
   }
 }
 </style>

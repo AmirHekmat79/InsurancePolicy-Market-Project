@@ -5,6 +5,11 @@
         ><q-img src="/images/footerLogo.png" width="140px"></q-img
       ></q-btn> -->
       <h2 class="title">ارتباط با ما</h2>
+      <p class="sub-footer-location-text">
+        شرکتی دانش بنیان که از سال ۱۳۸۶ به صورت حرفه ای در پیگیری درخواست حوزه ی
+        تولید نرم افزارهای سفارش پیشنهادات ، انتقادات و شکایات مشتری خدمات فعال
+        است.
+      </p>
       <div
         class="row justify-start items-center q-my-lg q-gutter-md social-ntworks"
       >
@@ -47,64 +52,69 @@
     </div>
 
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 site-feature-container">
-      <h2 class="title">امکانات سایت</h2>
-      <div class="flex">
-        <ul class="site-features">
-          <li class="row items-center">
-            <a @click="this.$router.push('/about')"> درباره ما </a>
-          </li>
-          <li class="row items-center">
-            <a @click="this.$router.push('/ourservice')"> خدمات ما </a>
-          </li>
-          <li class="row items-center">
-            <a @click="this.$router.push('/contactUs')"> تماس با ما </a>
-          </li>
-          <li class="row items-center">
-            <a @click="this.$router.push('/registerComplaint')">
-              پیشنهادات ، انتقادات و شکایات
-            </a>
-          </li>
-          <li class="row items-center">
-            <a @click="this.$router.push('/faq')"> پرسش های متداول</a>
-          </li>
-        </ul>
-        <ul
-          class="site-features section-2"
-          v-if="baseData && baseData.insuranceCentreSetting"
-        >
-          <li class="row items-center">
-            <a @click="this.$router.push('/trackingInsurance')">
-              پیگیری بیمه نامه
-            </a>
-          </li>
-          <li
-            v-if="baseData.insuranceCentreSetting.enableBazaryaban"
-            class="row items-center"
+      <div class="row">
+        <div>
+          <h2 class="title">امکانات سایت</h2>
+          <ul class="site-features">
+            <li class="row items-center">
+              <a @click="this.$router.push('/about')"> درباره ما </a>
+            </li>
+            <li class="row items-center">
+              <a @click="this.$router.push('/ourservice')"> خدمات ما </a>
+            </li>
+            <li class="row items-center">
+              <a @click="this.$router.push('/contactUs')"> تماس با ما </a>
+            </li>
+            <li class="row items-center">
+              <a @click="this.$router.push('/registerComplaint')">
+                پیشنهادات ، انتقادات و شکایات
+              </a>
+            </li>
+            <li class="row items-center">
+              <a @click="this.$router.push('/faq')"> پرسش های متداول</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="title">لینک های پرکاربرد</h2>
+          <ul
+            class="site-features section-2"
+            v-if="baseData && baseData.insuranceCentreSetting"
           >
-            <a @click="this.$router.push('/marketerRegistration')">
-              سامانه بازاریابان
-            </a>
-          </li>
-          <li
-            v-if="baseData.insuranceCentreSetting.enableBazaryaban"
-            class="row items-center"
-          >
-            <a @click="this.$router.push('/agentRegisteration')">
-              همکاری با نمایندگان بیمه
-            </a>
-          </li>
-          <li
-            v-if="baseData.insuranceCentreSetting.enableBazaryaban"
-            class="row items-center"
-          >
-            <a @click="this.$router.push('/otherJobsRegisteration')">
-              همکاری با ما
-            </a>
-          </li>
-          <li class="row items-center">
-            <a @click="this.roles = true"> قوانین و مقررات </a>
-          </li>
-        </ul>
+            <li class="row items-center">
+              <a @click="this.$router.push('/trackingInsurance')">
+                پیگیری بیمه نامه
+              </a>
+            </li>
+            <li
+              v-if="baseData.insuranceCentreSetting.enableBazaryaban"
+              class="row items-center"
+            >
+              <a @click="this.$router.push('/marketerRegistration')">
+                سامانه بازاریابان
+              </a>
+            </li>
+            <li
+              v-if="baseData.insuranceCentreSetting.enableBazaryaban"
+              class="row items-center"
+            >
+              <a @click="this.$router.push('/agentRegisteration')">
+                همکاری با نمایندگان بیمه
+              </a>
+            </li>
+            <li
+              v-if="baseData.insuranceCentreSetting.enableBazaryaban"
+              class="row items-center"
+            >
+              <a @click="this.$router.push('/otherJobsRegisteration')">
+                همکاری با ما
+              </a>
+            </li>
+            <li class="row items-center">
+              <a @click="this.roles = true"> قوانین و مقررات </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -323,6 +333,27 @@ export default {
 // .logo-img {
 //   max-width: 30% !important;
 // }
+.sub-footer-location-text {
+  white-space: wrap;
+  line-height: 30px;
+  border-radius: 10%;
+  margin-top: 10px;
+  color: #eee;
+
+  font-size: 18px;
+}
+@media screen and (max-width: 700px) {
+  .sub-footer-location-text {
+    white-space: wrap;
+    line-height: 30px;
+    width: 200px;
+    height: 112px;
+    margin: 70px 3px;
+    color: #ffff;
+
+    font-size: 14px;
+  }
+}
 .top-footer {
   padding: 30px 30px;
   margin: auto;

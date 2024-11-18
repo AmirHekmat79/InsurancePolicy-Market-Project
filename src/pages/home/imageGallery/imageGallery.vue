@@ -1,5 +1,6 @@
 <template>
   <div
+    id="dialog"
     class="images-gallery-section row text-center"
     v-if="imageAlbums && imageAlbums.length"
   >
@@ -7,7 +8,7 @@
       <h2 class="gallery-title">گالری تصاویر</h2>
       <svg
         width="32px"
-        fill="#b2208b"
+        fill="#4B59C5"
         class="icon-color"
         xmlns="http://www.w3.org/2000/svg"
         shape-rendering="geometricPrecision"
@@ -48,7 +49,7 @@
             <div class="flip-box-front">
               <q-img class="img-item" :src="item?.metaMediaFileUrl"></q-img>
             </div>
-            <div class="flip-box-back shadow-10">
+            <div class="text-primary">
               <h6 class="text-center image-title">{{ item.title }}</h6>
             </div>
           </div>
@@ -160,6 +161,7 @@ export default defineComponent({
 
 <style lang="scss">
 .images-gallery-section {
+  border-radius: 100px;
   max-width: 100%;
   width: 100%; /* add this */
   box-sizing: border-box; /* add this */
@@ -213,19 +215,12 @@ export default defineComponent({
       width: 100%;
       height: 200px;
       text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-
-    .flip-box:hover .flip-box-inner {
-      transform: rotateY(180deg);
-      cursor: pointer;
     }
 
     .flip-box-front,
     .flip-box-back {
       border-radius: 10px;
-      position: absolute;
+
       width: 100%;
       height: 200px;
       -webkit-backface-visibility: hidden;

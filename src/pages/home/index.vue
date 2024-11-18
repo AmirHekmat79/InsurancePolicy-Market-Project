@@ -1,7 +1,7 @@
 <template>
   <div class="flex column flex-center">
     <Banner v-if="showItem" :data="data" />
-    <InsuranceTypes />
+    <!-- <InsuranceTypes /> -->
     <InsuranceFeatures />
     <InsuranceNews />
     <ConsultRequest />
@@ -14,7 +14,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import InsuranceTypes from "./insuranceTypes/insuranceTypes.vue";
+// import InsuranceTypes from "./insuranceTypes/insuranceTypes.vue";
 import InsuranceFeatures from "./insuranceOptions/insuranceFeatures.vue";
 import ConsultRequest from "./consultRequest/consultRequest.vue";
 // import InsuranceCompanies from "../components/Co-Companies/insurance-companies.vue";
@@ -29,7 +29,6 @@ import services from "src/services/services";
 export default defineComponent({
   name: "IndexPage",
   components: {
-    InsuranceTypes,
     InsuranceFeatures,
     ConsultRequest,
     VideoGallery,

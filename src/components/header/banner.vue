@@ -31,11 +31,33 @@
           </div>
         </q-carousel-slide>
       </q-carousel>
+      <div
+        v-if="baseData && baseData.insuranceCentrePortal"
+        class="q-mx-auto q-my-xl text-center flex justify-center items-center"
+      >
+        <img
+          class="cursur-pointer logo-img"
+          @click="goToHome()"
+          :src="baseData.insuranceCentrePortal.metaMediaFileHeaderUrl"
+        />
+      </div>
+      <h1
+        v-if="baseData.insuranceCentrePortal"
+        class="main-banner-title text-center"
+      >
+        {{ baseData.insuranceCentrePortal.title }}
+      </h1>
+      <h6
+        v-if="baseData.insuranceCentrePortal"
+        class="text-subtitle-1 sub-text text-white text-center"
+      >
+        {{ baseData.insuranceCentrePortal.subTitle }}
+      </h6>
     </div>
     <div
       class="col-lg-6 col-md-6 col-sm-12 col-xs-12 flex column justify-center items-center"
     >
-      <div
+      <!-- <div
         v-if="baseData && baseData.insuranceCentrePortal"
         class="q-mx-auto flex justify-center items-center"
       >
@@ -53,16 +75,18 @@
         class="text-subtitle-1 sub-text text-white"
       >
         {{ baseData.insuranceCentrePortal.subTitle }}
-      </h6>
+      </h6> -->
+      <InsuranceTypes />
     </div>
   </div>
 </template>
 
 <script>
+import InsuranceTypes from "src/pages/home/insuranceTypes/insuranceTypes.vue";
 import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "BannerSection",
-  components: {},
+  components: { InsuranceTypes },
   setup() {
     return {
       slide: ref(0),
@@ -114,6 +138,8 @@ export default defineComponent({
   padding: 8px;
 }
 .banner-section {
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
   width: 100%;
   padding: 165px 150px 50px 150px;
   background: var(--q-themeColor) !important;
