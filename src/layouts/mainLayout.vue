@@ -5,7 +5,7 @@
         <ToolbarNavigation :data="baseData" v-if="showItem" />
       </q-header>
     </div>
-    <div class="side-nav">
+    <div class="side-nav" v-if="$route.path === '/'">
       <div
         class="column justify-between q-my-auto q-px-sm q-gutter-lg items-center"
       >
