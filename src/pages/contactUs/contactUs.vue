@@ -444,7 +444,7 @@
           <div class="col-lg-3 col-sm-4 col-xs-6 item-title">
             <q-img
               class="consult-img q-my-sm"
-              src="icons/undraw_envelope_re_f5j4.svg"
+              src="images/undraw_envelope_re_f5j4 (1).svg"
             ></q-img>
           </div>
         </div>
@@ -698,7 +698,7 @@ export default defineComponent({
     cursor: pointer;
     font-size: 18px;
     border-radius: 8px;
-    background-color: #b2208b;
+    background-color: var(--q-themeColor);
     color: #fff;
   }
 }

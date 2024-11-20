@@ -102,7 +102,7 @@ export default defineComponent({
   position: relative;
   margin-top: 20px;
   padding-top: 40px;
-  width: 100%;
+  width: 96%;
   .section-title {
     color: #002247;
     margin: 0px 10px;

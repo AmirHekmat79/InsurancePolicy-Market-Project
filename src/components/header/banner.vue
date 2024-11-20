@@ -1,5 +1,5 @@
 <template>
-  <div class="row banner-section" v-if="baseData">
+  <div class="row banner-section shadow-2" v-if="baseData">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <q-carousel
         class="rounded-borders carousel-element"
@@ -141,6 +141,7 @@ export default defineComponent({
   border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
   width: 100%;
+
   padding: 165px 150px 50px 150px;
   background: var(--q-themeColor) !important;
   @media (max-width: 768px) {

@@ -34,7 +34,7 @@
       </div>
     </div>
   </section>
-  <section class="commercial-container">
+  <section class="commercial-container shadow-2">
     <div class="row justify-center items-center q-gutter-xl">
       <q-img
         width="22%"
@@ -104,7 +104,9 @@ export default defineComponent({
   }
 }
 .commercial-container {
-  width: 100%;
+  width: 94%;
+  border-radius: 35px;
+  margin: 12px;
   padding: 20px;
 }
 .card {
@@ -121,7 +123,7 @@ export default defineComponent({
   transform: translateY(-10px);
 }
 .feature-banner {
-  width: 100%;
+  width: 96%;
   background: #eeeeee;
   padding: 30px;
   /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(204, 228, 255, 1) 16%, rgba(204, 228, 255, 1) 100%); */

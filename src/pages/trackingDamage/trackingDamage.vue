@@ -1,309 +1,297 @@
 <template>
-    <q-card-section class="tracking-damage-container" style="max-width: 70rem; margin: auto; direction: rtl;">
-      <div v-if="loading">
-        <q-inner-loading
-          :showing="true"
-          style="background: rgba(255, 255, 255, 0.7); z-index: 2000;"
-        >
-          <q-spinner-gears size="50px" color="primary" />
-        </q-inner-loading>
-      </div>
-      <q-card-section>
-        <div class="text-h6" style="direction: rtl;">پیگیری خسارت</div>
-      </q-card-section>
+  <q-card-section
+    class="tracking-damage-container"
+    style="max-width: 70rem; margin: auto; direction: rtl;"
+  >
+    <div v-if="loading">
+      <q-inner-loading
+        :showing="true"
+        style="background: rgba(255, 255, 255, 0.7); z-index: 2000;"
+      >
+        <q-spinner-gears size="50px" color="primary" />
+      </q-inner-loading>
+    </div>
+    <q-card-section>
+      <div class="text-h6" style="direction: rtl;">پیگیری خسارت</div>
+    </q-card-section>
 
-      <q-card-section class="q-pt-none">
-        <q-form @submit="findTracking()" class="q-gutter-md">
-          <div class="row">
-            <div
-              v-if="showTrack"
-              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-margin"
-            >
-              <section class="row status-cont" v-if="trackingDamageModel.id">
-                <div
-                  :class="
-                    'status' + (trackingDamageStatus >= 0 ? 'active' : '')
-                  "
-                >
-                  <i class="material-icons">
-                    check
-                  </i>
-                  در حال بررسی
-                </div>
-                <div
-                  :class="
-                    'line rejected' +
-                    (trackingDamageStatus == 2 ? 'active' : '')
-                  "
-                  v-if="trackingDamageStatus == 2"
-                ></div>
-                <div
-                  :class="
-                    'status rejected' +
-                    (trackingDamageStatus == 2 ? 'active' : '')
-                  "
-                  v-if="trackingDamageStatus == 2"
-                >
-                  <i class="material-icons">
-                    close
-                  </i>
-                  رد شده
-                </div>
-                <div
-                  :class="'line' + (trackingDamageStatus >= 1 ? 'active' : '')"
-                  v-if="trackingDamageStatus != 2"
-                ></div>
-                <div
-                  :class="
-                    'status' + (trackingDamageStatus >= 1 ? 'active' : '')
-                  "
-                  v-if="trackingDamageStatus != 2"
-                >
-                  <i class="material-icons">
-                    check
-                  </i>
-                  تایید شده
-                </div>
-                <div
-                  :class="
-                    'line' +
-                    (trackingDamageStatus >= 1 && trackingDamageStatus != 2
-                      ? 'active'
-                      : '')
-                  "
-                ></div>
-                <div
-                  :class="
-                    'status' +
-                    (trackingDamageStatus >= 1 && trackingDamageStatus != 2
-                      ? 'active'
-                      : '')
-                  "
-                >
-                  <i class="material-icons">
-                    check
-                  </i>
-                  رسیدگی کارشناس
-                </div>
-                <div
-                  :class="
-                    'line rejected' +
-                    (trackingDamageStatus == 4 ? 'active' : '')
-                  "
-                  v-if="trackingDamageStatus == 4"
-                ></div>
-                <div
-                  :class="
-                    'status rejected' +
-                    (trackingDamageStatus == 4 ? 'active' : '')
-                  "
-                  v-if="trackingDamageStatus == 4"
-                >
-                  <i class="material-icons">
-                    close
-                  </i>
-                  رد شده
-                </div>
-                <div
-                  :class="'line' + (trackingDamageStatus >= 3 ? 'active' : '')"
-                  v-if="trackingDamageStatus != 4"
-                ></div>
-                <div
-                  :class="
-                    'status' + (trackingDamageStatus >= 3 ? 'active' : '')
-                  "
-                  v-if="trackingDamageStatus != 4"
-                >
-                  <i class="material-icons">
-                    check
-                  </i>
-                  تایید شده
-                </div>
-                <div
-                  :class="
-                    'line' +
-                    (trackingDamageStatus >= 3 && trackingDamageStatus != 4
-                      ? 'active'
-                      : '')
-                  "
-                ></div>
-                <div
-                  :class="
-                    'status' +
-                    (trackingDamageStatus >= 3 && trackingDamageStatus != 4
-                      ? 'active'
-                      : '')
-                  "
-                >
-                  <i class="material-icons">
-                    check
-                  </i>
-                  ارسال به مالی
-                </div>
-                <div
-                  :class="'line' + (trackingDamageStatus == 6 ? 'active' : '')"
-                ></div>
-                <div
-                  :class="
-                    'status' + (trackingDamageStatus == 6 ? 'active' : '')
-                  "
-                >
-                  <i class="material-icons">
-                    check
-                  </i>
-                  پرداخت شده
-                </div>
-              </section>
-              <section
-                class="row description"
-                v-if="
-                  activeTrackingDamageStatusIndex > -1 &&
-                  trackingDamageModel.trackingDamageStatus[
-                    activeTrackingDamageStatusIndex
-                  ].description &&
-                  trackingDamageModel.trackingDamageStatus[
-                    activeTrackingDamageStatusIndex
-                  ].description != ''
+    <q-card-section class="q-pt-none">
+      <q-form @submit="findTracking()" class="q-gutter-md">
+        <div class="row">
+          <div
+            v-if="showTrack"
+            class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-margin"
+          >
+            <section class="row status-cont" v-if="trackingDamageModel.id">
+              <div
+                :class="'status' + (trackingDamageStatus >= 0 ? 'active' : '')"
+              >
+                <i class="material-icons">
+                  check
+                </i>
+                در حال بررسی
+              </div>
+              <div
+                :class="
+                  'line rejected' + (trackingDamageStatus == 2 ? 'active' : '')
+                "
+                v-if="trackingDamageStatus == 2"
+              ></div>
+              <div
+                :class="
+                  'status rejected' +
+                  (trackingDamageStatus == 2 ? 'active' : '')
+                "
+                v-if="trackingDamageStatus == 2"
+              >
+                <i class="material-icons">
+                  close
+                </i>
+                رد شده
+              </div>
+              <div
+                :class="'line' + (trackingDamageStatus >= 1 ? 'active' : '')"
+                v-if="trackingDamageStatus != 2"
+              ></div>
+              <div
+                :class="'status' + (trackingDamageStatus >= 1 ? 'active' : '')"
+                v-if="trackingDamageStatus != 2"
+              >
+                <i class="material-icons">
+                  check
+                </i>
+                تایید شده
+              </div>
+              <div
+                :class="
+                  'line' +
+                  (trackingDamageStatus >= 1 && trackingDamageStatus != 2
+                    ? 'active'
+                    : '')
+                "
+              ></div>
+              <div
+                :class="
+                  'status' +
+                  (trackingDamageStatus >= 1 && trackingDamageStatus != 2
+                    ? 'active'
+                    : '')
                 "
               >
-                <header>توضیح کارشناس:</header>
-                <article>
-                  <p>
-                    {{
-                      trackingDamageModel.trackingDamageStatus[
-                        activeTrackingDamageStatusIndex
-                      ].description
-                    }}
-                  </p>
-                </article>
-              </section>
-            </div>
-
-            <div
-              v-if="!showTrack"
-              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-margin"
-            >
-              <q-input
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') || 'کد رهگیری الزامی است',
-                ]"
-                color="teal"
-                outlined
-                v-model="myTrackingCode"
-                label="کد رهگیری"
-                class="label-right"
+                <i class="material-icons">
+                  check
+                </i>
+                رسیدگی کارشناس
+              </div>
+              <div
+                :class="
+                  'line rejected' + (trackingDamageStatus == 4 ? 'active' : '')
+                "
+                v-if="trackingDamageStatus == 4"
+              ></div>
+              <div
+                :class="
+                  'status rejected' +
+                  (trackingDamageStatus == 4 ? 'active' : '')
+                "
+                v-if="trackingDamageStatus == 4"
               >
-              </q-input>
-            </div>
-            <div
-              v-if="!showTrack"
-              class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex justify-end"
+                <i class="material-icons">
+                  close
+                </i>
+                رد شده
+              </div>
+              <div
+                :class="'line' + (trackingDamageStatus >= 3 ? 'active' : '')"
+                v-if="trackingDamageStatus != 4"
+              ></div>
+              <div
+                :class="'status' + (trackingDamageStatus >= 3 ? 'active' : '')"
+                v-if="trackingDamageStatus != 4"
+              >
+                <i class="material-icons">
+                  check
+                </i>
+                تایید شده
+              </div>
+              <div
+                :class="
+                  'line' +
+                  (trackingDamageStatus >= 3 && trackingDamageStatus != 4
+                    ? 'active'
+                    : '')
+                "
+              ></div>
+              <div
+                :class="
+                  'status' +
+                  (trackingDamageStatus >= 3 && trackingDamageStatus != 4
+                    ? 'active'
+                    : '')
+                "
+              >
+                <i class="material-icons">
+                  check
+                </i>
+                ارسال به مالی
+              </div>
+              <div
+                :class="'line' + (trackingDamageStatus == 6 ? 'active' : '')"
+              ></div>
+              <div
+                :class="'status' + (trackingDamageStatus == 6 ? 'active' : '')"
+              >
+                <i class="material-icons">
+                  check
+                </i>
+                پرداخت شده
+              </div>
+            </section>
+            <section
+              class="row description"
+              v-if="
+                activeTrackingDamageStatusIndex > -1 &&
+                trackingDamageModel.trackingDamageStatus[
+                  activeTrackingDamageStatusIndex
+                ].description &&
+                trackingDamageModel.trackingDamageStatus[
+                  activeTrackingDamageStatusIndex
+                ].description != ''
+              "
             >
-            <q-btn
-                  class="submit-button"
-                  label="پیگیری درخواست"
-                  type="submit"
-                />
-            </div>
+              <header>توضیح کارشناس:</header>
+              <article>
+                <p>
+                  {{
+                    trackingDamageModel.trackingDamageStatus[
+                      activeTrackingDamageStatusIndex
+                    ].description
+                  }}
+                </p>
+              </article>
+            </section>
           </div>
-        </q-form>
-        <q-card
-    dir="rtl"
-    class="row justify-center banner-bg items-center q-pa-md q-mt-lg rounded-borders"
-  >
-    <div class="col-md-4">
-      <div class="column justify-end items-center">
-        <h6 class="banner-title">
-          بیمه،راهی مطمئن برای کسب و کار
-        </h6>
-        <p class="text-justify sm-font-size text-dark">
-          با ما به راحتی و اطمینان کامل،کسب و کار و آینده خود را بیمه کنید.
-        </p>
-      </div>
-    </div>
-    <div class="col-md-2 text-center q-mr-xl">
-      <img class="predict-img"  src="icons/undraw_predictive_analytics_re_wxt8.svg" />
-    </div>
-    <div class="col-md-5">
-      <div class="column justify-end items-center q-mx-lg">
-        <h6 class="banner-title-font banner-title">
-          بیمه،راهی برای پیشگیری از خسارت
-        </h6>
-        <p class="text-justify sm-font-size text-dark">
-          اگه همین حالا خودتان را بیمه کنید، جلوی بسیاری از مشکلات غیرقابل
-          پیش‌بینی را خواهید گرفت. به واسطه خدمات بیمه می‌توانید آرامش و آسایش
-          به خود و خانواده‌تان هدیه کنید.
-        </p>
-      </div>
-    </div>
-  </q-card>
-      </q-card-section>
+
+          <div
+            v-if="!showTrack"
+            class="col-lg-12 col-md-12 col-sm-12 col-xs-12 with-margin"
+          >
+            <q-input
+              :rules="[
+                (val) => (val !== null && val !== '') || 'کد رهگیری الزامی است',
+              ]"
+              color="teal"
+              outlined
+              v-model="myTrackingCode"
+              label="کد رهگیری"
+              class="label-right"
+            >
+            </q-input>
+          </div>
+          <div
+            v-if="!showTrack"
+            class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex justify-end"
+          >
+            <q-btn class="submit-button" label="پیگیری درخواست" type="submit" />
+          </div>
+        </div>
+      </q-form>
+      <q-card
+        dir="rtl"
+        class="row justify-center banner-bg items-center q-pa-md q-mt-lg rounded-borders"
+      >
+        <div class="col-md-4">
+          <div class="column justify-end items-center">
+            <h6 class="banner-title">
+              بیمه،راهی مطمئن برای کسب و کار
+            </h6>
+            <p class="text-justify sm-font-size text-dark">
+              با ما به راحتی و اطمینان کامل،کسب و کار و آینده خود را بیمه کنید.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-2 text-center q-mr-xl">
+          <img
+            class="predict-img"
+            src="images/undraw_predictive_analytics_re_wxt8 (1).svg"
+          />
+        </div>
+        <div class="col-md-5">
+          <div class="column justify-end items-center q-mx-lg">
+            <h6 class="banner-title-font banner-title">
+              بیمه،راهی برای پیشگیری از خسارت
+            </h6>
+            <p class="text-justify sm-font-size text-dark">
+              اگه همین حالا خودتان را بیمه کنید، جلوی بسیاری از مشکلات غیرقابل
+              پیش‌بینی را خواهید گرفت. به واسطه خدمات بیمه می‌توانید آرامش و
+              آسایش به خود و خانواده‌تان هدیه کنید.
+            </p>
+          </div>
+        </div>
+      </q-card>
     </q-card-section>
+  </q-card-section>
 </template>
 
-  <script>
-  import services from "src/services/services";
+<script>
+import services from "src/services/services";
 import { defineComponent } from "vue";
-  export default defineComponent({
-    name: "TrackingDamage",
-    data(){
-      return{
-        trackingDamageModel: [],
-        activeTrackingDamageStatusIndex:0,
-        trackingDamageStatus:-1,
-        showAcceptedForm:false,
-        myTrackingCode: "",
-        trackingIndex:0,
-        loading:false,
-        showTrack:false,
-      }
-    },
-    methods:{
-      async findTracking() {
-         this.loading = true;
-         try {
-           var a = await services.findTracking(this.myTrackingCode);
-           this.trackingDamageModel = a.data.message[0];
-           this.activeTrackingDamageStatusIndex =
-             this.trackingDamageModel.trackingDamageStatus.length - 1;
-           if (
-             this.trackingDamageModel.id &&
-             this.activeTrackingDamageStatusIndex > -1
-           ) {
-             this.trackingDamageStatus = this.trackingDamageModel.trackingDamageStatus[
-               this.activeTrackingDamageStatusIndex
-             ].trackingDamageStatus;
-           }
-           this.showTrack = true;
-        } catch (err) {
-          if(err.data.message){
-            this.$q.notify({
+export default defineComponent({
+  name: "TrackingDamage",
+  data() {
+    return {
+      trackingDamageModel: [],
+      activeTrackingDamageStatusIndex: 0,
+      trackingDamageStatus: -1,
+      showAcceptedForm: false,
+      myTrackingCode: "",
+      trackingIndex: 0,
+      loading: false,
+      showTrack: false,
+    };
+  },
+  methods: {
+    async findTracking() {
+      this.loading = true;
+      try {
+        var a = await services.findTracking(this.myTrackingCode);
+        this.trackingDamageModel = a.data.message[0];
+        this.activeTrackingDamageStatusIndex =
+          this.trackingDamageModel.trackingDamageStatus.length - 1;
+        if (
+          this.trackingDamageModel.id &&
+          this.activeTrackingDamageStatusIndex > -1
+        ) {
+          this.trackingDamageStatus = this.trackingDamageModel.trackingDamageStatus[
+            this.activeTrackingDamageStatusIndex
+          ].trackingDamageStatus;
+        }
+        this.showTrack = true;
+      } catch (err) {
+        if (err.data.message) {
+          this.$q.notify({
             color: "red",
             textColor: "white",
             icon: "cloud_done",
             message: err.data.message,
           });
-          }
-
         }
-    this.loading = false;
-  }
-    }
-
-
-  });
-  </script>
+      }
+      this.loading = false;
+    },
+  },
+});
+</script>
 
 <style lang="scss">
-.predict-img{
+.predict-img {
   width: 100px;
 }
-.tracking-damage-container{
+.tracking-damage-container {
   padding-top: 150px;
-  .submit-button{
+  .submit-button {
     background-color: var(--q-themeColor);
-    color:#fff;
+    color: #fff;
   }
 }
 section.row {

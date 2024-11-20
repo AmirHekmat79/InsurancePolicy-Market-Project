@@ -29,7 +29,7 @@
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img width="32px" src="icons/consulting.svg"></q-img>
-          <p class="text-dark">
+          <p class="text-white">
             {{ this.activeBtn === "consulting" ? "درخواست مشاوره" : "" }}
           </p></q-btn
         >
@@ -39,7 +39,7 @@
           class="insurance-service-btn simple-rounded-border"
         >
           <q-img width="42px" src="icons/insurance (3).svg"></q-img>
-          <p class="text-dark">
+          <p class="text-white">
             {{ this.activeBtn === "service" ? "خدمات بیمه ای" : "" }}
           </p></q-btn
         >
@@ -49,7 +49,7 @@
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img width="32px" src="icons/reminder 1.svg"></q-img>
-          <p class="text-dark">
+          <p class="text-white">
             {{ this.activeBtn === "reminder" ? " تمدید بیمه نامه" : "" }}
           </p></q-btn
         >
@@ -59,7 +59,7 @@
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img width="32px" src="icons/speaker.svg"></q-img>
-          <p class="text-dark">
+          <p class="text-white">
             {{ this.activeBtn === "news" ? " اخبار" : "" }}
           </p></q-btn
         >
@@ -69,7 +69,7 @@
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img width="32px" src="icons/gallery.svg"></q-img>
-          <p class="text-dark">
+          <p class="text-white">
             {{ this.activeBtn === "feature" ? "مراحل" : "" }}
           </p></q-btn
         >
@@ -80,7 +80,7 @@
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img width="32px" src="icons/video-files.svg"></q-img>
-          <p class="text-dark">
+          <p class="text-white">
             {{ this.activeBtn === "videoGallery" ? "گالری ویدئوها" : "" }}
           </p></q-btn
         >
@@ -90,7 +90,7 @@
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img width="32px" src="icons/contact.svg"></q-img>
-          <p class="text-dark">
+          <p class="text-white text-weight-bolder">
             {{ this.activeBtn === "insuranceCompanies" ? "شرکت های بیمه" : "" }}
           </p></q-btn
         >
@@ -121,6 +121,7 @@ export default defineComponent({
     return {
       baseData: [],
       showItem: false,
+      activeBtn: null,
     };
   },
   mounted() {
@@ -198,7 +199,7 @@ export default defineComponent({
   border-radius: 100px;
   position: fixed;
   top: 15%;
-  left: 0.5%;
+  left: 1%;
   z-index: 6000;
 }
 .insurance-service-btn {
@@ -216,7 +217,7 @@ export default defineComponent({
   font-weight: bolder;
 }
 .active-color {
-  background: #c9c9c9 !important;
+  background: #4b59c5 !important;
   .insurance-service-btn {
     border-radius: 100px;
     width: 75px;

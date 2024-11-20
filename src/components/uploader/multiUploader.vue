@@ -79,7 +79,7 @@
       <q-btn
         @click="showUpload = true"
         style="margin-top: 10px;"
-        color="#4B59C5"
+        class="upload-btn"
         label="بارگذاری"
       />
     </div>
@@ -196,4 +196,9 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.upload-btn {
+  background-color: var(--q-themeColor);
+  color: #fff;
+}
+</style>

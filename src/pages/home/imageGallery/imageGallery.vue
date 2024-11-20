@@ -171,6 +171,7 @@ export default defineComponent({
   padding-bottom: 50px !important;
   padding-left: 0px;
   padding-right: 0px;
+  width: 96%;
   opacity: 0.9;
   .title-container {
     margin-bottom: 20px !important;

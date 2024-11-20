@@ -135,7 +135,7 @@ export default defineComponent({
   border-radius: 100px;
   position: relative;
   margin-top: 20px;
-  width: 100%;
+  width: 96%;
   .section-title {
     color: #002247;
     margin: 0px 10px;
