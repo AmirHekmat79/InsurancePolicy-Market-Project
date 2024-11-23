@@ -1,5 +1,5 @@
 <template>
-  <section dir="rtl" class="row top-footer">
+  <section dir="rtl" class="row top-footer" id="footerSection">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 contact-us">
       <!-- <q-btn class="logo-btn q-my-md"
         ><q-img src="/images/footerLogo.png" width="140px"></q-img
