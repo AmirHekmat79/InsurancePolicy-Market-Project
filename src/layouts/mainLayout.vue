@@ -7,9 +7,9 @@
     </div>
     <div class="side-nav" v-if="$route.path === '/'">
       <div
-        class="column justify-between q-my-auto q-px-sm q-gutter-lg items-center"
+        class="column justify-around items-center q-px-sm q-py-xl q-gutter-xl items-center"
       >
-        <q-btn
+        <!-- <q-btn
           :class="{ 'active-color': activeBtn === '' }"
           @click="scrollTo('')"
           class="simple-rounded-border insurance-service-btn"
@@ -22,7 +22,7 @@
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img width="32px" src="icons/vector.svg"></q-img>
-        </q-btn>
+        </q-btn> -->
         <q-btn
           :class="{ 'active-color': activeBtn === 'service' }"
           @click="scrollTo('service')"
@@ -33,10 +33,10 @@
             :src="
               this.activeBtn === 'service'
                 ? 'icons/insurance (3).svg'
-                : 'icons/insurance (2).svg'
+                : 'icons/insurance (2) (1).svg'
             "
           ></q-img>
-          <p class="text-white">
+          <p class="text-blue-grey-7">
             {{ this.activeBtn === "service" ? "خدمات بیمه ای" : "" }}
           </p></q-btn
         >
@@ -49,11 +49,11 @@
             width="32px"
             :src="
               this.activeBtn === 'feature'
-                ? 'icons/gallery (1).svg'
+                ? 'icons/gallery (1) (1).svg'
                 : 'icons/gallery.svg'
             "
           ></q-img>
-          <p class="text-white">
+          <p class="text-blue-grey-7">
             {{ this.activeBtn === "feature" ? "مراحل" : "" }}
           </p></q-btn
         >
@@ -66,11 +66,11 @@
             width="32px"
             :src="
               this.activeBtn === 'news'
-                ? 'icons/speaker (1).svg'
+                ? 'icons/speaker (1) (1).svg'
                 : 'icons/speaker.svg'
             "
           ></q-img>
-          <p class="text-white">
+          <p class="text-blue-grey-7">
             {{ this.activeBtn === "news" ? " اخبار" : "" }}
           </p></q-btn
         >
@@ -83,11 +83,11 @@
             width="32px"
             :src="
               this.activeBtn === 'consult-request'
-                ? 'icons/consulting (1) 1.svg'
+                ? 'icons/consulting (1) 1 (1).svg'
                 : 'icons/consulting.svg'
             "
           ></q-img>
-          <p class="text-white">
+          <p class="text-blue-grey-7">
             {{ this.activeBtn === "consult-request" ? "درخواست مشاوره" : "" }}
           </p></q-btn
         >
@@ -101,11 +101,11 @@
             width="32px"
             :src="
               this.activeBtn === 'reminder'
-                ? 'icons/reminder (1) 1.svg'
+                ? 'icons/reminder (1) 1 (2).svg'
                 : 'icons/reminder 1.svg'
             "
           ></q-img>
-          <p class="text-white">
+          <p class="text-blue-grey-7">
             {{ this.activeBtn === "reminder" ? " تمدید بیمه نامه" : "" }}
           </p></q-btn
         >
@@ -119,11 +119,11 @@
             width="32px"
             :src="
               this.activeBtn === 'dialog'
-                ? 'icons/video-files (1).svg'
+                ? 'icons/video-files (1) (1).svg'
                 : 'icons/video-files.svg'
             "
           ></q-img>
-          <p class="text-white">
+          <p class="text-blue-grey-7">
             {{ this.activeBtn === "dialog" ? "گالری تصاویر" : "" }}
           </p></q-btn
         >
@@ -136,11 +136,11 @@
             width="32px"
             :src="
               this.activeBtn === 'footerSection'
-                ? 'icons/contact (1) (1).svg'
+                ? 'icons/contact (1) (2).svg'
                 : 'icons/contact.svg'
             "
           ></q-img>
-          <p class="text-white text-subtitle1 text-weight-bolder">
+          <p class="text-blue-grey-7 text-subtitle1 text-weight-bolder">
             {{ this.activeBtn === "footerSection" ? "ارتباط با ما" : "" }}
           </p></q-btn
         >
@@ -171,11 +171,15 @@ export default defineComponent({
     return {
       baseData: [],
       showItem: false,
-      activeBtn: null,
+      activeBtn: "service",
     };
   },
   mounted() {
     this.getPortalLandingPage();
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
   },
   methods: {
     getPortalLandingPage() {
@@ -216,26 +220,55 @@ export default defineComponent({
         await this.$router.push("/");
         // Wait for the route to render
         await this.$nextTick();
-        await this.gotoPlans(section);
+        // await this.gotoPlans(section);
       }
     },
-    async gotoPlans(section) {
-      this.activeBtn = section;
-      // Wait for the next tick to ensure the component is rendered
-      await this.$nextTick();
+    // async gotoPlans(section) {
+    //   this.activeBtn = section;
+    //   // Wait for the next tick to ensure the component is rendered
+    //   await this.$nextTick();
 
-      const serviceSection = document.querySelector(`#${section}`);
+    //   const serviceSection = document.querySelector(`#${section}`);
 
-      if (serviceSection) {
-        const { top } = serviceSection.getBoundingClientRect();
-        window.scrollBy({
-          top: top - 30,
-          left: 0,
-          behavior: "smooth",
-        });
-      } else {
-        console.warn(`Element with ID "${section}" not found in gotoPlans.`);
-      }
+    //   if (serviceSection) {
+    //     const { top } = serviceSection.getBoundingClientRect();
+    //     window.scrollBy({
+    //       top: top - 30,
+    //       left: 0,
+    //       behavior: "smooth",
+    //     });
+    //   } else {
+    //     console.warn(`Element with ID "${section}" not found in gotoPlans.`);
+    //   }
+    // },
+
+    onScroll() {
+      const sections = [
+        "servicee",
+        "service",
+        "feature",
+        "news",
+        "consult-request",
+        "reminder",
+        "dialog",
+        "footerSection",
+      ];
+      let currentSection = "";
+
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const { top, bottom } = element.getBoundingClientRect();
+          if (
+            top <= window.innerHeight / 2 &&
+            bottom >= window.innerHeight / 2
+          ) {
+            currentSection = section;
+          }
+        }
+      });
+
+      this.activeBtn = currentSection;
     },
   },
 });
@@ -245,21 +278,21 @@ export default defineComponent({
 .side-nav {
   width: 100px;
   height: 700px;
-  background: #223a7a;
+  background: var(--q-themeColor);
   border-radius: 100px;
   position: fixed;
   top: 15%;
   left: 1%;
   z-index: 6000;
+  border: 0.5px solid #ddd;
 }
 .insurance-service-btn {
   border-radius: 100px;
-
+  // transition: transform 0.3s ease;
   // width: 76px;
   // height: 122px;
 }
 .simple-rounded-border {
-  border: 1px solid #eee;
   border-radius: 16px;
   // width: 150px;
   height: auto;
@@ -267,7 +300,7 @@ export default defineComponent({
   font-weight: bolder;
 }
 .active-color {
-  background: #1529be6e !important;
+  background: #fff !important;
   .insurance-service-btn {
     border-radius: 100px;
     width: 75px;

@@ -203,9 +203,13 @@ export default defineComponent({
     align-items: center;
   }
 }
-// @media screen and (max-width : 600px) {
-//   .consult-img {
-//   width: 100% !important;
-
-// }}
+@media screen and (max-width: 600px) {
+  .commercial-image {
+    width: 100% !important;
+    animation: none;
+  }
+  .commercial-text {
+    font-size: 17px;
+  }
+}
 </style>
