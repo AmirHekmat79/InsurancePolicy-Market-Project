@@ -1,5 +1,6 @@
 <template>
   <div
+    id="insuranceIntroduction"
     v-if="summaryCards && summaryCards.length"
     class="policy-intruduction-section q-py-sm"
   >

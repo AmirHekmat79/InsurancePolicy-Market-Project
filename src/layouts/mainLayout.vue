@@ -41,20 +41,20 @@
           </p></q-btn
         >
         <q-btn
-          :class="{ 'active-color': activeBtn === 'feature' }"
-          @click="scrollTo('feature')"
+          :class="{ 'active-color': activeBtn === 'featureSection' }"
+          @click="scrollTo('featureSection')"
           class="simple-rounded-border insurance-service-btn"
         >
           <q-img
             width="32px"
             :src="
-              this.activeBtn === 'feature'
-                ? 'icons/gallery (1) (1).svg'
+              this.activeBtn === 'featureSection'
+                ? 'icons/gallery (1) (2).svg'
                 : 'icons/gallery.svg'
             "
           ></q-img>
           <p class="text-blue-grey-7">
-            {{ this.activeBtn === "feature" ? "مراحل" : "" }}
+            {{ this.activeBtn === "featureSection" ? "مراحل" : "" }}
           </p></q-btn
         >
         <q-btn
@@ -89,6 +89,27 @@
           ></q-img>
           <p class="text-blue-grey-7">
             {{ this.activeBtn === "consult-request" ? "درخواست مشاوره" : "" }}
+          </p></q-btn
+        >
+        <q-btn
+          :class="{ 'active-color': activeBtn === 'insuranceIntroduction' }"
+          @click="scrollTo('insuranceIntroduction')"
+          class="simple-rounded-border insurance-service-btn"
+        >
+          <q-img
+            width="32px"
+            :src="
+              this.activeBtn === 'insuranceIntroduction'
+                ? 'icons/insurance-svgrepo-com (1).svg'
+                : 'icons/insurance-svgrepo-com (4).svg'
+            "
+          ></q-img>
+          <p class="text-blue-grey-7">
+            {{
+              this.activeBtn === "insuranceIntroduction"
+                ? "معرفی بیمه نامه "
+                : ""
+            }}
           </p></q-btn
         >
 
@@ -178,9 +199,9 @@ export default defineComponent({
     this.getPortalLandingPage();
     window.addEventListener("scroll", this.onScroll);
   },
-  beforeUnmount() {
-    window.removeEventListener("scroll", this.onScroll);
-  },
+  // beforeUnmount() {
+  //   window.removeEventListener("scroll", this.onScroll);
+  // },
   methods: {
     getPortalLandingPage() {
       services
@@ -202,7 +223,6 @@ export default defineComponent({
     // },
 
     async scrollTo(section) {
-      this.activeBtn = section;
       if (this.$route.path === "/") {
         const serviceSection = document.querySelector(`#${section}`);
 
@@ -213,6 +233,9 @@ export default defineComponent({
             left: 0,
             behavior: "smooth",
           });
+          setTimeout(() => {
+            this.activeBtn = section;
+          }, 400);
         } else {
           console.warn(`Element with ID "${section}" not found.`);
         }
@@ -244,9 +267,9 @@ export default defineComponent({
 
     onScroll() {
       const sections = [
-        "servicee",
         "service",
-        "feature",
+        "featureSection",
+        "insuranceIntroduction",
         "news",
         "consult-request",
         "reminder",
@@ -260,15 +283,17 @@ export default defineComponent({
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
           if (
-            top <= window.innerHeight / 2 &&
-            bottom >= window.innerHeight / 2
+            top <= window.innerHeight / 3 &&
+            bottom >= window.innerHeight / 3
           ) {
             currentSection = section;
+            console.log(currentSection);
           }
         }
       });
 
       this.activeBtn = currentSection;
+      console.log(296, this.activeBtn);
     },
   },
 });
@@ -277,11 +302,11 @@ export default defineComponent({
 <style lang="scss">
 .side-nav {
   width: 100px;
-  height: 700px;
+  height: 788px;
   background: var(--q-themeColor);
   border-radius: 100px;
   position: fixed;
-  top: 15%;
+  top: 10%;
   left: 1%;
   z-index: 6000;
   border: 0.5px solid #ddd;

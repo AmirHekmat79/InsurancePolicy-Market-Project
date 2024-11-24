@@ -1,6 +1,6 @@
 <template>
-  <section
-    id="feature"
+  <div
+    id="featureSection"
     class="row justify-around items-center feature-banner q-pa-md q-gutter-sm q-mt-lg"
   >
     <div class="row justify-center items-center q-my-sm">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
   <section class="commercial-container shadow-2">
     <div class="row justify-center items-center q-gutter-xl">
       <q-img
